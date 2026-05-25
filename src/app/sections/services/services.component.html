@@ -1,0 +1,12 @@
+<section id="services" class="section section--accent services">
+  <app-section-header title="Services" watermarkLetter="S" [light]="true" />
+  <div class="services__grid">
+    @for (service of data.services; track service.id) {
+      <article class="services__item">
+        <div class="services__icon services__icon--{{ service.icon }}"></div>
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.description }}</p>
+      </article>
+    }
+  </div>
+</section>

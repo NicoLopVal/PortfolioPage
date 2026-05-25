@@ -1,0 +1,18 @@
+<section id="portfolio" class="section section--dark portfolio-gallery">
+  <app-section-header title="My Portfolio" watermarkLetter="M" />
+  <div class="portfolio-gallery__grid">
+    @for (item of data.portfolio; track item.id) {
+      <a
+        class="portfolio-gallery__item portfolio-gallery__item--{{ item.size }}"
+        [href]="item.link || '#'"
+        [attr.aria-label]="item.title"
+      >
+        <img [src]="item.image" [alt]="item.title" />
+        <span class="portfolio-gallery__overlay">{{ item.title }}</span>
+      </a>
+    }
+  </div>
+  <div class="portfolio-gallery__cta">
+    <button type="button" class="portfolio-gallery__btn">View More</button>
+  </div>
+</section>

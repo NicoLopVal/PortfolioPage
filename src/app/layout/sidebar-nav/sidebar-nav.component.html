@@ -1,0 +1,28 @@
+<button
+  class="sidebar-nav__toggle"
+  type="button"
+  [attr.aria-expanded]="menuOpen"
+  aria-label="Toggle navigation"
+  (click)="toggleMenu()"
+>
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<nav class="sidebar-nav" [class.sidebar-nav--open]="menuOpen">
+  <ul class="sidebar-nav__list">
+    @for (section of sections; track section.id) {
+      <li>
+        <button
+          type="button"
+          class="sidebar-nav__link"
+          [class.sidebar-nav__link--active]="activeSectionId === section.id"
+          (click)="scrollTo(section.id)"
+        >
+          {{ section.label }}
+        </button>
+      </li>
+    }
+  </ul>
+</nav>

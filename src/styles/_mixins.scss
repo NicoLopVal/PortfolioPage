@@ -1,0 +1,47 @@
+@mixin section-dark {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text);
+}
+
+@mixin section-accent {
+  background-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+@mixin btn-accent {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: var(--color-accent);
+  color: var(--color-text);
+  border: none;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color var(--transition-fast);
+
+  &:hover {
+    background-color: var(--color-accent-hover);
+  }
+}
+
+@mixin card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+@mixin respond-tablet {
+  @media (max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin respond-mobile {
+  @media (max-width: 768px) {
+    @content;
+  }
+}

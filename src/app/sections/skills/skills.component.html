@@ -1,0 +1,31 @@
+<section id="skills" class="section section--dark skills">
+  <app-section-header title="My Skills" watermarkLetter="M" />
+  <div class="skills__grid">
+    <div class="skills__column skills__column--dark">
+      @for (skill of data.skillsLeft; track skill.id) {
+        <div class="skill-bar">
+          <div class="skill-bar__header">
+            <span>{{ skill.name }}</span>
+            <span>{{ skill.level }}%</span>
+          </div>
+          <div class="skill-bar__track">
+            <div class="skill-bar__fill" [style.width.%]="skill.level"></div>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="skills__column skills__column--accent">
+      @for (skill of data.skillsRight; track skill.id) {
+        <div class="skill-bar skill-bar--light">
+          <div class="skill-bar__header">
+            <span>{{ skill.name }}</span>
+            <span>{{ skill.level }}%</span>
+          </div>
+          <div class="skill-bar__track">
+            <div class="skill-bar__fill" [style.width.%]="skill.level"></div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

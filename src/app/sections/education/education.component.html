@@ -1,0 +1,19 @@
+<section id="education" class="section section--dark education">
+  <app-section-header title="Education" watermarkLetter="E" />
+  <div class="timeline-cards">
+    @for (item of data.education; track item.id) {
+      <article class="timeline-card">
+        <div
+          class="timeline-card__bar"
+          [class.timeline-card__bar--accent]="item.accentBar"
+        >
+          <span>{{ item.period }}</span>
+        </div>
+        <div class="timeline-card__body">
+          <h3>{{ item.degree }}</h3>
+          <p>{{ item.institution }}</p>
+        </div>
+      </article>
+    }
+  </div>
+</section>

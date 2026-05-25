@@ -1,0 +1,50 @@
+.section-header {
+  position: relative;
+  margin-bottom: 50px;
+  overflow: hidden;
+
+  &__watermark {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-family: var(--font-heading);
+    font-size: 8rem;
+    font-weight: 800;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.04);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  &__line {
+    flex: 1;
+    height: 2px;
+    background-color: var(--color-accent);
+    max-width: 200px;
+  }
+
+  &--light &__watermark {
+    color: rgba(255, 255, 255, 0.15);
+  }
+
+  &--light &__title {
+    color: var(--color-text);
+  }
+}

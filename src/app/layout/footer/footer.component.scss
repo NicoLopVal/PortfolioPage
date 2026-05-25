@@ -1,0 +1,23 @@
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 60px;
+  background-color: var(--color-bg-darker);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-left: var(--sidebar-width);
+
+  &__copy {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 992px) {
+    margin-left: 0;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+    padding: 24px;
+  }
+}

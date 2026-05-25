@@ -1,0 +1,41 @@
+<section id="contact" class="section section--dark contact">
+  <app-section-header title="Contact Me" watermarkLetter="C" />
+  <div class="contact__info">
+    <img [src]="data.profile.aboutImage" alt="" class="contact__avatar" />
+    <div class="contact__details">
+      <p><strong>Address:</strong> {{ data.contact.address }}</p>
+      <p><strong>Phone:</strong> <a [href]="'tel:' + data.contact.phone">{{ data.contact.phone }}</a></p>
+      <p><strong>Email:</strong> <a [href]="'mailto:' + data.contact.email">{{ data.contact.email }}</a></p>
+      <app-social-links [links]="data.socialLinks" />
+    </div>
+  </div>
+  <div class="contact__bottom">
+    <div class="contact__map">
+      <img src="assets/images/map-placeholder.svg" alt="Map location placeholder" />
+    </div>
+    <form class="contact__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      @if (submitted) {
+        <p class="contact__success">Thank you! Your message has been recorded (demo mode).</p>
+      }
+      <div class="contact__field">
+        <input type="text" formControlName="name" placeholder="Your Name" />
+        @if (form.controls.name.touched && form.controls.name.errors?.['required']) {
+          <span class="contact__error">Name is required</span>
+        }
+      </div>
+      <div class="contact__field">
+        <input type="email" formControlName="email" placeholder="Your Email" />
+        @if (form.controls.email.touched && form.controls.email.errors?.['email']) {
+          <span class="contact__error">Valid email required</span>
+        }
+      </div>
+      <div class="contact__field">
+        <input type="text" formControlName="subject" placeholder="Subject" />
+      </div>
+      <div class="contact__field">
+        <textarea formControlName="message" rows="5" placeholder="Your Message"></textarea>
+      </div>
+      <button type="submit" class="contact__submit">Send</button>
+    </form>
+  </div>
+</section>

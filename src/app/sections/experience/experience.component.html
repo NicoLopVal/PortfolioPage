@@ -1,0 +1,19 @@
+<section id="experience" class="section section--dark experience">
+  <app-section-header title="Experience" watermarkLetter="E" />
+  <div class="timeline-cards">
+    @for (item of data.experience; track item.id) {
+      <article class="timeline-card">
+        <div
+          class="timeline-card__bar"
+          [class.timeline-card__bar--accent]="item.accentBar"
+        >
+          <span>{{ item.period }}</span>
+        </div>
+        <div class="timeline-card__body">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.company }}</p>
+        </div>
+      </article>
+    }
+  </div>
+</section>
