@@ -1,6 +1,10 @@
 <section id="hero" class="hero">
   <div class="hero__photo">
-    <img [src]="data.profile.heroImage" [alt]="data.profile.tagline" />
+    <img
+      [src]="data.profile.heroImage"
+      [alt]="data.profile.firstName + ' ' + data.profile.lastName"
+      fetchpriority="high"
+    />
   </div>
   <div class="hero__accent"></div>
   <div class="hero__content">

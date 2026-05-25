@@ -13,10 +13,10 @@ export const NAV_SECTIONS: NavSection[] = [
 
 export const PORTFOLIO_DATA: PortfolioData = {
   profile: {
-    firstName: 'Your',
-    lastName: 'Name',
-    tagline: "I'm Your Name",
-    heroSubtitle: 'Web Designer & Developer',
+    firstName: 'Nicolas',
+    lastName: 'Lopez',
+    tagline: "I'm Nicolas Lopez",
+    heroSubtitle: 'Product Manager | Operations Research Engineer | Software Developer',
     aboutTitle: 'Who I Am?',
     aboutParagraphs: [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
@@ -24,7 +24,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       'Curabitur pretium tincidunt lacus. Nulla facilisi. Ut convallis, sem sit amet interdum consectetuer, odio augue aliquam leo, nec dapibus tortor nibh sed augue.',
     ],
     cvUrl: 'assets/files/cv-placeholder.pdf',
-    heroImage: 'assets/images/hero.svg',
+    heroImage: 'assets/images/ProfilePic.webp',
     aboutImage: 'assets/images/about.svg',
   },
   socialLinks: [
