@@ -1,0 +1,51 @@
+@import '../../../../styles/glass';
+
+:host {
+  display: block;
+  @include liquid-glass-surface(var(--glass-radius-lg));
+
+  &.liquid-glass-panel--radius-md {
+    border-radius: var(--glass-radius-md);
+
+    &::before {
+      border-radius: var(--glass-radius-md);
+    }
+  }
+
+  &.liquid-glass-panel--radius-lg {
+    border-radius: var(--glass-radius-lg);
+  }
+
+  &.liquid-glass-panel--radius-pill {
+    border-radius: var(--glass-radius-pill);
+
+    &::before {
+      border-radius: var(--glass-radius-pill);
+    }
+  }
+
+  &.liquid-glass-panel--tint-accent {
+    @include liquid-glass-tint-accent;
+  }
+
+  &.liquid-glass-panel--tint-gradient {
+    @include liquid-glass-tint-gradient;
+  }
+}
+
+.liquid-glass-panel__inner {
+  position: relative;
+  z-index: 1;
+}
+
+:host.liquid-glass-panel--padding-sm .liquid-glass-panel__inner {
+  padding: 16px 20px;
+}
+
+:host.liquid-glass-panel--padding-md .liquid-glass-panel__inner {
+  padding: 24px 28px;
+}
+
+:host.liquid-glass-panel--padding-lg .liquid-glass-panel__inner {
+  padding: 36px 40px;
+}

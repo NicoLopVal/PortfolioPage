@@ -1,0 +1,30 @@
+@if (href) {
+  <a
+    class="liquid-glass-button"
+    [href]="href"
+    [attr.download]="download ? '' : null"
+    [class.liquid-glass-button--disabled]="disabled"
+  >
+    <span class="liquid-glass-button__label">
+      @if (label) {
+        {{ label }}
+      } @else {
+        <ng-content />
+      }
+    </span>
+  </a>
+} @else {
+  <button
+    class="liquid-glass-button"
+    [type]="type"
+    [disabled]="disabled"
+  >
+    <span class="liquid-glass-button__label">
+      @if (label) {
+        {{ label }}
+      } @else {
+        <ng-content />
+      }
+    </span>
+  </button>
+}

@@ -1,0 +1,18 @@
+<div class="liquid-glass-card__surface">
+  @if (title || subtitle) {
+    <header class="liquid-glass-card__header">
+      @if (title) {
+        <h3 class="liquid-glass-card__title">{{ title }}</h3>
+      }
+      @if (subtitle) {
+        <p class="liquid-glass-card__subtitle">{{ subtitle }}</p>
+      }
+    </header>
+  }
+  <div class="liquid-glass-card__body">
+    <ng-content />
+  </div>
+  <div class="liquid-glass-card__actions">
+    <ng-content select="[glassActions]" />
+  </div>
+</div>

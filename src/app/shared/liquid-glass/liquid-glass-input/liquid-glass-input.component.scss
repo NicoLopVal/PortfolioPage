@@ -1,0 +1,46 @@
+@import '../../../../styles/glass';
+
+:host {
+  display: block;
+}
+
+.liquid-glass-input {
+  @include liquid-glass-surface(var(--glass-radius-pill));
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 18px;
+  min-height: 44px;
+
+  &__icon {
+    display: flex;
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+    opacity: 0.8;
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 0;
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    outline: none;
+
+    &::placeholder {
+      color: var(--color-text-muted);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+:host.liquid-glass-input-host--with-icon .liquid-glass-input input {
+  padding-left: 0;
+}

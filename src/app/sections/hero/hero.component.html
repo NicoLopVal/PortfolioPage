@@ -8,14 +8,23 @@
   </div>
   <div class="hero__accent"></div>
   <div class="hero__content">
-    <h1 class="hero__title">
-      <span class="hero__title-line">I'm</span>
-      <span class="hero__title-name">{{ data.profile.firstName }} {{ data.profile.lastName }}</span>
-    </h1>
-    <p class="hero__subtitle">{{ data.profile.heroSubtitle }}</p>
-    <a class="hero__cv-btn" [href]="data.profile.cvUrl" download>Download CV</a>
-    <div class="hero__social">
-      <app-social-links [links]="data.socialLinks" />
-    </div>
+    <app-liquid-glass-panel padding="lg" [translucencyLevel]="0">
+      <h1 class="hero__title">
+        <span class="hero__title-line">I'm</span>
+        <span class="hero__title-name">{{ data.profile.firstName }} {{ data.profile.lastName }}</span>
+      </h1>
+      <p class="hero__subtitle">{{ data.profile.heroSubtitle }}</p>
+      <app-liquid-glass-button
+        label="Download CV"
+        variant="solid"
+        color="accent"
+        [href]="data.profile.cvUrl"
+        [download]="true"
+        class="hero__cv-btn"
+      />
+      <div class="hero__social">
+        <app-social-links [links]="data.socialLinks" />
+      </div>
+    </app-liquid-glass-panel>
   </div>
 </section>

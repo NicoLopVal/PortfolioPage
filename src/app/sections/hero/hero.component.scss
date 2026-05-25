@@ -56,7 +56,6 @@
   &__title-name {
     display: block;
     color: var(--color-accent);
-    text-shadow: 2px 2px 0 var(--color-bg-dark);
   }
 
   &__subtitle {
@@ -67,8 +66,8 @@
   }
 
   &__cv-btn {
-    @include btn-accent;
-    margin-bottom: 40px;
+    display: block;
+    margin: 0 auto 40px;
   }
 
   &__social {
@@ -100,7 +99,6 @@
       left: auto;
       transform: none;
       padding: 40px 24px 60px;
-      background: linear-gradient(transparent, var(--color-bg-darker));
       margin-top: -80px;
     }
   }

@@ -1,0 +1,47 @@
+@import '../../../../styles/glass';
+
+:host {
+  display: block;
+}
+
+.liquid-glass-card__surface {
+  @include liquid-glass-surface(var(--glass-radius-lg));
+  @include liquid-glass-tint-gradient;
+  padding: 24px 28px;
+}
+
+.liquid-glass-card__header {
+  margin-bottom: 16px;
+}
+
+.liquid-glass-card__title {
+  margin: 0 0 6px;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.liquid-glass-card__subtitle {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.liquid-glass-card__body {
+  position: relative;
+  z-index: 1;
+}
+
+.liquid-glass-card__actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+
+  &:empty {
+    display: none;
+  }
+}

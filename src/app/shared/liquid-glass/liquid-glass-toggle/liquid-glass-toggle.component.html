@@ -1,0 +1,13 @@
+<button
+  type="button"
+  class="liquid-glass-toggle"
+  role="switch"
+  [attr.aria-checked]="checked"
+  [disabled]="disabled"
+  (click)="toggle()"
+  (keydown)="onKeydown($event)"
+>
+  <span class="liquid-glass-toggle__track">
+    <span class="liquid-glass-toggle__thumb"></span>
+  </span>
+</button>
