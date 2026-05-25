@@ -44,11 +44,9 @@ button {
 .section {
   position: relative;
   padding: var(--section-padding);
-  min-height: 100vh;
 
   @include respond-tablet {
     padding: 60px 40px;
-    min-height: auto;
   }
 
   @include respond-mobile {
