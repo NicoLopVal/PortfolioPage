@@ -170,24 +170,24 @@ export const PORTFOLIO_DATA: PortfolioData = {
   services: [
     {
       id: 'svc-1',
-      title: 'Web Design',
+      title: 'Operations Research',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.',
-      icon: 'laptop',
+        'Optimization models on different fronts, validated through simulation for supply chain, production, scheduling, and more.',
+      icon: 'sigma',
     },
     {
       id: 'svc-2',
       title: 'Development',
       description:
-        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.',
+        'Software development of complex systems using mainly .NET, Angular, SQL',
       icon: 'code',
     },
     {
       id: 'svc-3',
-      title: 'Branding',
+      title: 'Systems Integration and Automation',
       description:
-        'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla.',
-      icon: 'palette',
+        'Interconnecting systems such as Salesforce, HiveApi, AI service integrations, REST APIs, Office document automation, ERP workflows among others.',
+      icon: 'gear',
     },
   ],
   portfolio: [
