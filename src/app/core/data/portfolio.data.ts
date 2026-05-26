@@ -40,17 +40,17 @@ export const PORTFOLIO_DATA: PortfolioData = {
   education: [
     {
       id: 'edu-1',
-      period: '2010-2012',
-      degree: 'Master Degree of Design',
-      institution: 'Stanford University',
+      period: '2018-2020',
+      degree: 'Master Degree of Engineering Managament',
+      institution: 'Universidad de la Sabana',
       accentBar: true,
     },
     {
       id: 'edu-2',
-      period: '2008-2010',
-      degree: 'Bachelor of Arts',
-      institution: 'New York University',
-      accentBar: false,
+      period: '2010-2016',
+      degree: 'Industrial Engineering Bachelor',
+      institution: 'Pontificia Universidad Javeriana',
+      accentBar: true,
     },
     {
       id: 'edu-3',
@@ -149,9 +149,9 @@ export const PORTFOLIO_DATA: PortfolioData = {
     },
   ],
   contact: {
-    address: '123 Main Street, City, Country',
-    phone: '+1 (555) 123-4567',
-    email: 'hello@yourname.com',
+    address: 'Calle Angel Carazo Gomez 6, Torremolinos, Spain',
+    phone: '+34 645 639 986',
+    email: 'nicolaslopval@gmail.com',
   },
   footerCopyright: `© ${new Date().getFullYear()} Your Name. All rights reserved.`,
 };

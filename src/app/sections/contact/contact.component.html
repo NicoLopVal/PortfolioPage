@@ -3,9 +3,9 @@
   <div class="contact__info">
     <img [src]="data.profile.aboutImage" alt="" class="contact__avatar" />
     <div class="contact__details">
-      <p><strong>Address:</strong> {{ data.contact.address }}</p>
-      <p><strong>Phone:</strong> <a [href]="'tel:' + data.contact.phone">{{ data.contact.phone }}</a></p>
-      <p><strong>Email:</strong> <a [href]="'mailto:' + data.contact.email">{{ data.contact.email }}</a></p>
+      <p><strong>Address: </strong> {{ data.contact.address }}</p>
+      <p><strong>Phone: </strong> <a [href]="'tel:' + data.contact.phone">{{ data.contact.phone }}</a></p>
+      <p><strong>Email: </strong> <a [href]="'mailto:' + data.contact.email">{{ data.contact.email }}</a></p>
       <app-social-links [links]="data.socialLinks" />
     </div>
   </div>
