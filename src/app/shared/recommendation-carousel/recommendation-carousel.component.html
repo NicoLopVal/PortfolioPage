@@ -1,9 +1,10 @@
 <div
+  #carouselRoot
   class="recommendation-carousel"
   role="region"
   aria-label="Recommendations"
-  (pointerenter)="onInteractionStart()"
-  (pointerleave)="onInteractionEnd()"
+  (mousemove)="onCarouselMouseMove($event)"
+  (mouseleave)="onCarouselMouseLeave()"
   (focusin)="onFocusIn()"
   (focusout)="onFocusOut($event)"
   (touchstart)="onTouchStart()"
@@ -19,15 +20,17 @@
   </button>
 
   <div class="recommendation-carousel__viewport" #viewport>
-    <div
-      class="recommendation-carousel__track"
-      #track
-      [style.transform]="'translate3d(' + -offsetPx + 'px, 0, 0)'"
-      [style.transition]="trackTransition"
-    >
+    <div class="recommendation-carousel__clip">
+      <div
+        class="recommendation-carousel__track"
+        #track
+        [style.left.px]="-offsetPx"
+        [style.transition]="trackTransition"
+      >
       @for (item of displayItems; track trackByIndex($index)) {
         <div class="recommendation-carousel__slide">
           <app-recommendation-card
+            [inCarousel]="true"
             [name]="item.authorName"
             [role]="item.authorTitle"
             [quote]="item.quote"
@@ -36,6 +39,7 @@
           />
         </div>
       }
+      </div>
     </div>
   </div>
 

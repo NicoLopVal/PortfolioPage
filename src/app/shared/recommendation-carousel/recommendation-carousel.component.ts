@@ -31,6 +31,7 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
   @Input() autoScrollPxPerSecond = 28;
   @Input() gapPx = 24;
 
+  @ViewChild('carouselRoot') carouselRootRef?: ElementRef<HTMLElement>;
   @ViewChild('viewport') viewportRef?: ElementRef<HTMLElement>;
   @ViewChild('track') trackRef?: ElementRef<HTMLElement>;
 
@@ -39,6 +40,9 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
 
   @HostBinding('style.--carousel-gap')
   gapCss = '24px';
+
+  @HostBinding('style.--carousel-slide-height')
+  slideHeightCss = '270px';
 
   displayItems: Testimonial[] = [];
   offsetPx = 0;
@@ -49,7 +53,10 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
   private setWidthPx = 0;
   private stepPx = 0;
   private paused = false;
-  private pointerInside = false;
+  private pointerInCarousel = false;
+  private pointerOverCard = false;
+  private lastPointerX: number | null = null;
+  private lastPointerY: number | null = null;
   private touchActive = false;
   private focusInside = false;
   private stepping = false;
@@ -104,13 +111,19 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
     return index;
   }
 
-  onInteractionStart(): void {
-    this.pointerInside = true;
+  onCarouselMouseMove(event: MouseEvent): void {
+    this.pointerInCarousel = true;
+    this.lastPointerX = event.clientX;
+    this.lastPointerY = event.clientY;
+    this.pointerOverCard = this.isPointerOverRecommendationCard();
     this.updatePausedState();
   }
 
-  onInteractionEnd(): void {
-    this.pointerInside = false;
+  onCarouselMouseLeave(): void {
+    this.pointerInCarousel = false;
+    this.lastPointerX = null;
+    this.lastPointerY = null;
+    this.pointerOverCard = false;
     this.updatePausedState();
   }
 
@@ -145,7 +158,7 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
     }
 
     this.stepping = true;
-    this.trackTransition = `transform ${STEP_TRANSITION_MS}ms ease`;
+    this.trackTransition = `left ${STEP_TRANSITION_MS}ms ease`;
     this.offsetPx += direction * this.stepPx;
     this.updatePausedState();
 
@@ -163,7 +176,7 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
     };
 
     const onTransitionEnd = (event: TransitionEvent): void => {
-      if (event.propertyName !== 'transform') {
+      if (event.propertyName !== 'left') {
         return;
       }
       finishStep();
@@ -178,6 +191,9 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
   private tick(now: number): void {
     const deltaMs = Math.min(now - this.lastFrameTime, 50);
     this.lastFrameTime = now;
+
+    this.pointerOverCard = this.isPointerOverRecommendationCard();
+    this.updatePausedState();
 
     if (!this.paused && this.autoScrollEnabled && this.setWidthPx > 0) {
       this.offsetPx += (this.autoScrollPxPerSecond * deltaMs) / 1000;
@@ -246,9 +262,31 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
     }
   }
 
+  private isPointerOverRecommendationCard(): boolean {
+    if (
+      !this.pointerInCarousel ||
+      this.lastPointerX === null ||
+      this.lastPointerY === null
+    ) {
+      return false;
+    }
+
+    const root = this.carouselRootRef?.nativeElement;
+    if (!root) {
+      return false;
+    }
+
+    const element = document.elementFromPoint(this.lastPointerX, this.lastPointerY);
+    if (!element || !root.contains(element)) {
+      return false;
+    }
+
+    return !!element.closest('.recommendation-card');
+  }
+
   private updatePausedState(): void {
     this.paused =
-      this.pointerInside ||
+      this.pointerOverCard ||
       this.touchActive ||
       this.focusInside ||
       this.stepping;

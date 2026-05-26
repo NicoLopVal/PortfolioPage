@@ -1,6 +1,7 @@
 :host {
   display: block;
   position: relative;
+  height: 100%;
   min-height: 270px;
   transition: z-index 0s;
 }
@@ -8,6 +9,30 @@
 :host(:hover),
 :host.recommendation-card--expanded {
   z-index: 2;
+}
+
+:host-context(app-recommendation-carousel) {
+  min-height: 0;
+
+  &.recommendation-card--hovered:not(.recommendation-card--expanded) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    height: var(--carousel-slide-height, 270px);
+    min-height: var(--carousel-slide-height, 270px);
+  }
+
+  &.recommendation-card--expanded {
+    z-index: 100;
+    height: auto;
+    min-height: var(--carousel-slide-height, 270px);
+
+    .recommendation-card__panel {
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+    }
+  }
 }
 
 .recommendation-card__panel {
@@ -72,10 +97,31 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   transition: color var(--transition-fast);
+  flex: 1;
+  min-height: 0;
 }
 
 @media (hover: hover) {
   :host(:hover) .recommendation-card__quote {
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+    color: var(--color-text);
+  }
+
+  :host-context(app-recommendation-carousel).recommendation-card--hovered:not(
+      .recommendation-card--expanded
+    )
+    .recommendation-card__quote {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: var(--color-text);
+  }
+
+  :host-context(app-recommendation-carousel).recommendation-card--expanded
+    .recommendation-card__quote {
     display: block;
     -webkit-line-clamp: unset;
     overflow: visible;

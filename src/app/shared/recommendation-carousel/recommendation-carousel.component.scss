@@ -2,51 +2,69 @@
   display: block;
   width: 100%;
   max-width: var(--max-content-width);
+  overflow: visible;
   --carousel-card-width: 400px;
   --carousel-gap: 24px;
+  --carousel-slide-height: 270px;
 }
 
 .recommendation-carousel {
   position: relative;
   width: 100%;
-  padding: 8px 44px;
+  padding: 8px 12px;
+  overflow: visible;
 }
 
 .recommendation-carousel__viewport {
-  overflow: hidden;
+  position: relative;
+  overflow: visible;
   width: 100%;
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    #000 6%,
-    #000 94%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    #000 6%,
-    #000 94%,
-    transparent 100%
-  );
+  height: var(--carousel-slide-height);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+    background: linear-gradient(
+      to right,
+      var(--color-bg-dark) 0%,
+      transparent 8%,
+      transparent 92%,
+      var(--color-bg-dark) 100%
+    );
+  }
+}
+
+.recommendation-carousel__clip {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: 100%;
+  height: var(--carousel-slide-height);
 }
 
 .recommendation-carousel__track {
+  position: relative;
   display: flex;
   gap: var(--carousel-gap);
-  will-change: transform;
+  will-change: left;
+  align-items: stretch;
 }
 
 .recommendation-carousel__slide {
+  position: relative;
   flex: 0 0 var(--carousel-card-width);
   width: var(--carousel-card-width);
   min-width: 0;
+  height: var(--carousel-slide-height);
+  overflow: visible;
 }
 
 .recommendation-carousel__nav {
   position: absolute;
   top: 50%;
-  z-index: 3;
+  z-index: 30;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,11 +95,11 @@
   }
 
   &--prev {
-    left: 0;
+    left: 4px;
   }
 
   &--next {
-    right: 0;
+    right: 4px;
 
     .recommendation-carousel__nav-icon {
       transform: rotate(180deg);
@@ -105,15 +123,14 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .recommendation-carousel__viewport {
-    mask-image: none;
-    -webkit-mask-image: none;
+  .recommendation-carousel__viewport::after {
+    display: none;
   }
 }
 
 @media (max-width: 600px) {
   .recommendation-carousel {
-    padding: 8px 36px;
+    padding: 8px 8px;
   }
 
   .recommendation-carousel__nav {
