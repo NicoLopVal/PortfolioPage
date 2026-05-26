@@ -10,6 +10,8 @@ import {
   OnInit,
   PLATFORM_ID,
   ViewChild,
+  ViewChildren,
+  QueryList,
 } from '@angular/core';
 import { Testimonial } from '../../core/models/portfolio.models';
 import { RecommendationCardComponent } from '../recommendation-card/recommendation-card.component';
@@ -34,6 +36,8 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
   @ViewChild('carouselRoot') carouselRootRef?: ElementRef<HTMLElement>;
   @ViewChild('viewport') viewportRef?: ElementRef<HTMLElement>;
   @ViewChild('track') trackRef?: ElementRef<HTMLElement>;
+  @ViewChildren(RecommendationCardComponent)
+  cardComponents?: QueryList<RecommendationCardComponent>;
 
   @HostBinding('style.--carousel-card-width')
   cardWidthCss = `${DEFAULT_CARD_WIDTH}px`;
@@ -53,7 +57,7 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
   private setWidthPx = 0;
   private stepPx = 0;
   private paused = false;
-  private pointerInCarousel = false;
+  private hoverCapable = false;
   private pointerOverCard = false;
   private lastPointerX: number | null = null;
   private lastPointerY: number | null = null;
@@ -67,6 +71,12 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
   private reducedMotionQuery: MediaQueryList | null = null;
   private reducedMotionListener: ((event: MediaQueryListEvent) => void) | null = null;
   private stepTimeoutId: ReturnType<typeof setTimeout> | null = null;
+  private readonly onDocumentPointerMove = (event: MouseEvent | PointerEvent): void => {
+    this.lastPointerX = event.clientX;
+    this.lastPointerY = event.clientY;
+    this.pointerOverCard = this.isPointerOverRecommendationCard();
+    this.updatePausedState();
+  };
 
   ngOnInit(): void {
     if (this.testimonials.length > 0) {
@@ -81,6 +91,14 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
 
     this.gapCss = `${this.gapPx}px`;
     this.offsetPx = Math.random() * this.estimateSetWidth();
+    this.hoverCapable = window.matchMedia('(hover: hover)').matches;
+
+    document.addEventListener('mousemove', this.onDocumentPointerMove, {
+      passive: true,
+    });
+    document.addEventListener('pointermove', this.onDocumentPointerMove, {
+      passive: true,
+    });
 
     this.reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     this.autoScrollEnabled = !this.reducedMotionQuery.matches;
@@ -105,6 +123,8 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
     if (this.stepTimeoutId !== null) {
       clearTimeout(this.stepTimeoutId);
     }
+    document.removeEventListener('mousemove', this.onDocumentPointerMove);
+    document.removeEventListener('pointermove', this.onDocumentPointerMove);
   }
 
   trackByIndex(index: number): number {
@@ -112,7 +132,6 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
   }
 
   onCarouselMouseMove(event: MouseEvent): void {
-    this.pointerInCarousel = true;
     this.lastPointerX = event.clientX;
     this.lastPointerY = event.clientY;
     this.pointerOverCard = this.isPointerOverRecommendationCard();
@@ -120,10 +139,7 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
   }
 
   onCarouselMouseLeave(): void {
-    this.pointerInCarousel = false;
-    this.lastPointerX = null;
-    this.lastPointerY = null;
-    this.pointerOverCard = false;
+    this.pointerOverCard = this.isPointerOverRecommendationCard();
     this.updatePausedState();
   }
 
@@ -134,6 +150,7 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
 
   onTouchEnd(): void {
     this.touchActive = false;
+    this.pointerOverCard = this.isPointerOverRecommendationCard();
     this.updatePausedState();
   }
 
@@ -262,12 +279,12 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
     }
   }
 
+  private hasExpandedCard(): boolean {
+    return this.cardComponents?.some((card) => card.expanded()) ?? false;
+  }
+
   private isPointerOverRecommendationCard(): boolean {
-    if (
-      !this.pointerInCarousel ||
-      this.lastPointerX === null ||
-      this.lastPointerY === null
-    ) {
+    if (this.lastPointerX === null || this.lastPointerY === null) {
       return false;
     }
 
@@ -284,9 +301,23 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
     return !!element.closest('.recommendation-card');
   }
 
+  private shouldPauseForPointerOverCard(): boolean {
+    if (!this.pointerOverCard) {
+      return false;
+    }
+
+    // Touch-expanded cards stay open after tap; don't keep auto-scroll paused
+    // from the tap coordinates once the finger has lifted.
+    if (this.hasExpandedCard() && !this.hoverCapable) {
+      return this.touchActive;
+    }
+
+    return true;
+  }
+
   private updatePausedState(): void {
     this.paused =
-      this.pointerOverCard ||
+      this.shouldPauseForPointerOverCard() ||
       this.touchActive ||
       this.focusInside ||
       this.stepping;
