@@ -49,22 +49,12 @@
     }
   }
 
-  &__toggle {
-    display: none;
-  }
-
   @include respond-tablet {
     top: 0;
     left: 0;
     width: 100%;
     height: auto;
     min-height: 56px;
-    transform: translateY(-100%);
-    transition: transform 0.3s ease;
-
-    &--open {
-      transform: translateY(0);
-    }
 
     &__list {
       flex-direction: row;
@@ -79,32 +69,6 @@
       transform: none;
       padding: 6px 10px;
       font-size: 0.7rem;
-    }
-  }
-}
-
-.sidebar-nav__toggle {
-  @include respond-tablet {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    position: fixed;
-    top: 12px;
-    left: 16px;
-    z-index: 1001;
-    width: 36px;
-    height: 36px;
-    padding: 6px;
-    background-color: var(--color-accent);
-    border: none;
-    cursor: pointer;
-
-    span {
-      display: block;
-      height: 2px;
-      background-color: var(--color-text);
-      border-radius: 1px;
     }
   }
 }

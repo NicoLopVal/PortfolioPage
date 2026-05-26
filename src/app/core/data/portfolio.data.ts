@@ -28,10 +28,12 @@ export const PORTFOLIO_DATA: PortfolioData = {
     aboutImage: 'assets/images/about.svg',
   },
   socialLinks: [
-    { id: 'facebook', label: 'Facebook', url: '#', icon: 'facebook' },
-    { id: 'twitter', label: 'Twitter', url: '#', icon: 'twitter' },
-    { id: 'linkedin', label: 'LinkedIn', url: '#', icon: 'linkedin' },
-    { id: 'github', label: 'GitHub', url: '#', icon: 'github' },
+    {
+      id: 'linkedin',
+      label: 'LinkedIn',
+      url: 'https://www.linkedin.com/in/nicolas-lopval',
+      icon: 'linkedin',
+    },
   ],
   education: [
     {

@@ -17,7 +17,6 @@ export class SidebarNavComponent implements AfterViewInit, OnDestroy {
   private readonly host = inject(ElementRef);
   readonly sections = NAV_SECTIONS;
   activeSectionId = 'about';
-  menuOpen = false;
 
   private observer?: IntersectionObserver;
 
@@ -53,11 +52,6 @@ export class SidebarNavComponent implements AfterViewInit, OnDestroy {
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       this.activeSectionId = sectionId;
-      this.menuOpen = false;
     }
-  }
-
-  toggleMenu(): void {
-    this.menuOpen = !this.menuOpen;
   }
 }

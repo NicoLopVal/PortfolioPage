@@ -1,16 +1,4 @@
-<button
-  class="sidebar-nav__toggle"
-  type="button"
-  [attr.aria-expanded]="menuOpen"
-  aria-label="Toggle navigation"
-  (click)="toggleMenu()"
->
-  <span></span>
-  <span></span>
-  <span></span>
-</button>
-
-<nav class="sidebar-nav" [class.sidebar-nav--open]="menuOpen">
+<nav class="sidebar-nav">
   <ul class="sidebar-nav__list">
     @for (section of sections; track section.id) {
       <li>
