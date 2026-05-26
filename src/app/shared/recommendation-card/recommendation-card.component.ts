@@ -50,6 +50,7 @@ export class RecommendationCardComponent implements OnInit, OnDestroy {
   private readonly overlayRect = signal<OverlayRect | null>(null);
   private hoverCapable = false;
   private viewportListener: (() => void) | null = null;
+  private outsidePointerListener: ((event: PointerEvent) => void) | null = null;
 
   @HostBinding('style')
   get hostStyles(): Record<string, string> | null {
@@ -112,9 +113,11 @@ export class RecommendationCardComponent implements OnInit, OnDestroy {
     if (nextExpanded && this.inCarousel) {
       this.captureOverlayRect();
       this.bindViewportTracking();
+      this.bindOutsidePointerTracking();
     } else {
       this.overlayRect.set(null);
       this.unbindViewportTracking();
+      this.unbindOutsidePointerTracking();
     }
   }
 
@@ -150,6 +153,7 @@ export class RecommendationCardComponent implements OnInit, OnDestroy {
     this.expanded.set(false);
     this.overlayRect.set(null);
     this.unbindViewportTracking();
+    this.unbindOutsidePointerTracking();
   }
 
   private onViewportChange(): void {
@@ -222,5 +226,40 @@ export class RecommendationCardComponent implements OnInit, OnDestroy {
     window.removeEventListener('scroll', this.viewportListener, { capture: true });
     window.removeEventListener('resize', this.viewportListener);
     this.viewportListener = null;
+  }
+
+  private bindOutsidePointerTracking(): void {
+    if (!isPlatformBrowser(this.platformId) || this.outsidePointerListener) {
+      return;
+    }
+
+    this.outsidePointerListener = (event: PointerEvent) => {
+      if (!this.expanded() || !this.inCarousel) {
+        return;
+      }
+
+      const hostEl = this.elementRef.nativeElement;
+      const target = event.target as Node | null;
+      if (target && hostEl.contains(target)) {
+        return;
+      }
+
+      this.dismiss();
+    };
+
+    document.addEventListener('pointerdown', this.outsidePointerListener, {
+      capture: true,
+    });
+  }
+
+  private unbindOutsidePointerTracking(): void {
+    if (!this.outsidePointerListener || !isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    document.removeEventListener('pointerdown', this.outsidePointerListener, {
+      capture: true,
+    });
+    this.outsidePointerListener = null;
   }
 }
