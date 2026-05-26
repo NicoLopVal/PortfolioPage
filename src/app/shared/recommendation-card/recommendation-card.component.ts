@@ -6,6 +6,7 @@ import {
   HostListener,
   inject,
   Input,
+  OnDestroy,
   OnInit,
   PLATFORM_ID,
   signal,
@@ -32,7 +33,7 @@ interface OverlayRect {
     '(mouseleave)': 'onMouseLeave()',
   },
 })
-export class RecommendationCardComponent implements OnInit {
+export class RecommendationCardComponent implements OnInit, OnDestroy {
   private readonly platformId = inject(PLATFORM_ID);
   private readonly elementRef = inject(ElementRef<HTMLElement>);
 
@@ -48,6 +49,7 @@ export class RecommendationCardComponent implements OnInit {
 
   private readonly overlayRect = signal<OverlayRect | null>(null);
   private hoverCapable = false;
+  private viewportListener: (() => void) | null = null;
 
   @HostBinding('style')
   get hostStyles(): Record<string, string> | null {
@@ -73,6 +75,10 @@ export class RecommendationCardComponent implements OnInit {
     }
   }
 
+  ngOnDestroy(): void {
+    this.unbindViewportTracking();
+  }
+
   get linkedInLabel(): string {
     return `${this.name} on LinkedIn`;
   }
@@ -89,9 +95,7 @@ export class RecommendationCardComponent implements OnInit {
     if (!this.hoverCapable) {
       return;
     }
-    this.hovered.set(false);
-    this.expanded.set(false);
-    this.overlayRect.set(null);
+    this.dismiss();
   }
 
   @HostListener('click', ['$event'])
@@ -103,11 +107,14 @@ export class RecommendationCardComponent implements OnInit {
     if (target.closest('a')) {
       return;
     }
-    this.expanded.update((value) => !value);
-    if (this.expanded() && this.inCarousel) {
+    const nextExpanded = !this.expanded();
+    this.expanded.set(nextExpanded);
+    if (nextExpanded && this.inCarousel) {
       this.captureOverlayRect();
+      this.bindViewportTracking();
     } else {
       this.overlayRect.set(null);
+      this.unbindViewportTracking();
     }
   }
 
@@ -117,8 +124,7 @@ export class RecommendationCardComponent implements OnInit {
     ) as HTMLElement | null;
 
     if (!quoteEl) {
-      this.expanded.set(false);
-      this.overlayRect.set(null);
+      this.dismiss();
       return;
     }
 
@@ -128,8 +134,10 @@ export class RecommendationCardComponent implements OnInit {
       this.expanded.set(overflows);
       if (overflows) {
         this.captureOverlayRect();
+        this.bindViewportTracking();
       } else {
         this.overlayRect.set(null);
+        this.unbindViewportTracking();
       }
       return;
     }
@@ -137,8 +145,82 @@ export class RecommendationCardComponent implements OnInit {
     this.expanded.set(true);
   }
 
+  private dismiss(): void {
+    this.hovered.set(false);
+    this.expanded.set(false);
+    this.overlayRect.set(null);
+    this.unbindViewportTracking();
+  }
+
+  private onViewportChange(): void {
+    if (!this.expanded() || !this.inCarousel) {
+      return;
+    }
+
+    const slide = this.getSlideElement();
+    const section = this.getReferenceSectionElement();
+    if (!slide || !section) {
+      this.dismiss();
+      return;
+    }
+
+    if (!this.isAnchorInsideSection(slide, section)) {
+      this.dismiss();
+      return;
+    }
+
+    this.captureOverlayRect();
+  }
+
+  private isAnchorInsideSection(slide: Element, section: Element): boolean {
+    const slideRect = slide.getBoundingClientRect();
+    const sectionRect = section.getBoundingClientRect();
+
+    return (
+      slideRect.top >= sectionRect.top &&
+      slideRect.top < sectionRect.bottom &&
+      slideRect.left < sectionRect.right &&
+      slideRect.right > sectionRect.left
+    );
+  }
+
   private captureOverlayRect(): void {
-    const { top, left, width } = this.elementRef.nativeElement.getBoundingClientRect();
+    const slide = this.getSlideElement();
+    if (!slide) {
+      return;
+    }
+    const { top, left, width } = slide.getBoundingClientRect();
     this.overlayRect.set({ top, left, width });
+  }
+
+  private getSlideElement(): Element | null {
+    return this.elementRef.nativeElement.closest('.recommendation-carousel__slide');
+  }
+
+  private getReferenceSectionElement(): Element | null {
+    return this.elementRef.nativeElement.closest('.reference');
+  }
+
+  private bindViewportTracking(): void {
+    if (!isPlatformBrowser(this.platformId) || this.viewportListener) {
+      return;
+    }
+
+    this.viewportListener = () => this.onViewportChange();
+    window.addEventListener('scroll', this.viewportListener, {
+      passive: true,
+      capture: true,
+    });
+    window.addEventListener('resize', this.viewportListener, { passive: true });
+  }
+
+  private unbindViewportTracking(): void {
+    if (!this.viewportListener) {
+      return;
+    }
+
+    window.removeEventListener('scroll', this.viewportListener, { capture: true });
+    window.removeEventListener('resize', this.viewportListener);
+    this.viewportListener = null;
   }
 }
