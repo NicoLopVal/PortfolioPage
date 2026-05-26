@@ -1,13 +1,12 @@
 <section id="reference" class="section section--dark reference">
   <app-section-header title="Reference" watermarkLetter="R" />
-  <article class="reference__card">
-    <img [src]="testimonial.authorImage" [alt]="testimonial.authorName" class="reference__avatar" />
-    <div class="reference__content">
-      <blockquote>{{ testimonial.quote }}</blockquote>
-      <footer>
-        <strong>{{ testimonial.authorName }}</strong>
-        <span>{{ testimonial.authorTitle }}</span>
-      </footer>
-    </div>
-  </article>
+  <div class="reference__cards">
+    <app-recommendation-card
+      [name]="testimonial.authorName"
+      [role]="testimonial.authorTitle"
+      [quote]="testimonial.quote"
+      [avatarSrc]="testimonial.authorImage"
+      [linkedInUrl]="testimonial.linkedInUrl"
+    />
+  </div>
 </section>

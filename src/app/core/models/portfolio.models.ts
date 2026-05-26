@@ -62,6 +62,7 @@ export interface Testimonial {
   authorName: string;
   authorTitle: string;
   authorImage: string;
+  linkedInUrl: string;
 }
 
 export interface ContactInfo {

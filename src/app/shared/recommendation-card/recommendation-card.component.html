@@ -1,0 +1,26 @@
+<app-liquid-glass-panel padding="md" tint="gradient" class="recommendation-card__panel">
+  <div class="recommendation-card__layout">
+    <a
+      class="recommendation-card__profile"
+      [href]="linkedInUrl"
+      target="_blank"
+      rel="noopener noreferrer"
+      [attr.aria-label]="linkedInLabel"
+      (click)="$event.stopPropagation()"
+    >
+      <img
+        class="recommendation-card__avatar"
+        [src]="avatarSrc"
+        [alt]="name"
+        width="64"
+        height="64"
+        loading="lazy"
+      />
+      <div class="recommendation-card__meta">
+        <strong class="recommendation-card__name">{{ name }}</strong>
+        <span class="recommendation-card__role">{{ role }}</span>
+      </div>
+    </a>
+    <blockquote class="recommendation-card__quote">{{ quote }}</blockquote>
+  </div>
+</app-liquid-glass-panel>

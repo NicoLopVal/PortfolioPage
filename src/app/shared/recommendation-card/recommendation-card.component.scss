@@ -1,0 +1,97 @@
+:host {
+  display: block;
+  position: relative;
+  min-height: 270px;
+  transition: z-index 0s;
+}
+
+:host(:hover),
+:host.recommendation-card--expanded {
+  z-index: 2;
+}
+
+.recommendation-card__panel {
+  height: 100%;
+}
+
+.recommendation-card__layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+}
+
+.recommendation-card__profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
+  transition: opacity var(--transition-fast);
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.recommendation-card__avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.recommendation-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.recommendation-card__name {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.recommendation-card__role {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.recommendation-card__quote {
+  margin: 0;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color var(--transition-fast);
+}
+
+@media (hover: hover) {
+  :host(:hover) .recommendation-card__quote {
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+    color: var(--color-text);
+  }
+}
+
+:host.recommendation-card--expanded .recommendation-card__quote {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+  color: var(--color-text);
+}
+
+@media (hover: none) {
+  :host {
+    cursor: pointer;
+  }
+}

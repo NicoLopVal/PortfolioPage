@@ -200,10 +200,11 @@ export const PORTFOLIO_DATA: PortfolioData = {
     {
       id: 'ref-1',
       quote:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      authorName: 'Jane Doe',
-      authorTitle: 'CEO, Example Corp',
-      authorImage: 'assets/images/avatar.svg',
+        "\"Nico is a great engineer, but that's actually not the main reason I'd recommend him. Nico's super-power is being like \"glue\" for engineering teams: he does good work, and more importantly, he helps everyone else around him be better. He brings a great energy to teams, lifts people up, and is always willing to help colleagues with technical problems. Every engineering team would be better with someone like Nico around!\"",
+      authorName: 'Chris Hart',
+      authorTitle: 'Founder & CEO',
+      authorImage: 'assets/images/ChrisHart.jpg',
+      linkedInUrl: 'https://www.linkedin.com/in/chart',
     },
   ],
   contact: {
