@@ -63,7 +63,7 @@ export class RecommendationCardComponent implements OnInit {
       top: `${rect.top}px`,
       left: `${rect.left}px`,
       width: `${rect.width}px`,
-      'z-index': '100',
+      'z-index': '50',
     };
   }
 
