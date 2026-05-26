@@ -1,0 +1,50 @@
+<div
+  class="recommendation-carousel"
+  role="region"
+  aria-label="Recommendations"
+  (pointerenter)="onInteractionStart()"
+  (pointerleave)="onInteractionEnd()"
+  (focusin)="onFocusIn()"
+  (focusout)="onFocusOut($event)"
+  (touchstart)="onTouchStart()"
+  (touchend)="onTouchEnd()"
+>
+  <button
+    type="button"
+    class="recommendation-carousel__nav recommendation-carousel__nav--prev"
+    aria-label="Previous recommendation"
+    (click)="step(-1)"
+  >
+    <span class="recommendation-carousel__nav-icon" aria-hidden="true"></span>
+  </button>
+
+  <div class="recommendation-carousel__viewport" #viewport>
+    <div
+      class="recommendation-carousel__track"
+      #track
+      [style.transform]="'translate3d(' + -offsetPx + 'px, 0, 0)'"
+      [style.transition]="trackTransition"
+    >
+      @for (item of displayItems; track trackByIndex($index)) {
+        <div class="recommendation-carousel__slide">
+          <app-recommendation-card
+            [name]="item.authorName"
+            [role]="item.authorTitle"
+            [quote]="item.quote"
+            [avatarSrc]="item.authorImage"
+            [linkedInUrl]="item.linkedInUrl"
+          />
+        </div>
+      }
+    </div>
+  </div>
+
+  <button
+    type="button"
+    class="recommendation-carousel__nav recommendation-carousel__nav--next"
+    aria-label="Next recommendation"
+    (click)="step(1)"
+  >
+    <span class="recommendation-carousel__nav-icon" aria-hidden="true"></span>
+  </button>
+</div>

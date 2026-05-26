@@ -1,12 +1,4 @@
 <section id="reference" class="section section--dark reference">
   <app-section-header title="Reference" watermarkLetter="R" />
-  <div class="reference__cards">
-    <app-recommendation-card
-      [name]="testimonial.authorName"
-      [role]="testimonial.authorTitle"
-      [quote]="testimonial.quote"
-      [avatarSrc]="testimonial.authorImage"
-      [linkedInUrl]="testimonial.linkedInUrl"
-    />
-  </div>
+  <app-recommendation-carousel [testimonials]="testimonials" />
 </section>
