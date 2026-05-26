@@ -44,6 +44,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       degree: 'Master Degree of Engineering Managament',
       institution: 'Universidad de la Sabana',
       accentBar: true,
+      issuerLogo: 'assets/images/universidad_de_la_sabana_logo.jpg',
     },
     {
       id: 'edu-2',
@@ -51,6 +52,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       degree: 'Bachelor\'s in Industrial Engineering',
       institution: 'Pontificia Universidad Javeriana',
       accentBar: true,
+      issuerLogo: 'assets/images/pontificia_universidad_javeriana_logo.jpg',
     },
     {
       id: 'edu-3',
@@ -58,6 +60,9 @@ export const PORTFOLIO_DATA: PortfolioData = {
       degree: 'Operations Research (3): Theory',
       institution: 'National Taiwan University',
       accentBar: false,
+      issuerLogo: 'assets/images/national_taiwan_university_logo.jpg',
+      certificateUrl:
+        'https://www.coursera.org/account/accomplishments/verify/1J2Q8L7LS3BY',
     },
     {
       id: 'edu-4',
@@ -65,6 +70,9 @@ export const PORTFOLIO_DATA: PortfolioData = {
       degree: 'Operations Research (2): Optimization Algorithms',
       institution: 'National Taiwan University',
       accentBar: false,
+      issuerLogo: 'assets/images/national_taiwan_university_logo.jpg',
+      certificateUrl:
+        'https://www.coursera.org/account/accomplishments/verify/RQLCE6WA6PQD',
     },
     {
       id: 'edu-5',
@@ -72,6 +80,9 @@ export const PORTFOLIO_DATA: PortfolioData = {
       degree: 'Operations Research (1): Models and Applications',
       institution: 'National Taiwan University',
       accentBar: false,
+      issuerLogo: 'assets/images/national_taiwan_university_logo.jpg',
+      certificateUrl:
+        'https://www.coursera.org/account/accomplishments/verify/ICTVKM2QNMDI',
     },
     {
       id: 'edu-6',
@@ -79,6 +90,9 @@ export const PORTFOLIO_DATA: PortfolioData = {
       degree: 'IBM Data Analyst Professional Certificate',
       institution: 'IBM - Coursera',
       accentBar: false,
+      issuerLogo: 'assets/images/coursera_logo.jpg',
+      certificateUrl:
+        'https://www.coursera.org/account/accomplishments/professional-cert/EWRM345QXWZZ',
     },
     {
       id: 'edu-7',
@@ -86,20 +100,29 @@ export const PORTFOLIO_DATA: PortfolioData = {
       degree: 'Data Analysis with Python',
       institution: 'IBM - Coursera',
       accentBar: false,
+      issuerLogo: 'assets/images/coursera_logo.jpg',
+      certificateUrl:
+        'https://www.credly.com/badges/49d1c6d3-7703-4052-bf3d-1389707a57ff',
     },
     {
-      id: 'edu-7',
+      id: 'edu-8',
       period: 'December 2020',
       degree: 'Databases and SQL for Data Science',
       institution: 'IBM - Coursera',
       accentBar: false,
+      issuerLogo: 'assets/images/coursera_logo.jpg',
+      certificateUrl:
+        'https://www.credly.com/badges/216a14be-c48c-4f0a-838d-a2b1a49aebf8',
     },
     {
-      id: 'edu-7',
+      id: 'edu-9',
       period: 'December 2020',
       degree: 'Python for Data Science and AI',
       institution: 'IBM - Coursera',
       accentBar: false,
+      issuerLogo: 'assets/images/coursera_logo.jpg',
+      certificateUrl:
+        'https://www.credly.com/badges/9c4689d9-b5c7-47b7-8831-ec8e52f758e0',
     },
   ],
   experience: [

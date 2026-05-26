@@ -10,8 +10,32 @@
           <span>{{ item.period }}</span>
         </div>
         <div class="timeline-card__body">
-          <h3>{{ item.degree }}</h3>
-          <p>{{ item.institution }}</p>
+          <div class="timeline-card__header">
+            <img
+              class="timeline-card__logo"
+              [src]="item.issuerLogo"
+              [alt]="item.institution + ' logo'"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+            <div class="timeline-card__content">
+              @if (item.certificateUrl) {
+                <h3>
+                  <a
+                    [href]="item.certificateUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {{ item.degree }}
+                  </a>
+                </h3>
+              } @else {
+                <h3>{{ item.degree }}</h3>
+              }
+              <p>{{ item.institution }}</p>
+            </div>
+          </div>
         </div>
       </article>
     }

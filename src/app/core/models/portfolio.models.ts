@@ -23,6 +23,8 @@ export interface EducationItem {
   degree: string;
   institution: string;
   accentBar: boolean;
+  issuerLogo: string;
+  certificateUrl?: string;
 }
 
 export interface ExperienceItem {
