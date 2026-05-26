@@ -9,33 +9,4 @@
       <app-social-links [links]="data.socialLinks" />
     </div>
   </div>
-  <div class="contact__bottom">
-    <div class="contact__map">
-      <img src="assets/images/map-placeholder.svg" alt="Map location placeholder" />
-    </div>
-    <form class="contact__form" [formGroup]="form" (ngSubmit)="onSubmit()">
-      @if (submitted) {
-        <p class="contact__success">Thank you! Your message has been recorded (demo mode).</p>
-      }
-      <div class="contact__field">
-        <input type="text" formControlName="name" placeholder="Your Name" />
-        @if (form.controls.name.touched && form.controls.name.errors?.['required']) {
-          <span class="contact__error">Name is required</span>
-        }
-      </div>
-      <div class="contact__field">
-        <input type="email" formControlName="email" placeholder="Your Email" />
-        @if (form.controls.email.touched && form.controls.email.errors?.['email']) {
-          <span class="contact__error">Valid email required</span>
-        }
-      </div>
-      <div class="contact__field">
-        <input type="text" formControlName="subject" placeholder="Subject" />
-      </div>
-      <div class="contact__field">
-        <textarea formControlName="message" rows="5" placeholder="Your Message"></textarea>
-      </div>
-      <button type="submit" class="contact__submit">Send</button>
-    </form>
-  </div>
 </section>
