@@ -33,6 +33,7 @@ export interface ExperienceItem {
   total: string;
   title: string;
   company: string;
+  companyLogo: string;
   companyLinkedin: string;
   Description: string;
   accentBar: boolean;

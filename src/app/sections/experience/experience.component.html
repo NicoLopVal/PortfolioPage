@@ -2,7 +2,15 @@
   <app-section-header title="Experience" watermarkLetter="E" />
   <div class="timeline-cards">
     @for (item of data.experience; track item.id) {
-      <article class="timeline-card">
+      <article
+        class="timeline-card timeline-card--clickable"
+        role="button"
+        tabindex="0"
+        [attr.aria-label]="'View details for ' + item.title + ' at ' + item.company"
+        (click)="openModal(item)"
+        (keydown.enter)="openModal(item)"
+        (keydown.space)="$event.preventDefault(); openModal(item)"
+      >
         <div
           class="timeline-card__bar"
           [class.timeline-card__bar--accent]="item.accentBar"
@@ -16,4 +24,71 @@
       </article>
     }
   </div>
+
+  @if (selectedItem(); as item) {
+    <div
+      class="experience-modal"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-labelledby]="'experience-modal-title-' + item.id"
+      (click)="onOverlayClick($event)"
+    >
+      <div class="experience-modal__dialog" (click)="$event.stopPropagation()">
+        <app-liquid-glass-panel padding="lg" radius="lg" translucency="medium">
+          <header class="experience-modal__header">
+            <a
+              class="experience-modal__logo-link"
+              [href]="item.companyLinkedin"
+              target="_blank"
+              rel="noopener noreferrer"
+              [attr.aria-label]="linkedInLabel(item.company)"
+              (click)="$event.stopPropagation()"
+            >
+              <img
+                class="experience-modal__logo"
+                [src]="item.companyLogo"
+                [alt]="item.company + ' logo'"
+                width="56"
+                height="56"
+                loading="lazy"
+              />
+            </a>
+            <div class="experience-modal__intro">
+              <a
+                class="experience-modal__company"
+                [href]="item.companyLinkedin"
+                target="_blank"
+                rel="noopener noreferrer"
+                (click)="$event.stopPropagation()"
+              >
+                {{ item.company }}
+              </a>
+              <p class="experience-modal__role" [id]="'experience-modal-title-' + item.id">
+                {{ item.title }}
+              </p>
+              <p class="experience-modal__meta">
+                <span>{{ item.period }}</span>
+                <span class="experience-modal__meta-sep" aria-hidden="true">·</span>
+                <span>{{ item.total }}</span>
+              </p>
+            </div>
+          </header>
+
+          <ul class="experience-modal__description">
+            @for (block of parseDescription(item.Description); track $index) {
+              @if (block.type === 'heading') {
+                <li class="experience-modal__description-item experience-modal__description-item--heading">
+                  {{ block.text }}
+                </li>
+              } @else {
+                <li class="experience-modal__description-item">
+                  {{ block.text }}
+                </li>
+              }
+            }
+          </ul>
+        </app-liquid-glass-panel>
+      </div>
+    </div>
+  }
 </section>
