@@ -1,4 +1,5 @@
 @import '../../../styles/mixins';
+@import '../../../styles/glass';
 
 .experience {
   .timeline-cards {
@@ -97,7 +98,17 @@
   &__dialog {
     width: min(100%, 640px);
     max-height: min(85vh, 720px);
-    overflow: auto;
+    overflow: hidden;
+  }
+
+  &__scroll {
+    // lg panel vertical padding is 36px top + 36px bottom
+    max-height: calc(min(85vh, 720px) - 72px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 16px;
+    box-sizing: border-box;
+    @include liquid-glass-scrollbar;
   }
 
   &__header {
@@ -224,8 +235,29 @@
       max-height: 90vh;
     }
 
+    &__scroll {
+      max-height: calc(90vh - 72px);
+    }
+
     &__header {
       align-items: flex-start;
     }
+  }
+}
+
+:host ::ng-deep app-liquid-glass-panel.experience-modal__panel {
+  max-height: min(85vh, 720px);
+  overflow: hidden;
+
+  .liquid-glass-panel__inner {
+    max-height: inherit;
+    padding: 36px 10px 36px 40px;
+    box-sizing: border-box;
+  }
+}
+
+@include respond-mobile {
+  :host ::ng-deep app-liquid-glass-panel.experience-modal__panel {
+    max-height: 90vh;
   }
 }

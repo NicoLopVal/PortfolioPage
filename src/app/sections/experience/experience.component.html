@@ -34,7 +34,13 @@
       (click)="onOverlayClick($event)"
     >
       <div class="experience-modal__dialog" (click)="$event.stopPropagation()">
-        <app-liquid-glass-panel padding="lg" radius="lg" translucency="medium">
+        <app-liquid-glass-panel
+          class="experience-modal__panel"
+          padding="lg"
+          radius="lg"
+          translucency="medium"
+        >
+          <div class="experience-modal__scroll">
           <header class="experience-modal__header">
             <a
               class="experience-modal__logo-link"
@@ -87,6 +93,7 @@
               }
             }
           </ul>
+          </div>
         </app-liquid-glass-panel>
       </div>
     </div>
