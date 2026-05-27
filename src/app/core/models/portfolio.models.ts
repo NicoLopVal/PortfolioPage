@@ -30,8 +30,11 @@ export interface EducationItem {
 export interface ExperienceItem {
   id: string;
   period: string;
+  total: string;
   title: string;
   company: string;
+  companyLinkedin: string;
+  Description: string;
   accentBar: boolean;
 }
 
