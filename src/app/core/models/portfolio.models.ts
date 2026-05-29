@@ -52,11 +52,27 @@ export interface ServiceItem {
   icon: string;
 }
 
+export interface ProjectLink {
+  label: string;
+  url: string;
+}
+
+export interface ProjectModalImage {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
 export interface PortfolioItem {
   id: string;
-  title: string;
+  tileTitle: string;
+  tagline: string;
+  techBadges: string[];
+  modalTitle: string;
+  modalBody: string;
+  links?: ProjectLink[];
+  modalImages?: ProjectModalImage[];
   image: string;
-  link?: string;
   size: 'small' | 'medium' | 'large';
 }
 

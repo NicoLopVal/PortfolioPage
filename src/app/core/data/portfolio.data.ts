@@ -144,7 +144,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       title: 'Senior Software Developer',
       company: 'Ubimia',
       companyLogo: 'assets/images/ubimia.jpg',
-      companyLinkedin: 'https://www.linkedin.com/company/ubimia%C2%AE/posts/?feedView=all',
+      companyLinkedin: 'https://www.linkedin.com/company/ubimia',
       Description: '- Developed robust financial solutions using ASP.NET, SQL, and VBA for banking sector clients.\n- Created cross-platform integrations using Spire for .NET to automate MS Word and Excel document processing.\n- Improved development processes through strategic code reviews and SubVersion version control.\n- Built connections between multiple banking services to enhance interoperability of the application.\n',
       accentBar: false,
     },
@@ -218,10 +218,75 @@ export const PORTFOLIO_DATA: PortfolioData = {
     },
   ],
   portfolio: [
-    { id: 'pf-1', title: 'Project One', image: 'assets/images/portfolio-1.svg', size: 'large' },
-    { id: 'pf-2', title: 'Project Two', image: 'assets/images/portfolio-2.svg', size: 'medium' },
-    { id: 'pf-3', title: 'Project Three', image: 'assets/images/portfolio-3.svg', size: 'medium' },
-    { id: 'pf-4', title: 'Project Four', image: 'assets/images/portfolio-4.svg', size: 'small' },
+    {
+      id: 'pf-1',
+      tileTitle: 'Tecmo',
+      tagline: 'Saved $500K USD on structural steel procurement for a Bogotá skyscraper.',
+      techBadges: ['VBA', 'Operations Research', '1D Cutting Stock', 'Excel'],
+      modalTitle: 'Steel Cutting-Stock Optimization for Project Atrio (2016)',
+      modalBody:
+        'Problem.\nTecmo supplied structural steel for Project Atrio, a Bogotá skyscraper requiring ~10,000 tons of structural elements — orders of magnitude beyond the company\'s usual ad-hoc procurement from small suppliers. The "sum the meters, add a surplus" approach used for smaller projects would have wasted enormous quantities of material at this scale, and since each steel piece required a crane and a truck to move, every leftover offcut and every meter mattered.\n\nApproach.\n- Working from piece specifications provided by the engineering team, I built a multi-stage optimization model in VBA that solved a 1D cutting stock problem assigning required pieces to standard beam lengths (6m, 10m, 12m), accounting for kerf (the millimeters each cut consumes), since custom-length beams carried prohibitive cost premiums.\n- Coordinated cut schedules with a partner fabrication facility waiting on input material at a separate location.\n- Allocated raw materials to storage zones aligned with construction phase (everything for phase 10 grouped in storage patch 10), then performed cross-reference swaps to consolidate leftover offcuts within the same phase — minimizing crane and truck movements.\n- Generated daily printable material-movement plans that field operators could execute without touching the model.\n- The model itself was built solo, but the real success came from cross-functional coordination across logistics, production, and dispatch teams to operationalize the output.\n\nImpact.\nReduced procured-material cost from $4.2M USD to $3.7M USD (~12%, ~$500K on traceable spend alone). Additional unmeasured savings in logistics, inventory holding, paint, and waste management. Built and deployed in roughly a week.',
+      image: 'assets/images/portfolio-1.svg',
+      size: 'large',
+    },
+    {
+      id: 'pf-2',
+      tileTitle: 'Surgery Scheduling',
+      tagline: 'Peer-reviewed simulation-optimization approach for stochastic surgery scheduling.',
+      techBadges: ['C#', 'GRASP Metaheuristic', 'Monte Carlo Simulation', 'MILP', 'GAMS/CPLEX', 'Operations Research'],
+      modalTitle: 'A Simulation-Optimization Approach for the Surgery Scheduling Problem (2014–2018)',
+      modalBody:
+        'Problem.\nHospitals schedule operating rooms manually, ignoring the fact that surgery durations are inherently stochastic. This leads to either idle ORs or cascading patient delays. The challenge: schedule ~35,000 surgeries per year across 19 operating rooms at Hospital Universitario Mayor (Méderi, Bogotá) while quantifying the trade-off between OR utilization and patient wait times.\n\nApproach.\n- Co-authored with Diana Marcela Díaz-López as the core research pair, with supervision and clinical input from the broader team.\n- Fitting probability density functions to historical surgery duration data (26 distributions covering 89% of OR occupation).\n- Building a custom GRASP metaheuristic in C# for the deterministic optimization phase, parameterized via a 3³ factorial design and ANOVA.\n- Implementing the Monte Carlo simulation to evaluate stochastic performance across ten percentile-based scenarios.\n- Validating GRASP against an MILP baseline solved in GAMS/CPLEX.\n\nImpact.\nAchieved ~93% computation time reduction vs. MILP with only ~4% optimality gap. Produced a Pareto frontier quantifying the OR utilization vs. patient delay trade-off — for example, reducing average delays by 5% costs 3–9% in OR occupancy. Published in the International Journal of Industrial Engineering Computations (2018).',
+      links: [
+        {
+          label: 'Read the publication',
+          url: 'https://growingscience.com/beta/ijiec/2801-a-simulation-optimization-approach-for-the-surgery-scheduling-problem-a-case-study-considering-stochastic-surgical-times.html',
+        },
+      ],
+      image: 'assets/images/portfolio-2.svg',
+      size: 'medium',
+    },
+    {
+      id: 'pf-3',
+      tileTitle: 'Playwright E2E',
+      tagline: 'Custom C# orchestrator driving full E2E test lifecycle across a multi-tenant B2B SaaS platform.',
+      techBadges: ['C#', 'Playwright', 'TypeScript', 'SQL Server', 'Angular', 'Test Automation'],
+      modalTitle: 'End-to-End Test Orchestration System (IntrosMatter, 2025–2026)',
+      modalBody:
+        'Problem.\nIntrosMatter operated a multi-tenant B2B platform spanning a web application and a Chrome extension, each requiring testing against multiple user roles across multiple environments. Running E2E tests through standard tooling produced flaky results, slow feedback loops, and fixture state that was impossible to reproduce reliably between runs.\n\nApproach.\n- I designed and built a custom test orchestration system from scratch.\n- A C# orchestrator reads test configuration from a repo-versioned file and drives the full lifecycle across two separate codebases.\n- For each application: detects which tests to run, executes SQL fixture queries to seed deterministic state, performs Playwright login once and caches the session to disk so subsequent tests skip re-authentication, runs the test suite for the current user role, then executes cleanup SQL.\n- Iterates through user roles re-seeding state for each, then advances to the next application and repeats.\n- Built for developer ergonomics: templates and helper functions for recurring operations, the ability to run individual tests rather than the full suite, headed and headless modes, and multi-environment support.\n\nImpact.\nIntegrated into the pre-production deployment workflow, the system caught regressions that pure unit tests couldn\'t — including failures originating outside our codebase. In one case, a file stored in Strapi went down due to a payment provider conflict; the automated tests caught it the same day, rather than the day after when users would have noticed. The infrastructure proved that small E2E suites, when run reliably and frequently, deliver outsized value relative to their size.',
+      image: 'assets/images/portfolio-3.svg',
+      size: 'medium',
+    },
+    {
+      id: 'pf-4',
+      tileTitle: 'EV Adoption',
+      tagline: 'Agent-based simulation predicting electric vehicle adoption in Bogotá through 2050.',
+      techBadges: ['R', 'AnyLogic', 'Multinomial Logit', 'Agent-Based Modeling', 'Bass Diffusion'],
+      modalTitle: 'Demand Model for Private Electric Vehicles in Bogotá (MSc Thesis, 2020)',
+      modalBody:
+        'Problem.\nColombia\'s National Electric Mobility Strategy set ambitious EV adoption targets, but no existing model accounted for household-level decision-making, word-of-mouth diffusion, or competition between ICE, HEV, PHEV, and BEV technologies. Policymakers had no quantitative way to test which incentive lever — fuel taxes, energy subsidies, ICE penalties, or BEV subsidies — would actually move adoption.\n\nApproach.\n- For my Master\'s thesis in Engineering Management at Universidad de La Sabana, I designed a household survey administered to 1,193 respondents across five Colombian cities to capture preferences, willingness-to-pay, and demographic context.\n- Fit a multinomial logistic regression in R to extract the utility function for each vehicle technology, integrating sociodemographic variables via a latent-class transformation.\n- Built an agent-based simulation in AnyLogic with ~10,000 super-agents representing Bogotá\'s 1.2M car-owning households, integrating Bass diffusion for word-of-mouth dynamics over a 2013–2050 horizon.\n- Ran seven policy scenarios and compared sales-share trajectories and technology stock against the government\'s published projections.\n\nImpact.\nFound that penalizing ICE vehicle prices outperforms subsidizing BEV prices — counter to most government incentive programs. In the combined-policy scenario, BEV reaches ~69% of new vehicle sales by 2050 vs. ~33% in the baseline. The model also showed HEV adoption stays marginal regardless of policy intervention, suggesting governments should leapfrog directly to BEV incentives rather than treat hybrids as a stepping stone.',
+      image: 'assets/images/portfolio-4.svg',
+      size: 'medium',
+    },
+    {
+      id: 'pf-5',
+      tileTitle: 'IBM Ponder This',
+      tagline: 'Solved 6 IBM Research monthly math/CS challenges — 5 with bonus.',
+      techBadges: ['Python', 'VBA', 'Algorithms', 'Combinatorial Optimization', 'Graph Theory'],
+      modalTitle: 'IBM Research Ponder This (2021–2022)',
+      modalBody:
+        'Problem.\nIBM Research\'s Ponder This publishes a monthly math/CS challenge typically requiring a mix of algorithmic insight and computational search. Topics spanned graph theory, max-flow optimization, combinatorial enumeration, and number theory.\n\nApproach.\n- I solved each problem in VBA or Python depending on the problem shape — smaller search spaces with rich structure went to VBA prototypes, larger combinatorial searches to Python with optimized representations.\n- Jan 2021 — Modular grid traversal with state-dependent rotation (Vaccinating Robot)\n- Feb 2021 — Minimum vertex set on a trust-dependency graph via strongly connected components (Vaccination Ring)\n- Mar 2021 — Closure problem on a 20×20 grid solved via max-flow (Perseverance Rover)\n- Apr 2021 — Combinatorial enumeration of unwinnable sets (Decremental Wheel of Choice)\n- Dec 2021 — Deterministic pin orientation optimization (Galton Board)\n- Jan 2022 — Prime-forming graph traversal on a digit circle (Forming Primes)\n\nImpact.\nEarned the bonus star on 5 of 6 challenges. All solver names are verified on IBM Research\'s public archive.',
+      links: [
+        { label: 'Jan 2021 — Vaccinating Robot', url: 'https://research.ibm.com/blog/ponder-this-january-2021' },
+        { label: 'Feb 2021 — Vaccination Ring', url: 'https://research.ibm.com/blog/ponder-this-february-2021' },
+        { label: 'Mar 2021 — Perseverance Rover', url: 'https://research.ibm.com/blog/ponder-this-march-2021' },
+        { label: 'Apr 2021 — Decremental Wheel of Choice', url: 'https://research.ibm.com/blog/ponder-this-april-2021' },
+        { label: 'Dec 2021 — Galton Board', url: 'https://research.ibm.com/blog/ponder-this-december-2021' },
+        { label: 'Jan 2022 — Forming Primes', url: 'https://research.ibm.com/blog/ponder-this-january-2022' },
+      ],
+      image: 'assets/images/portfolio-5.svg',
+      size: 'small',
+    },
   ],
   testimonials: [
     {
