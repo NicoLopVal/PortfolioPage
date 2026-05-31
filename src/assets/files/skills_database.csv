@@ -1,0 +1,100 @@
+Hability,Technique,Implemented,Level
+.NET,C#,"Ubimia, BairesDev, IntrosMatter, Bachelor's publication",Expert
+.NET,.NET 8,IntrosMatter,Proficient
+.NET,.NET Framework,"Ubimia, BairesDev",Proficient
+.NET,Clean Architecture,IntrosMatter,Proficient
+.NET,REST API development,"Ubimia, BairesDev, IntrosMatter",Proficient
+.NET,WPF (Windows Presentation Foundation),Ubimia,Proficient
+.NET,WinForms,"Tecmo, BairesDev",Proficient
+.NET,Object-Oriented Programming (OOP),"Ubimia, BairesDev, IntrosMatter, Bachelor's publication",Expert
+.NET,Dependency Injection,IntrosMatter,Proficient
+.NET,Scalability,BairesDev,Familiar
+.NET,TickerQ (background jobs),IntrosMatter,Familiar
+.NET,Docker,IntrosMatter,Familiar
+.NET,"Service integrations (Google Suite, Atlassian Suite, AthenaAI, SalesForce)","Ubimia, BairesDev, IntrosMatter",Proficient
+.NET,Document manipulation (Spire),Ubimia,Proficient
+Database,SQL Server,"Ubimia, BairesDev, IntrosMatter, IBM Data Analyst certification",Expert
+Database,Oracle SQL,Ubimia,Familiar
+Database,T-SQL,"Ubimia, IntrosMatter",Proficient
+Database,Database design / data modeling,"Ubimia, IntrosMatter",Proficient
+Database,Stored Procedures,"BairesDev, IntrosMatter",Proficient
+Frontend Development,Angular,"BairesDev, IntrosMatter, Personal portfolio",Proficient
+Frontend Development,TypeScript,"IntrosMatter, Personal portfolio",Proficient
+Frontend Development,HTML / CSS,"IntrosMatter, Personal portfolio",Proficient
+Automated Testing,Test Automation,"BairesDev, IntrosMatter",Proficient
+Automated Testing,Unit Testing,BairesDev,Proficient
+Automated Testing,Playwright,IntrosMatter,Proficient
+Automated Testing,E2E test orchestration,IntrosMatter,Expert
+Automated Testing,SQL fixture management,IntrosMatter,Proficient
+Operations Research / Optimization,Mathematical Modeling,"Tecmo, Bachelor's publication, MSc thesis, NTU Operations Research courses",Expert
+Operations Research / Optimization,Linear Programming (LP),"Bachelor's publication, MSc thesis, NTU Operations Research courses",Proficient
+Operations Research / Optimization,MILP (Mixed Integer Linear Programming),"Bachelor's publication, NTU Operations Research courses",Proficient
+Operations Research / Optimization,GRASP metaheuristic,Bachelor's publication,Expert
+Operations Research / Optimization,Heuristics & Metaheuristics,"Bachelor's publication, Bachelor's degree, Tecmo",Expert
+Operations Research / Optimization,Greedy algorithms,"Bachelor's degree, Bachelor's publication",Proficient
+Operations Research / Optimization,Genetic algorithms,Bachelor's degree,Familiar
+Operations Research / Optimization,Simplex method,"Bachelor's degree, NTU Operations Research courses",Proficient
+Operations Research / Optimization,Shortest path algorithms,Bachelor's degree,Familiar
+Operations Research / Optimization,1D Cutting stock problem,Tecmo,Expert
+Operations Research / Optimization,Combinatorial optimization,"IBM Ponder This, Bachelor's degree",Proficient
+Operations Research / Optimization,Algorithm design,"IBM Ponder This, Bachelor's publication",Proficient
+Operations Research / Optimization,Gurobi,NTU Operations Research courses,Familiar
+Operations Research / Optimization,GAMS / CPLEX,Bachelor's publication,Familiar
+Simulation,Monte Carlo simulation,"Bachelor's publication, Bachelor's degree, IBM Ponder This",Expert
+Simulation,Discrete event simulation,Bachelor's degree,Proficient
+Simulation,Agent-based modeling,MSc thesis,Proficient
+Simulation,System Dynamics Simulation,MSc degree,Proficient
+Simulation,AnyLogic,MSc thesis,Proficient
+Simulation,Arena,Bachelor's degree,Proficient
+Simulation,Vensim,"Bachelor's degree, MSc degree",Familiar
+Simulation,Flexsim,Bachelor's degree,Familiar
+Simulation,Bass diffusion model,MSc thesis,Proficient
+Statistics / Data Analysis,Multinomial logistic regression,MSc thesis,Proficient
+Statistics / Data Analysis,R,MSc thesis,Proficient
+Statistics / Data Analysis,Statistical hypothesis testing (ANOVA / Tukey / K-S),"Bachelor's publication, MSc thesis",Proficient
+Statistics / Data Analysis,Probability distribution fitting,Bachelor's publication,Proficient
+Statistics / Data Analysis,Survey design and execution,MSc thesis,Proficient
+Statistics / Data Analysis,Applied statistics,"Ubimia, BairesDev, MSc thesis, Bachelor's publication",Proficient
+Python,Data Science,"IBM Ponder This, IBM Data Analyst certification",Proficient
+Python,Pandas / NumPy,IBM Data Analyst certification,Proficient
+Python,Data visualization,IBM Data Analyst certification,Familiar
+VBA,Excel and Word,"Tecmo, Ubimia, IBM Ponder This",Expert
+VBA,Excel Macro,"Tecmo, Ubimia",Expert
+Version Control,Git,"IntrosMatter, BairesDev",Proficient
+Version Control,Subversion (SVN),Ubimia,Proficient
+Version Control,CI/CD pipelines,"BairesDev, IntrosMatter",Proficient
+Project & Collaboration,Project ownership,Ubimia,Proficient
+Project & Collaboration,Remote work,"Ubimia, BairesDev, IntrosMatter",Expert
+Project & Collaboration,Cross-functional coordination,"Tecmo, BairesDev",Expert
+Project & Collaboration,Offsite/remote meeting coordination,"Tecmo, BairesDev, Ubimia, IntrosMatter",Expert
+Project & Collaboration,Technical research and academic writing,"Bachelor's publication, MSc thesis",Proficient
+Project & Collaboration,Decision-Making,"Tecmo, Ubimia, BairesDev, IntrosMatter, MSc thesis, Bachelor's publication",Expert
+Project & Collaboration,Agile Methodologies (Scrum / Kanban),"BairesDev, IntrosMatter",Proficient
+Project & Collaboration,Problem Solving,"Tecmo, Bachelor's publication, MSc thesis, IBM Ponder This, NTU Operations Research courses",Expert
+Tools,GitLab,IntrosMatter,Proficient
+Tools,Octopus Deploy,"BairesDev, IntrosMatter",Familiar
+Tools,JFrog Artifactory,"BairesDev, IntrosMatter",Familiar
+Tools,Jenkins,BairesDev,Familiar
+Tools,"Atlassian Suite (Jira, Confluence, Bitbucket)","BairesDev, IntrosMatter",Proficient
+Tools,Google Suite,"BairesDev, IntrosMatter",Proficient
+Tools,Microsoft Suite,"Tecmo, Ubimia",Expert
+Tools,Rider Jetbrains,"BairesDev, Ubimia, IntrosMatter",Proficient
+Tools,DataGrip Jetbrains,"BairesDev, Ubimia, IntrosMatter",Proficient
+Tools,R Studio,MSc thesis,Familiar
+Tools,VsCode,"BairesDev, Ubimia, IntrosMatter",Proficient
+Tools,Visual Studio,"BairesDev, Ubimia",Proficient
+Tools,SolidWorks,Bachelor's degree,Familiar
+AI Tools,Claude,"BairesDev, Ubimia, IntrosMatter",Expert
+AI Tools,Cursor,IntrosMatter,Proficient
+AI Tools,GitHub Copilot,IntrosMatter,Proficient
+AI Tools,Claude Code,IntrosMatter,Proficient
+AI Tools,ChatGPT,"BairesDev, Ubimia, IntrosMatter",Proficient
+AI Tools,AthenaAI,IntrosMatter,Familiar
+Organizational,Logistics management,Tecmo,Proficient
+Organizational,Purchases management,Tecmo,Expert
+Organizational,Maintenance management,Tecmo,Proficient
+Organizational,Allocation management,Tecmo,Expert
+Organizational,Product Owner,Tecmo,Expert
+Engineering,Industrial Engineering,"Tecmo, Bachelor's degree, MSc degree",Expert
+Languages,English,C1,Expert
+Languages,Spanish,Native,Expert

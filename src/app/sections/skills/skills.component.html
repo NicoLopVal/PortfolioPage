@@ -1,31 +1,158 @@
 <section id="skills" class="section section--dark skills">
   <app-section-header title="My Skills" watermarkLetter="M" />
-  <div class="skills__grid">
-    <div class="skills__column skills__column--dark">
-      @for (skill of data.skillsLeft; track skill.id) {
-        <div class="skill-bar">
-          <div class="skill-bar__header">
-            <span>{{ skill.name }}</span>
-            <span>{{ skill.level }}%</span>
-          </div>
-          <div class="skill-bar__track">
-            <div class="skill-bar__fill" [style.width.%]="skill.level"></div>
-          </div>
-        </div>
-      }
+
+  <div class="skills__content">
+
+    <!-- ── Controls ──────────────────────────────────────────────────────── -->
+    <div class="skills__controls">
+      <div class="skills__toggle" role="group" aria-label="Skills view mode">
+        <button
+          class="skills__toggle-btn"
+          [class.skills__toggle-btn--active]="viewMode() === 'skills'"
+          (click)="setViewMode('skills')"
+        >
+          By Skill
+        </button>
+        <button
+          class="skills__toggle-btn"
+          [class.skills__toggle-btn--active]="viewMode() === 'implemented'"
+          (click)="setViewMode('implemented')"
+        >
+          By Implementation
+        </button>
+      </div>
+
+      <app-liquid-glass-input
+        class="skills__search"
+        placeholder="Search skills, techniques, or places…"
+        icon="search"
+        [value]="searchQuery()"
+        (valueChange)="searchQuery.set($event)"
+      />
     </div>
-    <div class="skills__column skills__column--accent">
-      @for (skill of data.skillsRight; track skill.id) {
-        <div class="skill-bar skill-bar--light">
-          <div class="skill-bar__header">
-            <span>{{ skill.name }}</span>
-            <span>{{ skill.level }}%</span>
-          </div>
-          <div class="skill-bar__track">
-            <div class="skill-bar__fill" [style.width.%]="skill.level"></div>
-          </div>
-        </div>
+
+    <!-- ── Skill chips ────────────────────────────────────────────────────── -->
+    <div class="skills__chips">
+      @if (viewMode() === 'skills') {
+        @for (group of filteredSkillsGroups(); track group.hability) {
+          <button
+            class="skill-chip"
+            (click)="openSkillsModal(group)"
+            [attr.aria-label]="group.hability + ' — ' + group.techniques.length + ' techniques. Click to expand.'"
+          >
+            <span class="skill-chip__name">{{ group.hability }}</span>
+            <span class="skill-chip__count" aria-hidden="true">{{ group.techniques.length }}</span>
+          </button>
+        }
+        @empty {
+          <p class="skills__empty">No skills match "{{ searchQuery() }}"</p>
+        }
+      } @else {
+        @for (group of filteredImplGroups(); track group.place) {
+          <button
+            class="skill-chip"
+            (click)="openImplModal(group)"
+            [attr.aria-label]="group.place + ' — ' + group.totalTechniques + ' techniques. Click to expand.'"
+          >
+            <span class="skill-chip__name">{{ group.place }}</span>
+            <span class="skill-chip__count" aria-hidden="true">{{ group.totalTechniques }}</span>
+          </button>
+        }
+        @empty {
+          <p class="skills__empty">No implementations match "{{ searchQuery() }}"</p>
+        }
       }
     </div>
   </div>
+
+  <!-- ── By-Skill modal ────────────────────────────────────────────────────── -->
+  @if (skillsModal(); as group) {
+    <div
+      class="skills-modal"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-labelledby]="'skills-modal-title'"
+      (click)="onOverlayClick($event)"
+    >
+      <div class="skills-modal__dialog" (click)="$event.stopPropagation()">
+        <app-liquid-glass-panel class="skills-modal__panel" padding="lg" translucency="medium">
+          <div class="skills-modal__scroll">
+
+            <header class="skills-modal__header">
+              <h2 class="skills-modal__title" id="skills-modal-title">{{ group.hability }}</h2>
+              <button class="skills-modal__close" (click)="closeModal()" aria-label="Close modal">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </header>
+
+            <ul class="skills-modal__list">
+              @for (item of group.techniques; track item.technique) {
+                <li class="skills-modal__item">
+                  <div class="skills-modal__item-row">
+                    <span class="skills-modal__technique">{{ item.technique }}</span>
+                    <span class="level-badge level-badge--{{ levelClass(item.level) }}">{{ item.level }}</span>
+                  </div>
+                  <div class="skills-modal__places">
+                    @for (place of item.implementedPlaces; track place) {
+                      <span class="skills-modal__place">{{ place }}</span>
+                    }
+                  </div>
+                </li>
+              }
+            </ul>
+
+          </div>
+        </app-liquid-glass-panel>
+      </div>
+    </div>
+  }
+
+  <!-- ── By-Implementation modal ───────────────────────────────────────────── -->
+  @if (implModal(); as group) {
+    <div
+      class="skills-modal"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-labelledby]="'impl-modal-title'"
+      (click)="onOverlayClick($event)"
+    >
+      <div class="skills-modal__dialog" (click)="$event.stopPropagation()">
+        <app-liquid-glass-panel class="skills-modal__panel" padding="lg" translucency="medium">
+          <div class="skills-modal__scroll">
+
+            <header class="skills-modal__header">
+              <h2 class="skills-modal__title" id="impl-modal-title">{{ group.place }}</h2>
+              <button class="skills-modal__close" (click)="closeModal()" aria-label="Close modal">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </header>
+
+            @for (hgroup of group.habilities; track hgroup.hability) {
+              <div class="skills-modal__hability-group">
+                <h3 class="skills-modal__hability-name">{{ hgroup.hability }}</h3>
+                <ul class="skills-modal__list">
+                  @for (item of hgroup.techniques; track item.technique) {
+                    <li class="skills-modal__item">
+                      <div class="skills-modal__item-row">
+                        <span class="skills-modal__technique">{{ item.technique }}</span>
+                        <span class="level-badge level-badge--{{ levelClass(item.level) }}">{{ item.level }}</span>
+                      </div>
+                    </li>
+                  }
+                </ul>
+              </div>
+            }
+
+          </div>
+        </app-liquid-glass-panel>
+      </div>
+    </div>
+  }
+
 </section>

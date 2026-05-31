@@ -1,0 +1,180 @@
+Implemented,Technique,Hability,Level
+Bachelor's,C#,.NET,Expert
+Bachelor's,Object-Oriented Programming (OOP),.NET,Expert
+Bachelor's,Mathematical Modeling,Operations Research / Optimization,Expert
+Bachelor's,Linear Programming (LP),Operations Research / Optimization,Proficient
+Bachelor's,MILP (Mixed Integer Linear Programming),Operations Research / Optimization,Proficient
+Bachelor's,GRASP metaheuristic,Operations Research / Optimization,Expert
+Bachelor's,Heuristics & Metaheuristics,Operations Research / Optimization,Expert
+Bachelor's,Greedy algorithms,Operations Research / Optimization,Proficient
+Bachelor's,Genetic algorithms,Operations Research / Optimization,Familiar
+Bachelor's,Simplex method,Operations Research / Optimization,Proficient
+Bachelor's,Shortest path algorithms,Operations Research / Optimization,Familiar
+Bachelor's,Combinatorial optimization,Operations Research / Optimization,Proficient
+Bachelor's,Algorithm design,Operations Research / Optimization,Proficient
+Bachelor's,GAMS / CPLEX,Operations Research / Optimization,Familiar
+Bachelor's,Monte Carlo simulation,Simulation,Expert
+Bachelor's,Discrete event simulation,Simulation,Proficient
+Bachelor's,Arena,Simulation,Proficient
+Bachelor's,Vensim,Simulation,Familiar
+Bachelor's,Flexsim,Simulation,Familiar
+Bachelor's,Statistical hypothesis testing (ANOVA / Tukey / K-S),Statistics / Data Analysis,Proficient
+Bachelor's,Probability distribution fitting,Statistics / Data Analysis,Proficient
+Bachelor's,Applied statistics,Statistics / Data Analysis,Proficient
+Bachelor's,Technical research and academic writing,Project & Collaboration,Proficient
+Bachelor's,Decision-Making,Project & Collaboration,Expert
+Bachelor's,Problem Solving,Project & Collaboration,Expert
+Bachelor's,SolidWorks,Tools,Familiar
+Bachelor's,Industrial Engineering,Engineering,Expert
+Master's,Mathematical Modeling,Operations Research / Optimization,Expert
+Master's,Linear Programming (LP),Operations Research / Optimization,Proficient
+Master's,Agent-based modeling,Simulation,Proficient
+Master's,System Dynamics Simulation,Simulation,Proficient
+Master's,AnyLogic,Simulation,Proficient
+Master's,Vensim,Simulation,Familiar
+Master's,Bass diffusion model,Simulation,Proficient
+Master's,Multinomial logistic regression,Statistics / Data Analysis,Proficient
+Master's,R,Statistics / Data Analysis,Proficient
+Master's,Statistical hypothesis testing (ANOVA / Tukey / K-S),Statistics / Data Analysis,Proficient
+Master's,Survey design and execution,Statistics / Data Analysis,Proficient
+Master's,Applied statistics,Statistics / Data Analysis,Proficient
+Master's,Technical research and academic writing,Project & Collaboration,Proficient
+Master's,Decision-Making,Project & Collaboration,Expert
+Master's,Problem Solving,Project & Collaboration,Expert
+Master's,R Studio,Tools,Familiar
+Master's,Industrial Engineering,Engineering,Expert
+Tecmo,WinForms,.NET,Proficient
+Tecmo,Mathematical Modeling,Operations Research / Optimization,Expert
+Tecmo,Heuristics & Metaheuristics,Operations Research / Optimization,Expert
+Tecmo,1D Cutting stock problem,Operations Research / Optimization,Expert
+Tecmo,Excel and Word,VBA,Expert
+Tecmo,Excel Macro,VBA,Expert
+Tecmo,Cross-functional coordination,Project & Collaboration,Expert
+Tecmo,Offsite/remote meeting coordination,Project & Collaboration,Expert
+Tecmo,Decision-Making,Project & Collaboration,Expert
+Tecmo,Problem Solving,Project & Collaboration,Expert
+Tecmo,Microsoft Suite,Tools,Expert
+Tecmo,Logistics management,Organizational,Proficient
+Tecmo,Purchases management,Organizational,Expert
+Tecmo,Maintenance management,Organizational,Proficient
+Tecmo,Allocation management,Organizational,Expert
+Tecmo,Product Owner,Organizational,Expert
+Tecmo,Industrial Engineering,Engineering,Expert
+BairesDev,C#,.NET,Expert
+BairesDev,.NET Framework,.NET,Proficient
+BairesDev,REST API development,.NET,Proficient
+BairesDev,WinForms,.NET,Proficient
+BairesDev,Object-Oriented Programming (OOP),.NET,Expert
+BairesDev,Scalability,.NET,Familiar
+BairesDev,"Service integrations (Google Suite, Atlassian Suite, AthenaAI, SalesForce)",.NET,Proficient
+BairesDev,SQL Server,Database,Expert
+BairesDev,Stored Procedures,Database,Proficient
+BairesDev,Angular,Frontend Development,Proficient
+BairesDev,Test Automation,Automated Testing,Proficient
+BairesDev,Unit Testing,Automated Testing,Proficient
+BairesDev,Applied statistics,Statistics / Data Analysis,Proficient
+BairesDev,Git,Version Control,Proficient
+BairesDev,CI/CD pipelines,Version Control,Proficient
+BairesDev,Remote work,Project & Collaboration,Expert
+BairesDev,Cross-functional coordination,Project & Collaboration,Expert
+BairesDev,Offsite/remote meeting coordination,Project & Collaboration,Expert
+BairesDev,Decision-Making,Project & Collaboration,Expert
+BairesDev,Agile Methodologies (Scrum / Kanban),Project & Collaboration,Proficient
+BairesDev,Octopus Deploy,Tools,Familiar
+BairesDev,JFrog Artifactory,Tools,Familiar
+BairesDev,Jenkins,Tools,Familiar
+BairesDev,"Atlassian Suite (Jira, Confluence, Bitbucket)",Tools,Proficient
+BairesDev,Google Suite,Tools,Proficient
+BairesDev,Rider Jetbrains,Tools,Proficient
+BairesDev,DataGrip Jetbrains,Tools,Proficient
+BairesDev,VsCode,Tools,Proficient
+BairesDev,Visual Studio,Tools,Proficient
+BairesDev,Claude,AI Tools,Expert
+BairesDev,ChatGPT,AI Tools,Proficient
+Ubimia,C#,.NET,Expert
+Ubimia,.NET Framework,.NET,Proficient
+Ubimia,REST API development,.NET,Proficient
+Ubimia,WPF (Windows Presentation Foundation),.NET,Proficient
+Ubimia,Object-Oriented Programming (OOP),.NET,Expert
+Ubimia,"Service integrations (Google Suite, Atlassian Suite, AthenaAI, SalesForce)",.NET,Proficient
+Ubimia,Document manipulation (Spire),.NET,Proficient
+Ubimia,SQL Server,Database,Expert
+Ubimia,Oracle SQL,Database,Familiar
+Ubimia,T-SQL,Database,Proficient
+Ubimia,Database design / data modeling,Database,Proficient
+Ubimia,Applied statistics,Statistics / Data Analysis,Proficient
+Ubimia,Excel and Word,VBA,Expert
+Ubimia,Excel Macro,VBA,Expert
+Ubimia,Subversion (SVN),Version Control,Proficient
+Ubimia,Project ownership,Project & Collaboration,Proficient
+Ubimia,Remote work,Project & Collaboration,Expert
+Ubimia,Offsite/remote meeting coordination,Project & Collaboration,Expert
+Ubimia,Decision-Making,Project & Collaboration,Expert
+Ubimia,Microsoft Suite,Tools,Expert
+Ubimia,Rider Jetbrains,Tools,Proficient
+Ubimia,DataGrip Jetbrains,Tools,Proficient
+Ubimia,VsCode,Tools,Proficient
+Ubimia,Visual Studio,Tools,Proficient
+Ubimia,Claude,AI Tools,Expert
+Ubimia,ChatGPT,AI Tools,Proficient
+IntrosMatter,C#,.NET,Expert
+IntrosMatter,.NET 8,.NET,Proficient
+IntrosMatter,Clean Architecture,.NET,Proficient
+IntrosMatter,REST API development,.NET,Proficient
+IntrosMatter,Object-Oriented Programming (OOP),.NET,Expert
+IntrosMatter,Dependency Injection,.NET,Proficient
+IntrosMatter,TickerQ (background jobs),.NET,Familiar
+IntrosMatter,Docker,.NET,Familiar
+IntrosMatter,"Service integrations (Google Suite, Atlassian Suite, AthenaAI, SalesForce)",.NET,Proficient
+IntrosMatter,SQL Server,Database,Expert
+IntrosMatter,T-SQL,Database,Proficient
+IntrosMatter,Database design / data modeling,Database,Proficient
+IntrosMatter,Stored Procedures,Database,Proficient
+IntrosMatter,Angular,Frontend Development,Proficient
+IntrosMatter,TypeScript,Frontend Development,Proficient
+IntrosMatter,HTML / CSS,Frontend Development,Proficient
+IntrosMatter,Test Automation,Automated Testing,Proficient
+IntrosMatter,Playwright,Automated Testing,Proficient
+IntrosMatter,E2E test orchestration,Automated Testing,Expert
+IntrosMatter,SQL fixture management,Automated Testing,Proficient
+IntrosMatter,Git,Version Control,Proficient
+IntrosMatter,CI/CD pipelines,Version Control,Proficient
+IntrosMatter,Remote work,Project & Collaboration,Expert
+IntrosMatter,Offsite/remote meeting coordination,Project & Collaboration,Expert
+IntrosMatter,Decision-Making,Project & Collaboration,Expert
+IntrosMatter,Agile Methodologies (Scrum / Kanban),Project & Collaboration,Proficient
+IntrosMatter,GitLab,Tools,Proficient
+IntrosMatter,Octopus Deploy,Tools,Familiar
+IntrosMatter,JFrog Artifactory,Tools,Familiar
+IntrosMatter,"Atlassian Suite (Jira, Confluence, Bitbucket)",Tools,Proficient
+IntrosMatter,Google Suite,Tools,Proficient
+IntrosMatter,Rider Jetbrains,Tools,Proficient
+IntrosMatter,DataGrip Jetbrains,Tools,Proficient
+IntrosMatter,VsCode,Tools,Proficient
+IntrosMatter,Claude,AI Tools,Expert
+IntrosMatter,Cursor,AI Tools,Proficient
+IntrosMatter,GitHub Copilot,AI Tools,Proficient
+IntrosMatter,Claude Code,AI Tools,Proficient
+IntrosMatter,ChatGPT,AI Tools,Proficient
+IntrosMatter,AthenaAI,AI Tools,Familiar
+NTU OR courses,Mathematical Modeling,Operations Research / Optimization,Expert
+NTU OR courses,Linear Programming (LP),Operations Research / Optimization,Proficient
+NTU OR courses,MILP (Mixed Integer Linear Programming),Operations Research / Optimization,Proficient
+NTU OR courses,Simplex method,Operations Research / Optimization,Proficient
+NTU OR courses,Gurobi,Operations Research / Optimization,Familiar
+NTU OR courses,Problem Solving,Project & Collaboration,Expert
+IBM Certification,SQL Server,Database,Expert
+IBM Ponder This,Combinatorial optimization,Operations Research / Optimization,Proficient
+IBM Ponder This,Algorithm design,Operations Research / Optimization,Proficient
+IBM Ponder This,Monte Carlo simulation,Simulation,Expert
+IBM Ponder This,Data Science,Python,Proficient
+IBM Certification,Pandas / NumPy,Python,Proficient
+IBM Certification,Data visualization,Python,Familiar
+IBM Ponder This,Excel and Word,VBA,Expert
+IBM Ponder This,Problem Solving,Project & Collaboration,Expert
+Languages,Spanish,Native,Expert
+IBM Certification,English,C1,Expert
+IBM Ponder This,English,C1,Expert
+NTU OR courses,English,C1,Expert
+IntrosMatter,English,C1,Expert
+BairesDev,English,C1,Expert
