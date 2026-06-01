@@ -292,6 +292,15 @@ export const PORTFOLIO_DATA: PortfolioData = {
     {
       id: 'ref-1',
       quote:
+        "\"Culture is one of the most underrated assets a company can have, and few invest in it seriously. Nico, to me, is the embodiment of what a positive workplace culture looks like. His attitude and good humor are genuinely contagious, and things simply flow better when you work alongside someone with his work ethic and passion for delivering the best.\n On the technical side, Nico was consistently dedicated, proactive, and focused on building the best possible solution. The designer-developer relationship I had with him is the most fruitful kind: both of us setting aside our area biases to reflect together on what actually made the most sense for the business, in a completely open and respectful way where you never have to walk on eggshells, just trust each other.\nI truly hope our paths cross again, and that more people get to experience working with the professional I had the privilege of knowing.\"",
+      authorName: 'Chris Hart',
+      authorTitle: 'Sr Product Designer',
+      authorImage: 'assets/images/Gabs.jpg',
+      linkedInUrl: 'https://www.linkedin.com/in/gabrielfmcaldas',
+    },
+    {
+      id: 'ref-2',
+      quote:
         "\"Nico is a great engineer, but that's actually not the main reason I'd recommend him.\nNico's super-power is being like \"glue\" for engineering teams: he does good work, and more importantly, he helps everyone else around him be better.\nHe brings a great energy to teams, lifts people up, and is always willing to help colleagues with technical problems.\nEvery engineering team would be better with someone like Nico around!\"",
       authorName: 'Chris Hart',
       authorTitle: 'Founder & CEO',
@@ -299,7 +308,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       linkedInUrl: 'https://www.linkedin.com/in/chart',
     },
     {
-      id: 'ref-2',
+      id: 'ref-3',
       quote:
         "\"Tuve el gusto enorme de trabajar con Nicolás, donde demostró ser un profesional confiable y muy proactivo (en aspectos integrales, no solo en la parte técnica) y que ha comprendido rápidamente los desafíos que tenemos en el sector financiero.\nSu compromiso es medible en iniciativas que aportaron mejoras a nuestros procesos y para fomentar excelente clima laboral con todo el equipo, también destaco su responsabilidad en la gestión y su autonomía profesional para avanzar con los proyectos y desafíos asignados.\nLe deseo el mejor de los éxitos siempre !\"",
       authorName: 'Ignacio Tellería Chazarreta',
@@ -308,7 +317,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       linkedInUrl: 'https://www.linkedin.com/in/ignaciotelleriachazarreta',
     },
     {
-      id: 'ref-3',
+      id: 'ref-4',
       quote:
         "\"Once I was assigned to assist another team with keeping their project up-to-date with our libs, and that was the first I came across Nico.\nBack then, Nico was a .NET developer, but was stuck with the task of taking care of the Angular front end, as well, with which he wasn't all that familiarized.\nAngular is a robust framework but with a very steep learning curve, but within a week or two of some mob programming calls he had been able to learn how to maintain and grow the project by himself.\nI was baffled watching it happen first hand.\nNico is a fast learner, a highly adaptable developer with excellent critical thinking and one who's willing to take a challenge, even if it takes learning stuff from scratch, and for that alone, I'd tip my hat to him.\nBut more than anything: he's not only a top tier dev, but also a top tier friend.\nIf one needs a dev who can take it, I strongly recommend Nico anytime, anywhere.\nThanks for everything and I can only hope to one day be on the same team as you again.\nCheers and rock on, man!\"",
       authorName: 'Daniel Nagaoka',
@@ -317,7 +326,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       linkedInUrl: 'https://www.linkedin.com/in/daninagaoka',
     },
     {
-      id: 'ref-4',
+      id: 'ref-5',
       quote:
         "\"Nico is one of those professionals who always give the extra mile.\nI had the fortune to work alongside him on the development team and was impressed with his capacity to make things move forward.\nHe is very committed, passionate, proactive, and a team worker.\nI highly recommend Nico because beyond being a professional with strong technical skills, he is an exceptional person with outstanding soft skills who will help you promote a collaborative work environment and help the whole team achieve their goals.\"",
       authorName: 'Veronica Aristizabal',
@@ -326,7 +335,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       linkedInUrl: 'https://www.linkedin.com/in/varistizabalg',
     },
     {
-      id: 'ref-5',
+      id: 'ref-6',
       quote:
         "\"During the time we worked together, Nicolas consistently demonstrated an exceptional commitment to his work and a proactive approach to addressing any issues that arose.\nHis genuine concern for customer satisfaction and coding abilities significantly contributed to his success.\nNicolas's strong work ethic, attention to detail, and dedication to taking on more significant challenges made him an invaluable asset to our team.\nHis customer-focused mindset ensured our users received the highest service and support.\"",
       authorName: 'Juan Manuel Arce',
@@ -335,7 +344,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       linkedInUrl: 'https://www.linkedin.com/in/juan-manuel-arce',
     },
     {
-      id: 'ref-6',
+      id: 'ref-7',
       quote:
         "\"Nico is one of the best persons I’ve had the pleasure of working with and I will always remember him fondly.\nWhen I started working at BairesDev, Nico showed me many tricks and helped me every time I needed it.\nI learned a lot from him.\nHe’s always willing to lend a hand to anyone who needs it.\nI also had the opportunity to watch him adapt to changes when he was moved to a different team.\nHis ability to overcome challenges with a smile made hin stand out as a cut above the rest!\nI totally recommend Nico, he is a great asset for any company!\"",
       authorName: 'Adriana Aguirre',
@@ -344,7 +353,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       linkedInUrl: 'https://www.linkedin.com/in/adriana-aguirre4',
     },
     {
-      id: 'ref-7',
+      id: 'ref-8',
       quote:
         "\"I have had the pleasure of working with Nico for some time and have been consistently impressed by his talent and dedication to his work.\nNico has an innate ability to learn quickly and is always eager to explore new technologies and approaches to his work.\nHis proactivity and motivation make him a valuable member of any team.\nOne of Nico's standout skills is his ability to communicate effectively, bringing together diverse groups of people to solve complex problems.\nIn addition, Nico possesses solid skills in both front-end and back-end development, with a deep understanding of database mssql, .NET and JavaScript.\nHis knowledge in these areas has been invaluable to our team, and I have no doubt that he would be an asset to any organization.\nI highly recommend Nico for any role where his skills, knowledge, and passion can be put to use.\nHe is a talented and driven professional who would be a valuable addition to any team.\"",
       authorName: 'Michael Becker',
@@ -353,7 +362,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       linkedInUrl: 'https://www.linkedin.com/in/michael-rbecker',
     },
     {
-      id: 'ref-8',
+      id: 'ref-9',
       quote:
         "\"Nico has a best attitude ever!\nalways going above and beyond without a fear of success!\"",
       authorName: 'Iurii Ernich',
@@ -362,7 +371,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       linkedInUrl: 'https://www.linkedin.com/in/iurii-ernich',
     },
     {
-      id: 'ref-9',
+      id: 'ref-10',
       quote:
         "\"As one of Nicolas' university classmate, I highly recommend his exceptional skills and qualities.\nHe is an intelligent, disciplined, and fast learner with great teamwork skills and exceptional creative and communication skills.\nHe is a visionary thinker who is always willing to take on new challenges and collaborate with others to achieve goals.\"",
       authorName: 'Camilo Dominguez Mesa',
