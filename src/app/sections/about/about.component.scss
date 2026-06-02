@@ -35,6 +35,7 @@
   &__text p {
     color: var(--color-text-muted);
     margin-bottom: 16px;
+    text-align: justify;
   }
 
   @include respond-tablet {
