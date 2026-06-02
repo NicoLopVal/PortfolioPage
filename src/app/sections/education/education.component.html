@@ -11,14 +11,24 @@
         </div>
         <div class="timeline-card__body">
           <div class="timeline-card__header">
-            <img
-              class="timeline-card__logo"
-              [src]="item.issuerLogo"
-              [alt]="item.institution + ' logo'"
-              width="48"
-              height="48"
-              loading="lazy"
-            />
+            <a
+              class="timeline-card__logo-link"
+              [href]="item.instituteLinkedIn"
+              target="_blank"
+              rel="noopener noreferrer"
+              [attr.aria-label]="item.institution + ' on LinkedIn'"
+              tabindex="-1"
+              aria-hidden="true"
+            >
+              <img
+                class="timeline-card__logo"
+                [src]="item.issuerLogo"
+                [alt]="item.institution + ' logo'"
+                width="48"
+                height="48"
+                loading="lazy"
+              />
+            </a>
             <div class="timeline-card__content">
               @if (item.certificateUrl) {
                 <h3>
@@ -33,7 +43,14 @@
               } @else {
                 <h3>{{ item.degree }}</h3>
               }
-              <p>{{ item.institution }}</p>
+              <a
+                class="timeline-card__institution-link"
+                [href]="item.instituteLinkedIn"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {{ item.institution }}
+              </a>
             </div>
           </div>
         </div>

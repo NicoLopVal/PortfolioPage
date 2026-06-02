@@ -18,8 +18,20 @@
           <span>{{ item.period }}</span>
         </div>
         <div class="timeline-card__body">
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.company }}</p>
+          <div class="timeline-card__header">
+            <img
+              class="timeline-card__logo"
+              [src]="item.companyLogo"
+              [alt]="item.company + ' logo'"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+            <div class="timeline-card__content">
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.company }}</p>
+            </div>
+          </div>
         </div>
       </article>
     }

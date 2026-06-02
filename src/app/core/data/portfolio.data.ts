@@ -45,6 +45,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       institution: 'Universidad de la Sabana',
       accentBar: true,
       issuerLogo: 'assets/images/universidad_de_la_sabana_logo.jpg',
+      instituteLinkedIn: 'https://www.linkedin.com/school/universidad-de-la-sabana',
     },
     {
       id: 'edu-2',
@@ -53,6 +54,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       institution: 'Pontificia Universidad Javeriana',
       accentBar: true,
       issuerLogo: 'assets/images/pontificia_universidad_javeriana_logo.jpg',
+      instituteLinkedIn: 'https://www.linkedin.com/school/pontificia-universidad-javeriana',
     },
     {
       id: 'edu-3',
@@ -63,6 +65,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       issuerLogo: 'assets/images/national_taiwan_university_logo.jpg',
       certificateUrl:
         'https://www.coursera.org/account/accomplishments/verify/1J2Q8L7LS3BY',
+      instituteLinkedIn: 'https://www.linkedin.com/school/national-taiwan-university/',
     },
     {
       id: 'edu-4',
@@ -73,6 +76,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       issuerLogo: 'assets/images/national_taiwan_university_logo.jpg',
       certificateUrl:
         'https://www.coursera.org/account/accomplishments/verify/RQLCE6WA6PQD',
+      instituteLinkedIn: 'https://www.linkedin.com/school/national-taiwan-university/',
     },
     {
       id: 'edu-5',
@@ -83,6 +87,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       issuerLogo: 'assets/images/national_taiwan_university_logo.jpg',
       certificateUrl:
         'https://www.coursera.org/account/accomplishments/verify/ICTVKM2QNMDI',
+      instituteLinkedIn: 'https://www.linkedin.com/school/national-taiwan-university/',
     },
     {
       id: 'edu-6',
@@ -93,6 +98,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       issuerLogo: 'assets/images/coursera_logo.jpg',
       certificateUrl:
         'https://www.coursera.org/account/accomplishments/professional-cert/EWRM345QXWZZ',
+      instituteLinkedIn: 'https://www.linkedin.com/company/coursera',
     },
     {
       id: 'edu-7',
@@ -103,6 +109,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       issuerLogo: 'assets/images/coursera_logo.jpg',
       certificateUrl:
         'https://www.credly.com/badges/49d1c6d3-7703-4052-bf3d-1389707a57ff',
+      instituteLinkedIn: 'https://www.linkedin.com/company/coursera',
     },
     {
       id: 'edu-8',
@@ -113,6 +120,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       issuerLogo: 'assets/images/coursera_logo.jpg',
       certificateUrl:
         'https://www.credly.com/badges/216a14be-c48c-4f0a-838d-a2b1a49aebf8',
+      instituteLinkedIn: 'https://www.linkedin.com/company/coursera',
     },
     {
       id: 'edu-9',
@@ -123,6 +131,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       issuerLogo: 'assets/images/coursera_logo.jpg',
       certificateUrl:
         'https://www.credly.com/badges/9c4689d9-b5c7-47b7-8831-ec8e52f758e0',
+      instituteLinkedIn: 'https://www.linkedin.com/company/coursera',
     },
   ],
   experience: [

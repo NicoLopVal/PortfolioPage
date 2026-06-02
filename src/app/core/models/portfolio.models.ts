@@ -25,6 +25,7 @@ export interface EducationItem {
   accentBar: boolean;
   issuerLogo: string;
   certificateUrl?: string;
+  instituteLinkedIn: string;
 }
 
 export interface ExperienceItem {
