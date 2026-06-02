@@ -1,7 +1,6 @@
 .section-header {
   position: relative;
   margin-bottom: 50px;
-  overflow: hidden;
 
   &__watermark {
     position: absolute;
@@ -15,6 +14,7 @@
     pointer-events: none;
     user-select: none;
     z-index: 0;
+    overflow: visible;
   }
 
   &__content {
