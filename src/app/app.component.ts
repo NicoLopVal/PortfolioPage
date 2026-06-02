@@ -10,6 +10,7 @@ import { ServicesComponent } from './sections/services/services.component';
 import { PortfolioGalleryComponent } from './sections/portfolio-gallery/portfolio-gallery.component';
 import { ReferenceComponent } from './sections/reference/reference.component';
 import { ContactComponent } from './sections/contact/contact.component';
+import { WhatsappButtonComponent } from './shared/whatsapp-button/whatsapp-button.component';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,7 @@ import { ContactComponent } from './sections/contact/contact.component';
     PortfolioGalleryComponent,
     ReferenceComponent,
     ContactComponent,
+    WhatsappButtonComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
