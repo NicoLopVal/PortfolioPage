@@ -394,5 +394,5 @@ export const PORTFOLIO_DATA: PortfolioData = {
     phone: '+34 645 639 986',
     email: 'nicolaslopval@gmail.com',
   },
-  footerCopyright: `© ${new Date().getFullYear()} Your Name. All rights reserved.`,
+  footerCopyright: `© ${new Date().getFullYear()} Nicolas Lopez Valencia. All rights reserved.`,
 };
