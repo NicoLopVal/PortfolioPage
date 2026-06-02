@@ -302,7 +302,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       id: 'ref-1',
       quote:
         "\"Culture is one of the most underrated assets a company can have, and few invest in it seriously. Nico, to me, is the embodiment of what a positive workplace culture looks like. His attitude and good humor are genuinely contagious, and things simply flow better when you work alongside someone with his work ethic and passion for delivering the best.\n On the technical side, Nico was consistently dedicated, proactive, and focused on building the best possible solution. The designer-developer relationship I had with him is the most fruitful kind: both of us setting aside our area biases to reflect together on what actually made the most sense for the business, in a completely open and respectful way where you never have to walk on eggshells, just trust each other.\nI truly hope our paths cross again, and that more people get to experience working with the professional I had the privilege of knowing.\"",
-      authorName: 'Chris Hart',
+      authorName: 'Gabriel Caldas',
       authorTitle: 'Sr Product Designer',
       authorImage: 'assets/images/Gabs.jpg',
       linkedInUrl: 'https://www.linkedin.com/in/gabrielfmcaldas',
