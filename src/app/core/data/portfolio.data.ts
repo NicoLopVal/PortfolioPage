@@ -2,11 +2,11 @@ import { NavSection, PortfolioData } from '../models/portfolio.models';
 
 export const NAV_SECTIONS: NavSection[] = [
   { id: 'about', label: 'About' },
-  { id: 'education', label: 'Education' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'services', label: 'Services' },
-  { id: 'experience', label: 'Experience' },
+  { id: 'services', label: 'Services' },  
   { id: 'portfolio', label: 'Portfolio' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'education', label: 'Education' },
   { id: 'reference', label: 'Reference' },
   { id: 'contact', label: 'Contact' },
 ];
@@ -235,7 +235,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       modalTitle: 'Steel Cutting-Stock Optimization for Project Atrio (2016)',
       modalBody:
         'Problem.\nTecmo supplied structural steel for Project Atrio, a Bogotá skyscraper requiring ~10,000 tons of structural elements — orders of magnitude beyond the company\'s usual ad-hoc procurement from small suppliers. The "sum the meters, add a surplus" approach used for smaller projects would have wasted enormous quantities of material at this scale, and since each steel piece required a crane and a truck to move, every leftover offcut and every meter mattered.\n\nApproach.\n- Working from piece specifications provided by the engineering team, I built a multi-stage optimization model in VBA that solved a 1D cutting stock problem assigning required pieces to standard beam lengths (6m, 10m, 12m), accounting for kerf (the millimeters each cut consumes), since custom-length beams carried prohibitive cost premiums.\n- Coordinated cut schedules with a partner fabrication facility waiting on input material at a separate location.\n- Allocated raw materials to storage zones aligned with construction phase (everything for phase 10 grouped in storage patch 10), then performed cross-reference swaps to consolidate leftover offcuts within the same phase — minimizing crane and truck movements.\n- Generated daily printable material-movement plans that field operators could execute without touching the model.\n- The model itself was built solo, but the real success came from cross-functional coordination across logistics, production, and dispatch teams to operationalize the output.\n\nImpact.\nReduced procured-material cost from $4.2M USD to $3.7M USD (~12%, ~$500K on traceable spend alone). Additional unmeasured savings in logistics, inventory holding, paint, and waste management. Built and deployed in roughly a week.',
-      image: 'assets/images/portfolio-1.svg',
+      image: 'assets/images/Atrio.jpg',
       size: 'large',
     },
     {
@@ -252,7 +252,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
           url: 'https://growingscience.com/beta/ijiec/2801-a-simulation-optimization-approach-for-the-surgery-scheduling-problem-a-case-study-considering-stochastic-surgical-times.html',
         },
       ],
-      image: 'assets/images/portfolio-2.svg',
+      image: 'assets/images/Thesis.png',
       size: 'medium',
     },
     {
@@ -263,7 +263,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       modalTitle: 'End-to-End Test Orchestration System (IntrosMatter, 2025–2026)',
       modalBody:
         'Problem.\nIntrosMatter operated a multi-tenant B2B platform spanning a web application and a Chrome extension, each requiring testing against multiple user roles across multiple environments. Running E2E tests through standard tooling produced flaky results, slow feedback loops, and fixture state that was impossible to reproduce reliably between runs.\n\nApproach.\n- I designed and built a custom test orchestration system from scratch.\n- A C# orchestrator reads test configuration from a repo-versioned file and drives the full lifecycle across two separate codebases.\n- For each application: detects which tests to run, executes SQL fixture queries to seed deterministic state, performs Playwright login once and caches the session to disk so subsequent tests skip re-authentication, runs the test suite for the current user role, then executes cleanup SQL.\n- Iterates through user roles re-seeding state for each, then advances to the next application and repeats.\n- Built for developer ergonomics: templates and helper functions for recurring operations, the ability to run individual tests rather than the full suite, headed and headless modes, and multi-environment support.\n\nImpact.\nIntegrated into the pre-production deployment workflow, the system caught regressions that pure unit tests couldn\'t — including failures originating outside our codebase. In one case, a file stored in Strapi went down due to a payment provider conflict; the automated tests caught it the same day, rather than the day after when users would have noticed. The infrastructure proved that small E2E suites, when run reliably and frequently, deliver outsized value relative to their size.',
-      image: 'assets/images/portfolio-3.svg',
+      image: 'assets/images/Playwright.png',
       size: 'medium',
     },
     {
@@ -274,7 +274,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       modalTitle: 'Demand Model for Private Electric Vehicles in Bogotá (MSc Thesis, 2020)',
       modalBody:
         'Problem.\nColombia\'s National Electric Mobility Strategy set ambitious EV adoption targets, but no existing model accounted for household-level decision-making, word-of-mouth diffusion, or competition between ICE, HEV, PHEV, and BEV technologies. Policymakers had no quantitative way to test which incentive lever — fuel taxes, energy subsidies, ICE penalties, or BEV subsidies — would actually move adoption.\n\nApproach.\n- For my Master\'s thesis in Engineering Management at Universidad de La Sabana, I designed a household survey administered to 1,193 respondents across five Colombian cities to capture preferences, willingness-to-pay, and demographic context.\n- Fit a multinomial logistic regression in R to extract the utility function for each vehicle technology, integrating sociodemographic variables via a latent-class transformation.\n- Built an agent-based simulation in AnyLogic with ~10,000 super-agents representing Bogotá\'s 1.2M car-owning households, integrating Bass diffusion for word-of-mouth dynamics over a 2013–2050 horizon.\n- Ran seven policy scenarios and compared sales-share trajectories and technology stock against the government\'s published projections.\n\nImpact.\nFound that penalizing ICE vehicle prices outperforms subsidizing BEV prices — counter to most government incentive programs. In the combined-policy scenario, BEV reaches ~69% of new vehicle sales by 2050 vs. ~33% in the baseline. The model also showed HEV adoption stays marginal regardless of policy intervention, suggesting governments should leapfrog directly to BEV incentives rather than treat hybrids as a stepping stone.',
-      image: 'assets/images/portfolio-4.svg',
+      image: 'assets/images/ABM.png',
       size: 'medium',
     },
     {
@@ -293,7 +293,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
         { label: 'Dec 2021 — Galton Board', url: 'https://research.ibm.com/blog/ponder-this-december-2021' },
         { label: 'Jan 2022 — Forming Primes', url: 'https://research.ibm.com/blog/ponder-this-january-2022' },
       ],
-      image: 'assets/images/portfolio-5.svg',
+      image: 'assets/images/PonderThis.png',
       size: 'small',
     },
   ],
