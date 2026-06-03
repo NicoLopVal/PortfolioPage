@@ -2,6 +2,8 @@
   <a
     class="liquid-glass-button"
     [href]="href"
+    [attr.target]="target ?? null"
+    [attr.rel]="target === '_blank' ? 'noopener noreferrer' : null"
     [attr.download]="download ? '' : null"
     [class.liquid-glass-button--disabled]="disabled"
   >

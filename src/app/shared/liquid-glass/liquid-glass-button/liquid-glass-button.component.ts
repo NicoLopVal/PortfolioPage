@@ -29,6 +29,7 @@ export class LiquidGlassButtonComponent {
   @Input() variant: GlassButtonVariant = 'glass';
   @Input() color: GlassButtonColor = 'accent';
   @Input() href?: string;
+  @Input() target?: '_blank' | '_self' | '_parent' | '_top';
   @Input() type: 'button' | 'submit' = 'button';
   @Input() disabled = false;
   @Input() download = false;

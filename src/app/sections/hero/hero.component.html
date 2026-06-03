@@ -14,14 +14,39 @@
         <span class="hero__title-name">{{ data.profile.firstName }} {{ data.profile.lastName }}</span>
       </h1>
       <p class="hero__subtitle">{{ data.profile.heroSubtitle }}</p>
-      <app-liquid-glass-button
-        label="Download CV"
-        variant="solid"
-        color="accent"
-        [href]="data.profile.cvUrl"
-        [download]="true"
-        class="hero__cv-btn"
-      />
+
+      <!-- CV download: single button → splits into two on click -->
+      <div class="hero__cv-wrapper" (click)="$event.stopPropagation()">
+        @if (!cvExpanded()) {
+          <app-liquid-glass-button
+            class="hero__cv-single"
+            label="Download CV"
+            variant="solid"
+            color="accent"
+            (click)="toggleCv($event)"
+          />
+        } @else {
+          <div class="hero__cv-split">
+            <app-liquid-glass-button
+              label="Operations Research CV"
+              variant="solid"
+              color="accent"
+              [href]="cvLinks.orCv"
+              target="_blank"
+              (click)="collapseCv()"
+            />
+            <app-liquid-glass-button
+              label="Software CV"
+              variant="solid"
+              color="accent"
+              [href]="cvLinks.softwareCv"
+              target="_blank"
+              (click)="collapseCv()"
+            />
+          </div>
+        }
+      </div>
+
       <div class="hero__social">
         <app-social-links [links]="data.socialLinks" />
       </div>
