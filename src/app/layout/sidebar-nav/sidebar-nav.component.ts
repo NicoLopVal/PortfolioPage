@@ -6,10 +6,12 @@ import {
   inject,
 } from '@angular/core';
 import { NAV_SECTIONS } from '../../core/data/portfolio.data';
+import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.component';
 
 @Component({
   selector: 'app-sidebar-nav',
   standalone: true,
+  imports: [ThemeToggleComponent],
   templateUrl: './sidebar-nav.component.html',
   styleUrl: './sidebar-nav.component.scss',
 })

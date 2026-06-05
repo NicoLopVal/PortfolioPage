@@ -9,8 +9,10 @@
   background-color: var(--color-accent);
   z-index: 1000;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease;
 
   &__list {
     list-style: none;
@@ -49,12 +51,26 @@
     }
   }
 
+  &__theme {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // Rotate the toggle 90° so it sits vertically in the sidebar
+    app-theme-toggle {
+      transform: rotate(90deg);
+    }
+  }
+
   @include respond-tablet {
     top: 0;
     left: 0;
     width: 100%;
     height: auto;
     min-height: 56px;
+    flex-direction: row;
 
     &__list {
       flex-direction: row;
@@ -69,6 +85,16 @@
       transform: none;
       padding: 6px 10px;
       font-size: 0.7rem;
+    }
+
+    &__theme {
+      position: static;
+      margin-left: auto;
+      padding-right: 16px;
+
+      app-theme-toggle {
+        transform: none;
+      }
     }
   }
 }

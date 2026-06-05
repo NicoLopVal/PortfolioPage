@@ -24,13 +24,13 @@
   }
 
   @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    background: rgba(30, 30, 35, var(--glass-fallback-opacity, 0.92));
+    background: var(--glass-bg-fallback);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
 
   @media (prefers-reduced-transparency: reduce) {
-    background: rgba(30, 30, 35, var(--glass-fallback-opacity, 0.92));
+    background: var(--glass-bg-fallback);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
 
