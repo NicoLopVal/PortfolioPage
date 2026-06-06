@@ -1,10 +1,10 @@
 import { NavSection, PortfolioData } from '../models/portfolio.models';
 
 export const NAV_SECTIONS: NavSection[] = [
-  { id: 'about', label: 'About' },
-  { id: 'services', label: 'Services' },  
   { id: 'portfolio', label: 'Portfolio' },
+  { id: 'services', label: 'Services' },
   { id: 'skills', label: 'Skills' },
+  { id: 'about', label: 'About' },
   { id: 'experience', label: 'Experience' },
   { id: 'education', label: 'Education' },
   { id: 'reference', label: 'Reference' },
