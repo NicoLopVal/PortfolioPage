@@ -8,6 +8,8 @@
     grid-template-rows: auto auto auto;
     gap: 16px;
     max-width: var(--max-content-width);
+    margin-inline: auto;
+    align-content: center;
   }
 
   &__item {
@@ -134,8 +136,11 @@
       min-height: 280px;
     }
 
+    // At tablet the grid is 2-col. Keeping wide as span 2 would push pf-5
+    // into a row of its own and leave a hole — collapse it to 1-col so all
+    // five cards tile into a clean 3-row layout with no empty cells.
     &__item--wide {
-      grid-column: span 2;
+      grid-column: span 1;
     }
   }
 
@@ -144,7 +149,8 @@
       grid-template-columns: 1fr;
     }
 
-    &__item--large {
+    &__item--large,
+    &__item--wide {
       grid-column: span 1;
     }
 
