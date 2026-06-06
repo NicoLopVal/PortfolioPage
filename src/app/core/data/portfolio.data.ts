@@ -16,14 +16,12 @@ export const PORTFOLIO_DATA: PortfolioData = {
     firstName: 'Nicolas',
     lastName: 'Lopez',
     tagline: "I'm Nicolas Lopez",
-    heroSubtitle: 'Product Manager | Operations Research Engineer | Software Developer',
+    heroSubtitle: 'Software Engineer specialized in Operations Research',
     aboutTitle: 'Who I Am?',
     aboutParagraphs: [
-      'I am a Software Engineer and Operations Research practitioner with genuine depth in both fields. I design and test optimization and simulation models, and I build production software.',
-      'I build production software in .NET 8, C#, and SQL Server (Clean Architecture, REST APIs, Playwright), and I formulate and solve LP, IP, and MILP models with Gurobi and Simplex.',
-      'I also believe a model is only as good as its behavior under uncertainty. Real systems are dynamic and stochastic, so rather than optimizing for a single snapshot, I use simulation, discrete event, agent based, and system dynamics, to test how a model holds up under changing conditions and tune it for the best result across them.',
-      'A few results I am proud of: a published surgery scheduling model (MILP plus GRASP metaheuristic) that cut delays by 5% and lifted room occupancy by up to 9%, and an optimization system at TECMO that reduced steel procurement costs by 12%, over 500,000 USD in traceable savings across more than 10,000 tons of material, before counting the handling and storage costs it eliminated. Today I build and integrate features for a B2B lead generation platform, wiring in services like Salesforce, HiveApi, and AthenaAI.',
-      'I am in love with problem solving. I reach for whatever language fits, Python, C#, or R, to build a model or implement a solver like Gurobi, then ship something that measurably works.'
+      'I\'m a software engineer with genuine depth in operations research. For the past 8 years, I\'ve built production software in .NET, C#, and SQL Server, including REST APIs, multi-tenant SaaS platforms, integrations with Salesforce and critical services, and custom test automation frameworks. Most recently at IntrosMatter, I engineered the Playwright test orchestration system for end-to-end testing across our Chrome extension and web application, and contributed to architectural decisions on background jobs, integrations, and core platform features.',
+      'I also understand the harder layer: how systems behave under uncertainty, how to validate assumptions before shipping, how to think in optimization. I\'ve published research on stochastic surgery scheduling (MILP + GRASP metaheuristic), achieved $500,000 USD in traceable material savings through optimization at TECMO, and regularly formulate and solve LP/IP/MILP models. This perspective shapes how I approach systems design, helping me identify constraints and validate assumptions early in the process.',
+      'I\'m interested in roles where I can apply both skills: building systems that require systems thinking, abstracting real-world business problems into optimization models and solving them for optimal or near-optimal solutions, or technical leadership where both capabilities drive real value.',
     ],
     cvUrl: 'assets/files/cv-placeholder.pdf',
     heroImage: 'assets/images/ProfilePic.webp',
