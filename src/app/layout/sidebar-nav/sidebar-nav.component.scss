@@ -8,14 +8,12 @@
   top: 0;
   left: 0;
   right: 0;
-  height: var(--nav-height);
   z-index: 1000;
   display: flex;
   align-items: center;
-  gap: 0;
   padding: 0 40px;
 
-  // Glass treatment — no radius, only bottom border
+  // Single glass surface — covers both the bar row and the open drawer row
   background: var(--glass-bg);
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
@@ -24,12 +22,16 @@
     background var(--transition-theme),
     border-color var(--transition-theme);
 
+  // Desktop: fixed single-row height
+  height: var(--nav-height);
+
   @include respond-mobile {
     padding: 0 20px;
-    // When drawer is open, keep nav elevated so drawer sits flush below
-    &--open {
-      border-bottom-color: transparent;
-    }
+    // Let the nav grow to contain the drawer; wrap drawer to a second row
+    height: auto;
+    min-height: var(--nav-height);
+    flex-wrap: wrap;
+    align-items: center;
   }
 }
 
@@ -85,7 +87,6 @@
   opacity: 0.65;
   transition: opacity var(--transition-fast), color var(--transition-fast);
 
-  // Active dot indicator
   &::after {
     content: '';
     position: absolute;
@@ -104,7 +105,6 @@
   &--active {
     opacity: 1;
     color: var(--color-accent);
-
     &::after { transform: translateX(-50%) scaleX(1); }
   }
 
@@ -122,9 +122,11 @@
   align-items: center;
   gap: 12px;
   margin-left: auto;
+  // Ensure the controls row always stays at nav-height on mobile
+  height: var(--nav-height);
 }
 
-// ── Hamburger ─────────────────────────────────────────────────────────────────
+// ── Hamburger / chevron button ────────────────────────────────────────────────
 
 .top-nav__hamburger {
   display: none; // shown via mobile breakpoint below
@@ -139,6 +141,7 @@
   border: none;
   cursor: pointer;
   border-radius: 6px;
+  color: var(--color-text);
   transition: background var(--transition-fast);
 
   &:hover { background: rgba(128, 128, 128, 0.12); }
@@ -148,49 +151,41 @@
   }
 }
 
+.top-nav__hamburger-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.22s ease;
+}
+
 .top-nav__hamburger-bar {
   display: block;
   width: 22px;
   height: 2px;
   border-radius: 999px;
-  background: var(--color-text);
-  transition:
-    transform 0.25s ease,
-    opacity   0.25s ease,
-    width     0.25s ease;
-
-  // Animate into ✕ when open
-  .top-nav--open & {
-    &:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    &:nth-child(2) { opacity: 0; width: 0; }
-    &:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  }
+  background: currentColor;
 }
 
-// ── Mobile drawer ─────────────────────────────────────────────────────────────
+// ── Mobile drawer — in-flow extension of the nav ──────────────────────────────
+//
+// The drawer is a flex child with width:100% so it wraps onto its own row.
+// It has NO separate background or backdrop-filter — the parent nav's single
+// glass surface already covers it, giving the "nav grows taller" effect.
 
 .top-nav__drawer {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  border-bottom: 1px solid var(--glass-border);
-  animation: drawer-drop 0.22s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  z-index: 999;
+  width: 100%;
+  border-top: 1px solid var(--glass-border);
+  animation: drawer-reveal 0.22s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-@keyframes drawer-drop {
-  from { opacity: 0; transform: translateY(-8px); }
+@keyframes drawer-reveal {
+  from { opacity: 0; transform: translateY(-6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 .top-nav__drawer-list {
   list-style: none;
   margin: 0;
-  padding: 12px 0 16px;
+  padding: 8px 0 12px;
   display: flex;
   flex-direction: column;
 }
@@ -198,7 +193,7 @@
 .top-nav__drawer-link {
   display: block;
   width: 100%;
-  padding: 13px 24px;
+  padding: 12px 4px;
   background: none;
   border: none;
   text-align: left;
@@ -209,7 +204,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
-  opacity: 0.7;
+  opacity: 0.65;
   transition: opacity var(--transition-fast), color var(--transition-fast);
 
   &:hover { opacity: 1; }

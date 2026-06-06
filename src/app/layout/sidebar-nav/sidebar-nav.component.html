@@ -27,7 +27,7 @@
   <div class="top-nav__controls">
     <app-theme-toggle />
 
-    <!-- Hamburger (mobile only) -->
+    <!-- Hamburger / chevron-up toggle (mobile only) -->
     <button
       class="top-nav__hamburger"
       type="button"
@@ -35,13 +35,24 @@
       aria-label="Toggle navigation menu"
       (click)="$event.stopPropagation(); toggleMenu()"
     >
-      <span class="top-nav__hamburger-bar"></span>
-      <span class="top-nav__hamburger-bar"></span>
-      <span class="top-nav__hamburger-bar"></span>
+      @if (menuOpen()) {
+        <!-- Chevron up — close the drawer -->
+        <svg class="top-nav__hamburger-icon" xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <polyline points="18 15 12 9 6 15"/>
+        </svg>
+      } @else {
+        <!-- Hamburger bars — open the drawer -->
+        <span class="top-nav__hamburger-bar"></span>
+        <span class="top-nav__hamburger-bar"></span>
+        <span class="top-nav__hamburger-bar"></span>
+      }
     </button>
   </div>
 
-  <!-- Mobile drawer ────────────────────────────────────────────────────── -->
+  <!-- Mobile drawer — in-flow so it shares the nav's glass surface ──────── -->
   @if (menuOpen()) {
     <div class="top-nav__drawer" (click)="$event.stopPropagation()">
       <ul class="top-nav__drawer-list">
