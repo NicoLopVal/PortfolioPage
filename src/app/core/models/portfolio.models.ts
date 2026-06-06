@@ -74,7 +74,7 @@ export interface PortfolioItem {
   links?: ProjectLink[];
   modalImages?: ProjectModalImage[];
   image: string;
-  size: 'small' | 'medium' | 'large';
+  size: 'small' | 'medium' | 'wide' | 'large';
 }
 
 export interface Testimonial {

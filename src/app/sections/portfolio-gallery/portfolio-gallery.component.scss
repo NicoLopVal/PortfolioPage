@@ -54,6 +54,11 @@
       min-height: 320px;
     }
 
+    &--wide {
+      grid-column: span 2;
+      min-height: 150px;
+    }
+
     &--medium {
       min-height: 150px;
     }
@@ -127,6 +132,10 @@
       grid-column: span 2;
       grid-row: span 1;
       min-height: 280px;
+    }
+
+    &__item--wide {
+      grid-column: span 2;
     }
   }
 
