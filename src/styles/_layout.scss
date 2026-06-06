@@ -55,6 +55,12 @@ button {
   }
 }
 
+/* Applied by CursorEffectComponent on mouse-capable devices */
+.cursor-custom,
+.cursor-custom * {
+  cursor: none !important;
+}
+
 .section--dark {
   @include section-dark;
 }

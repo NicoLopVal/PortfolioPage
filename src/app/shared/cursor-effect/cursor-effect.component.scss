@@ -1,0 +1,19 @@
+/*
+ * The host element is a fixed full-screen layer that sits above everything.
+ * pointer-events: none ensures it never intercepts clicks or hovers.
+ */
+:host {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+}
+
+.cursor-canvas {
+  display: block;
+  /* CSS size matches the viewport; actual pixel dimensions are set in TS. */
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}

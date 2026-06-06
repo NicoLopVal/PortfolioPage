@@ -11,6 +11,7 @@ import { PortfolioGalleryComponent } from './sections/portfolio-gallery/portfoli
 import { ReferenceComponent } from './sections/reference/reference.component';
 import { ContactComponent } from './sections/contact/contact.component';
 import { WhatsappButtonComponent } from './shared/whatsapp-button/whatsapp-button.component';
+import { CursorEffectComponent } from './shared/cursor-effect/cursor-effect.component';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +29,7 @@ import { WhatsappButtonComponent } from './shared/whatsapp-button/whatsapp-butto
     ReferenceComponent,
     ContactComponent,
     WhatsappButtonComponent,
+    CursorEffectComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
