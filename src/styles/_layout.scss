@@ -45,6 +45,7 @@ button {
 .section {
   position: relative;
   padding: var(--section-padding);
+  scroll-margin-top: var(--nav-height);
 
   @include respond-tablet {
     padding: 60px 40px;
@@ -70,11 +71,6 @@ button {
 }
 
 .main-content {
-  margin-left: var(--sidebar-width);
+  padding-top: var(--nav-height);
   min-height: 100vh;
-
-  @include respond-tablet {
-    margin-left: 0;
-    padding-top: 56px;
-  }
 }

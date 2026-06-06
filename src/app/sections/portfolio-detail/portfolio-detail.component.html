@@ -1,0 +1,112 @@
+@if (nav.selectedItem(); as item) {
+  <div class="detail">
+
+    <!-- ── Top bar ─────────────────────────────────────────────────────── -->
+    <header class="detail__topbar">
+      <button
+        class="detail__back"
+        type="button"
+        aria-label="Back to portfolio"
+        (click)="nav.close()"
+      >
+        <!-- Home icon -->
+        <svg class="detail__back-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9.5z"/>
+          <polyline points="9 21 9 12 15 12 15 21"/>
+        </svg>
+        <span class="detail__back-label">Home</span>
+      </button>
+
+      <span class="detail__counter">
+        {{ nav.currentNumber() }}&thinsp;/&thinsp;{{ nav.totalItems }}
+      </span>
+    </header>
+
+    <!-- ── Scrollable content ─────────────────────────────────────────── -->
+    <div class="detail__scroll">
+
+      <!-- Hero image -->
+      <div class="detail__hero">
+        <img [src]="item.image" [alt]="item.tileTitle" />
+        <div class="detail__hero-overlay">
+          <h1 class="detail__title">{{ item.modalTitle }}</h1>
+          <ul class="detail__badges">
+            @for (badge of item.techBadges; track badge) {
+              <li>{{ badge }}</li>
+            }
+          </ul>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="detail__content">
+
+        @if (item.modalImages?.length) {
+          <div class="detail__images">
+            @for (img of item.modalImages; track img.src) {
+              <figure class="detail__figure">
+                <img [src]="img.src" [alt]="img.alt" loading="lazy" />
+                @if (img.caption) {
+                  <figcaption>{{ img.caption }}</figcaption>
+                }
+              </figure>
+            }
+          </div>
+        }
+
+        <ul class="detail__body">
+          @for (block of parseDescription(item.modalBody); track $index) {
+            @if (block.type === 'heading') {
+              <li class="detail__body-item detail__body-item--heading">{{ block.text }}</li>
+            } @else {
+              <li class="detail__body-item">{{ block.text }}</li>
+            }
+          }
+        </ul>
+
+        @if (item.links?.length) {
+          <footer class="detail__links">
+            @for (link of item.links; track link.url) {
+              <a [href]="link.url" target="_blank" rel="noopener noreferrer">
+                {{ link.label }}
+              </a>
+            }
+          </footer>
+        }
+
+      </div>
+    </div>
+
+    <!-- ── Side navigation arrows ─────────────────────────────────────── -->
+    <button
+      class="detail__nav detail__nav--prev"
+      type="button"
+      aria-label="Previous project"
+      [disabled]="!nav.hasPrev()"
+      (click)="nav.prev()"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+
+    <button
+      class="detail__nav detail__nav--next"
+      type="button"
+      aria-label="Next project"
+      [disabled]="!nav.hasNext()"
+      (click)="nav.next()"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+
+  </div>
+}

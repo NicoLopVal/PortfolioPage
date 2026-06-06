@@ -1,100 +1,228 @@
 @import '../../../styles/mixins';
+@import '../../../styles/glass';
 
-.sidebar-nav {
+// ── Bar ───────────────────────────────────────────────────────────────────────
+
+.top-nav {
   position: fixed;
   top: 0;
   left: 0;
-  width: var(--sidebar-width);
-  height: 100vh;
-  background-color: var(--color-accent);
+  right: 0;
+  height: var(--nav-height);
   z-index: 1000;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s ease;
+  gap: 0;
+  padding: 0 40px;
 
-  &__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
+  // Glass treatment — no radius, only bottom border
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-bottom: 1px solid var(--glass-border);
+  transition:
+    background var(--transition-theme),
+    border-color var(--transition-theme);
 
-  &__link {
-    display: block;
-    padding: 8px 4px;
-    background: none;
-    border: none;
-    color: var(--color-text);
-    font-family: var(--font-heading);
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    transform: rotate(180deg);
-    cursor: pointer;
-    opacity: 0.7;
-    transition: opacity var(--transition-fast);
-
-    &:hover,
-    &--active {
-      opacity: 1;
-    }
-
-    &--active {
-      font-weight: 800;
+  @include respond-mobile {
+    padding: 0 20px;
+    // When drawer is open, keep nav elevated so drawer sits flush below
+    &--open {
+      border-bottom-color: transparent;
     }
   }
+}
 
-  &__theme {
+// ── Brand ─────────────────────────────────────────────────────────────────────
+
+.top-nav__brand {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-right: auto;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity var(--transition-fast);
+
+  &:hover { opacity: 0.75; }
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+// ── Desktop link list ─────────────────────────────────────────────────────────
+
+.top-nav__list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.top-nav__link {
+  position: relative;
+  display: block;
+  padding: 8px 14px;
+  background: none;
+  border: none;
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0.65;
+  transition: opacity var(--transition-fast), color var(--transition-fast);
+
+  // Active dot indicator
+  &::after {
+    content: '';
     position: absolute;
-    bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    // Rotate the toggle 90° so it sits vertically in the sidebar
-    app-theme-toggle {
-      transform: rotate(90deg);
-    }
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 16px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--color-accent);
+    transition: transform 0.22s ease;
   }
 
-  @include respond-tablet {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
-    min-height: 56px;
-    flex-direction: row;
+  &:hover { opacity: 1; }
 
-    &__list {
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 12px 16px;
-      gap: 8px;
-    }
+  &--active {
+    opacity: 1;
+    color: var(--color-accent);
 
-    &__link {
-      writing-mode: horizontal-tb;
-      transform: none;
-      padding: 6px 10px;
-      font-size: 0.7rem;
-    }
-
-    &__theme {
-      position: static;
-      margin-left: auto;
-      padding-right: 16px;
-
-      app-theme-toggle {
-        transform: none;
-      }
-    }
+    &::after { transform: translateX(-50%) scaleX(1); }
   }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+// ── Right controls ────────────────────────────────────────────────────────────
+
+.top-nav__controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+// ── Hamburger ─────────────────────────────────────────────────────────────────
+
+.top-nav__hamburger {
+  display: none; // shown via mobile breakpoint below
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background var(--transition-fast);
+
+  &:hover { background: rgba(128, 128, 128, 0.12); }
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+.top-nav__hamburger-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--color-text);
+  transition:
+    transform 0.25s ease,
+    opacity   0.25s ease,
+    width     0.25s ease;
+
+  // Animate into ✕ when open
+  .top-nav--open & {
+    &:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    &:nth-child(2) { opacity: 0; width: 0; }
+    &:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  }
+}
+
+// ── Mobile drawer ─────────────────────────────────────────────────────────────
+
+.top-nav__drawer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-bottom: 1px solid var(--glass-border);
+  animation: drawer-drop 0.22s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  z-index: 999;
+}
+
+@keyframes drawer-drop {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.top-nav__drawer-list {
+  list-style: none;
+  margin: 0;
+  padding: 12px 0 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-nav__drawer-link {
+  display: block;
+  width: 100%;
+  padding: 13px 24px;
+  background: none;
+  border: none;
+  text-align: left;
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity var(--transition-fast), color var(--transition-fast);
+
+  &:hover { opacity: 1; }
+
+  &--active {
+    opacity: 1;
+    color: var(--color-accent);
+  }
+}
+
+// ── Responsive ────────────────────────────────────────────────────────────────
+
+@include respond-mobile {
+  .top-nav__list { display: none; }
+  .top-nav__hamburger { display: flex; }
 }

@@ -1,3 +1,26 @@
 :host {
   display: block;
 }
+
+// ── Page wrapper ──────────────────────────────────────────────────────────────
+// Wraps everything except the cursor overlay and the detail page so the whole
+// site can be animated away when a project is opened.
+
+.app-page {
+  transition:
+    transform 0.52s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity   0.52s ease,
+    filter    0.52s ease;
+  transform-origin: center center;
+  // No will-change here — it would create a new containing block and break
+  // position:fixed on the nav and WhatsApp button even when no transform
+  // is active. It is only safe to declare on the active animated class below.
+}
+
+.app-page--detail-open {
+  transform: translateX(-72px) scale(0.97);
+  opacity: 0;
+  filter: blur(2px);
+  pointer-events: none;
+  user-select: none;
+}

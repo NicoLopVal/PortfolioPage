@@ -2,10 +2,12 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  OnDestroy,
+  HostListener,
   inject,
+  OnDestroy,
+  signal,
 } from '@angular/core';
-import { NAV_SECTIONS } from '../../core/data/portfolio.data';
+import { NAV_SECTIONS, PORTFOLIO_DATA } from '../../core/data/portfolio.data';
 import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.component';
 
 @Component({
@@ -17,31 +19,33 @@ import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.com
 })
 export class SidebarNavComponent implements AfterViewInit, OnDestroy {
   private readonly host = inject(ElementRef);
+
   readonly sections = NAV_SECTIONS;
+  readonly brandName =
+    PORTFOLIO_DATA.profile.firstName + ' ' + PORTFOLIO_DATA.profile.lastName;
+
   activeSectionId = 'about';
+  readonly menuOpen = signal(false);
 
   private observer?: IntersectionObserver;
 
-  ngAfterViewInit(): void {
-    const options: IntersectionObserverInit = {
-      root: null,
-      rootMargin: '-40% 0px -50% 0px',
-      threshold: 0,
-    };
+  // ── IntersectionObserver — active section tracking ──────────────────────
 
-    this.observer = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          this.activeSectionId = entry.target.id;
+  ngAfterViewInit(): void {
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            this.activeSectionId = entry.target.id;
+          }
         }
-      }
-    }, options);
+      },
+      { root: null, rootMargin: '-40% 0px -50% 0px', threshold: 0 },
+    );
 
     for (const section of this.sections) {
       const el = document.getElementById(section.id);
-      if (el) {
-        this.observer.observe(el);
-      }
+      if (el) this.observer.observe(el);
     }
   }
 
@@ -49,11 +53,40 @@ export class SidebarNavComponent implements AfterViewInit, OnDestroy {
     this.observer?.disconnect();
   }
 
+  // ── Actions ──────────────────────────────────────────────────────────────
+
   scrollTo(sectionId: string): void {
     const el = document.getElementById(sectionId);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       this.activeSectionId = sectionId;
     }
+    this.menuOpen.set(false);
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.menuOpen.set(false);
+  }
+
+  toggleMenu(): void {
+    this.menuOpen.update((v) => !v);
+  }
+
+  // Close the mobile drawer when clicking outside the nav
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(e: MouseEvent): void {
+    if (
+      this.menuOpen() &&
+      !this.host.nativeElement.contains(e.target as Node)
+    ) {
+      this.menuOpen.set(false);
+    }
+  }
+
+  // Close on Escape
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    this.menuOpen.set(false);
   }
 }

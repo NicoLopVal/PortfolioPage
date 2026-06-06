@@ -7,9 +7,9 @@
         role="button"
         tabindex="0"
         [attr.aria-label]="'View details for ' + item.tileTitle"
-        (click)="openModal(item)"
-        (keydown.enter)="openModal(item)"
-        (keydown.space)="$event.preventDefault(); openModal(item)"
+        (click)="open(item)"
+        (keydown.enter)="open(item)"
+        (keydown.space)="$event.preventDefault(); open(item)"
       >
         <img [src]="item.image" [alt]="item.tileTitle" loading="lazy" />
         <div class="portfolio-gallery__overlay">
@@ -24,82 +24,4 @@
       </article>
     }
   </div>
-
-  @if (selectedItem(); as item) {
-    <div
-      class="portfolio-modal"
-      role="dialog"
-      aria-modal="true"
-      [attr.aria-labelledby]="'portfolio-modal-title-' + item.id"
-      (click)="onOverlayClick($event)"
-    >
-      <div class="portfolio-modal__dialog" (click)="$event.stopPropagation()">
-        <app-liquid-glass-panel
-          class="portfolio-modal__panel"
-          padding="lg"
-          radius="lg"
-          translucency="medium"
-        >
-          <div class="portfolio-modal__scroll">
-            <header class="portfolio-modal__header">
-              <h2 class="portfolio-modal__title" [id]="'portfolio-modal-title-' + item.id">
-                {{ item.modalTitle }}
-              </h2>
-              <ul class="portfolio-modal__badges">
-                @for (badge of item.techBadges; track badge) {
-                  <li>{{ badge }}</li>
-                }
-              </ul>
-            </header>
-
-            @if (item.modalImages?.length) {
-              <div class="portfolio-modal__images">
-                @for (image of item.modalImages; track image.src) {
-                  <figure class="portfolio-modal__figure">
-                    <img
-                      [src]="image.src"
-                      [alt]="image.alt"
-                      loading="lazy"
-                    />
-                    @if (image.caption) {
-                      <figcaption>{{ image.caption }}</figcaption>
-                    }
-                  </figure>
-                }
-              </div>
-            }
-
-            <ul class="portfolio-modal__body">
-              @for (block of parseDescription(item.modalBody); track $index) {
-                @if (block.type === 'heading') {
-                  <li class="portfolio-modal__body-item portfolio-modal__body-item--heading">
-                    {{ block.text }}
-                  </li>
-                } @else {
-                  <li class="portfolio-modal__body-item">
-                    {{ block.text }}
-                  </li>
-                }
-              }
-            </ul>
-
-            @if (item.links?.length) {
-              <footer class="portfolio-modal__links">
-                @for (link of item.links; track link.url) {
-                  <a
-                    [href]="link.url"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    (click)="$event.stopPropagation()"
-                  >
-                    {{ link.label }}
-                  </a>
-                }
-              </footer>
-            }
-          </div>
-        </app-liquid-glass-panel>
-      </div>
-    </div>
-  }
 </section>

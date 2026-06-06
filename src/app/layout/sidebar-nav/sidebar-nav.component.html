@@ -1,19 +1,64 @@
-<nav class="sidebar-nav">
-  <ul class="sidebar-nav__list">
-    @for (section of sections; track section.id) {
-      <li>
-        <button
-          type="button"
-          class="sidebar-nav__link"
-          [class.sidebar-nav__link--active]="activeSectionId === section.id"
-          (click)="scrollTo(section.id)"
-        >
-          {{ section.label }}
-        </button>
-      </li>
-    }
-  </ul>
-  <div class="sidebar-nav__theme">
+<header class="top-nav" [class.top-nav--open]="menuOpen()">
+
+  <!-- Brand ──────────────────────────────────────────────────────────────── -->
+  <button class="top-nav__brand" type="button" (click)="scrollToTop()">
+    {{ brandName }}
+  </button>
+
+  <!-- Desktop links ────────────────────────────────────────────────────── -->
+  <nav aria-label="Main navigation">
+    <ul class="top-nav__list">
+      @for (section of sections; track section.id) {
+        <li>
+          <button
+            type="button"
+            class="top-nav__link"
+            [class.top-nav__link--active]="activeSectionId === section.id"
+            (click)="scrollTo(section.id)"
+          >
+            {{ section.label }}
+          </button>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <!-- Right controls ───────────────────────────────────────────────────── -->
+  <div class="top-nav__controls">
     <app-theme-toggle />
+
+    <!-- Hamburger (mobile only) -->
+    <button
+      class="top-nav__hamburger"
+      type="button"
+      [attr.aria-expanded]="menuOpen()"
+      aria-label="Toggle navigation menu"
+      (click)="$event.stopPropagation(); toggleMenu()"
+    >
+      <span class="top-nav__hamburger-bar"></span>
+      <span class="top-nav__hamburger-bar"></span>
+      <span class="top-nav__hamburger-bar"></span>
+    </button>
   </div>
-</nav>
+
+  <!-- Mobile drawer ────────────────────────────────────────────────────── -->
+  @if (menuOpen()) {
+    <div class="top-nav__drawer" (click)="$event.stopPropagation()">
+      <ul class="top-nav__drawer-list">
+        @for (section of sections; track section.id) {
+          <li>
+            <button
+              type="button"
+              class="top-nav__drawer-link"
+              [class.top-nav__drawer-link--active]="activeSectionId === section.id"
+              (click)="scrollTo(section.id)"
+            >
+              {{ section.label }}
+            </button>
+          </li>
+        }
+      </ul>
+    </div>
+  }
+
+</header>
