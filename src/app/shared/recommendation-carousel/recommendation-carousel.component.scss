@@ -11,7 +11,7 @@
 .recommendation-carousel {
   position: relative;
   width: 100%;
-  padding: 8px 12px;
+  padding: 8px 0px;
   overflow: visible;
 }
 
@@ -21,20 +21,6 @@
   width: 100%;
   height: var(--carousel-slide-height);
 
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 20;
-    pointer-events: none;
-    background: linear-gradient(
-      to right,
-      var(--color-bg-dark) 0%,
-      transparent 8%,
-      transparent 92%,
-      var(--color-bg-dark) 100%
-    );
-  }
 }
 
 .recommendation-carousel__clip {
@@ -79,10 +65,15 @@
   color: var(--color-text);
   cursor: pointer;
   transform: translateY(-50%);
+  opacity: 0;
   transition:
     background var(--transition-fast),
     border-color var(--transition-fast),
     opacity var(--transition-fast);
+
+  .recommendation-carousel:hover & {
+    opacity: 1;
+  }
 
   &:hover {
     background: rgba(30, 30, 36, 0.9);
