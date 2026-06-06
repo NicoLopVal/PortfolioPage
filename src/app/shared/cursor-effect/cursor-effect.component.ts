@@ -105,11 +105,15 @@ export class CursorEffectComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
-    // Skip on touch-only devices — no hardware pointer means no cursor.
-    if (!window.matchMedia('(pointer: fine)').matches) return;
+    // Skip when NO input device supports a fine pointer (pure touch/stylus only).
+    // Using any-pointer instead of pointer so hybrid devices (touchscreen laptops)
+    // still activate the cursor when a mouse is connected.
+    if (!window.matchMedia('(any-pointer: fine)').matches) return;
 
     const canvas = this.canvasRef.nativeElement;
-    this.ctx = canvas.getContext('2d')!;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return; // GPU / canvas unavailable — bail gracefully
+    this.ctx = ctx;
     this.resize();
 
     // Apply the CSS class that hides the OS cursor globally.
