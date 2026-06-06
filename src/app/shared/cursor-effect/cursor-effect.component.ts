@@ -93,12 +93,22 @@ export class CursorEffectComponent implements AfterViewInit, OnDestroy {
   /** False while the pointer is outside the viewport — hides both cursor elements. */
   private isVisible = false;
 
+  /** True while touch is the active input — suppresses the custom cursor. */
+  private isTouchActive = false;
+
   // ── Bound callbacks (stored so we can removeEventListener cleanly) ─────────
 
   private readonly onMouseMoveBound = (e: MouseEvent) => this.onMouseMove(e);
   private readonly onResizeBound = () => this.resize();
-  private readonly onMouseEnterBound = () => { this.isVisible = true; };
+  private readonly onMouseEnterBound = () => { if (!this.isTouchActive) this.isVisible = true; };
   private readonly onMouseLeaveBound = () => { this.isVisible = false; };
+  private readonly onTouchStartBound = () => {
+    // Touch input detected — hide the custom cursor and restore the native one
+    // so touch interactions feel completely normal.
+    this.isTouchActive = true;
+    this.isVisible = false;
+    this.doc.documentElement.classList.remove('cursor-custom');
+  };
 
   // ── Lifecycle ─────────────────────────────────────────────────────────────
 
@@ -138,6 +148,7 @@ export class CursorEffectComponent implements AfterViewInit, OnDestroy {
     // while the cursor moves.
     this.ngZone.runOutsideAngular(() => {
       this.doc.addEventListener('mousemove', this.onMouseMoveBound, { passive: true });
+      this.doc.addEventListener('touchstart', this.onTouchStartBound, { passive: true });
       this.doc.documentElement.addEventListener('mouseenter', this.onMouseEnterBound);
       this.doc.documentElement.addEventListener('mouseleave', this.onMouseLeaveBound);
       window.addEventListener('resize', this.onResizeBound, { passive: true });
@@ -149,6 +160,7 @@ export class CursorEffectComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.doc.removeEventListener('mousemove', this.onMouseMoveBound);
+    this.doc.removeEventListener('touchstart', this.onTouchStartBound);
     this.doc.documentElement.removeEventListener('mouseenter', this.onMouseEnterBound);
     this.doc.documentElement.removeEventListener('mouseleave', this.onMouseLeaveBound);
     window.removeEventListener('resize', this.onResizeBound);
@@ -160,6 +172,13 @@ export class CursorEffectComponent implements AfterViewInit, OnDestroy {
   // ── Input handling ────────────────────────────────────────────────────────
 
   private onMouseMove(e: MouseEvent): void {
+    // A real mousemove (not a touch-synthesised one) means a mouse is in use.
+    // Re-engage the custom cursor if touch had previously suppressed it.
+    if (this.isTouchActive) {
+      this.isTouchActive = false;
+      this.doc.documentElement.classList.add('cursor-custom');
+    }
+
     // Skip the very first event to avoid a huge dx/dy from the off-screen
     // sentinel position (-300, -300) to wherever the cursor actually is.
     if (!this.hasFirstMove) {
