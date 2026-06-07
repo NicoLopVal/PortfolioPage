@@ -25,7 +25,7 @@
     </header>
 
     <!-- ── Scrollable content ─────────────────────────────────────────── -->
-    <div class="detail__scroll">
+    <div class="detail__scroll" [class.slide-next]="slideDir() === 'next'" [class.slide-prev]="slideDir() === 'prev'">
 
       <!-- Hero image -->
       <div class="detail__hero">
@@ -79,13 +79,13 @@
       </div>
     </div>
 
-    <!-- ── Side navigation arrows ─────────────────────────────────────── -->
+    <!-- ── Side navigation arrows (hidden on mobile) ────────────────────── -->
     <button
       class="detail__nav detail__nav--prev"
       type="button"
       aria-label="Previous project"
       [disabled]="!nav.hasPrev()"
-      (click)="nav.prev()"
+      (click)="goPrev()"
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
            fill="none" stroke="currentColor" stroke-width="2"
@@ -99,7 +99,7 @@
       type="button"
       aria-label="Next project"
       [disabled]="!nav.hasNext()"
-      (click)="nav.next()"
+      (click)="goNext()"
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
            fill="none" stroke="currentColor" stroke-width="2"
@@ -107,6 +107,20 @@
         <polyline points="9 18 15 12 9 6"/>
       </svg>
     </button>
+
+    <!-- ── Mobile dot pager ───────────────────────────────────────────── -->
+    <nav class="detail__pager" aria-label="Project pages">
+      @for (i of nav.totalItemsArray; track i) {
+        <button
+          class="detail__pager-dot"
+          [class.detail__pager-dot--active]="i === nav.currentIndex()"
+          type="button"
+          [attr.aria-label]="'Go to project ' + (i + 1)"
+          [attr.aria-current]="i === nav.currentIndex() ? 'true' : null"
+          (click)="goToItem(i)"
+        ></button>
+      }
+    </nav>
 
   </div>
 }

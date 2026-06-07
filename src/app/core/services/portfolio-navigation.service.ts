@@ -29,6 +29,8 @@ export class PortfolioNavigationService {
   readonly hasNext = computed(() => this._selectedIndex() < this.items.length - 1);
   readonly currentNumber = computed(() => this._selectedIndex() + 1);
   readonly totalItems = this.items.length;
+  readonly totalItemsArray = this.items.map((_, i) => i);
+  readonly currentIndex = computed(() => this._selectedIndex());
 
   // ── Actions ───────────────────────────────────────────────────────────────
 
@@ -69,6 +71,12 @@ export class PortfolioNavigationService {
   next(): void {
     if (this.hasNext()) {
       this._selectedIndex.update((i) => i + 1);
+    }
+  }
+
+  goTo(index: number): void {
+    if (index >= 0 && index < this.items.length) {
+      this._selectedIndex.set(index);
     }
   }
 }

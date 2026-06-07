@@ -105,6 +105,23 @@
   overflow-y: auto;
   overflow-x: hidden;
   @include liquid-glass-scrollbar;
+
+  &.slide-next {
+    animation: slide-from-right 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  &.slide-prev {
+    animation: slide-from-left 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+}
+
+@keyframes slide-from-right {
+  from { transform: translateX(56px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+@keyframes slide-from-left {
+  from { transform: translateX(-56px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
 }
 
 // ── Hero image ────────────────────────────────────────────────────────────────
@@ -319,6 +336,12 @@
   .detail__topbar { padding-right: 24px; }
 }
 
+// ── Mobile dot pager ──────────────────────────────────────────────────────────
+
+.detail__pager {
+  display: none;
+}
+
 @include respond-mobile {
   .detail__hero { max-height: 36vh;
     img { height: 36vh; }
@@ -326,17 +349,56 @@
 
   .detail__hero-overlay { padding: 16px 20px 16px; }
   .detail__title { font-size: 1.05rem; }
-  .detail__content { padding: 24px 20px 120px; }
+  .detail__content { padding: 24px 20px 100px; }
   .detail__topbar { padding: 12px 16px; }
 
-  // Move arrows to fixed bottom bar on mobile
+  // Hide arrows on mobile
   .detail__nav {
-    top: auto;
-    bottom: 24px;
-    transform: none;
+    display: none;
+  }
 
-    &:hover:not(:disabled) { transform: translateY(-2px); }
-    &--prev { left: 24px; }
-    &--next { right: 24px; }
+  // Show dot pager on mobile
+  .detail__pager {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px) saturate(1.6);
+    -webkit-backdrop-filter: blur(20px) saturate(1.6);
+    box-shadow: var(--glass-shadow), var(--glass-highlight);
+  }
+
+  .detail__pager-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-text-muted);
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    transition:
+      background var(--transition-fast),
+      transform var(--transition-fast),
+      border-color var(--transition-fast);
+
+    &--active {
+      background: var(--color-text);
+      border-color: var(--color-text);
+      transform: scale(1.25);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 3px;
+    }
   }
 }
