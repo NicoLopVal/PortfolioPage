@@ -1,13 +1,13 @@
-<header class="top-nav" [class.top-nav--open]="menuOpen()">
+<header class="top-nav" [class.top-nav--open]="drawerVisible()">
 
   <!-- Brand ──────────────────────────────────────────────────────────────── -->
   <button class="top-nav__brand" type="button" (click)="scrollToTop()">
     {{ brandName }}
   </button>
 
-  <!-- Desktop links ────────────────────────────────────────────────────── -->
-  <nav aria-label="Main navigation">
-    <ul class="top-nav__list">
+  <!-- Desktop links (always in DOM; collapsed to width:0 in hamburger mode) -->
+  <nav aria-label="Main navigation" [class.top-nav__nav--hidden]="useHamburger()">
+    <ul class="top-nav__list" #navList>
       @for (section of sections; track section.id) {
         <li>
           <button
@@ -15,9 +15,7 @@
             class="top-nav__link"
             [class.top-nav__link--active]="activeSectionId === section.id"
             (click)="scrollTo(section.id)"
-          >
-            {{ section.label }}
-          </button>
+          >{{ section.label }}</button>
         </li>
       }
     </ul>
@@ -27,34 +25,29 @@
   <div class="top-nav__controls">
     <app-theme-toggle />
 
-    <!-- Hamburger / chevron-up toggle (mobile only) -->
-    <button
-      class="top-nav__hamburger"
-      type="button"
-      [attr.aria-expanded]="menuOpen()"
-      aria-label="Toggle navigation menu"
-      (click)="$event.stopPropagation(); toggleMenu()"
-    >
-      @if (menuOpen()) {
-        <!-- Chevron up — close the drawer -->
-        <svg class="top-nav__hamburger-icon" xmlns="http://www.w3.org/2000/svg"
-             viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-             aria-hidden="true">
-          <polyline points="18 15 12 9 6 15"/>
-        </svg>
-      } @else {
-        <!-- Hamburger bars — open the drawer -->
-        <span class="top-nav__hamburger-bar"></span>
-        <span class="top-nav__hamburger-bar"></span>
-        <span class="top-nav__hamburger-bar"></span>
-      }
-    </button>
+    @if (useHamburger()) {
+      <button
+        class="top-nav__hamburger"
+        [class.top-nav__hamburger--open]="menuOpen()"
+        type="button"
+        [attr.aria-expanded]="menuOpen()"
+        aria-label="Toggle navigation menu"
+        (click)="$event.stopPropagation(); toggleMenu()"
+      >
+        <span class="top-nav__bar"></span>
+        <span class="top-nav__bar"></span>
+        <span class="top-nav__bar"></span>
+      </button>
+    }
   </div>
 
-  <!-- Mobile drawer — in-flow so it shares the nav's glass surface ──────── -->
-  @if (menuOpen()) {
-    <div class="top-nav__drawer" (click)="$event.stopPropagation()">
+  <!-- Drawer (kept in DOM during close animation via drawerVisible) ──────── -->
+  @if (drawerVisible()) {
+    <div
+      class="top-nav__drawer"
+      [class.top-nav__drawer--closing]="drawerClosing()"
+      (click)="$event.stopPropagation()"
+    >
       <ul class="top-nav__drawer-list">
         @for (section of sections; track section.id) {
           <li>
@@ -63,9 +56,7 @@
               class="top-nav__drawer-link"
               [class.top-nav__drawer-link--active]="activeSectionId === section.id"
               (click)="scrollTo(section.id)"
-            >
-              {{ section.label }}
-            </button>
+            >{{ section.label }}</button>
           </li>
         }
       </ul>
