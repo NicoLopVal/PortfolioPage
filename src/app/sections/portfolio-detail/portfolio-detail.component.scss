@@ -391,8 +391,8 @@
       border-color var(--transition-fast);
 
     &--active {
-      background: var(--color-text);
-      border-color: var(--color-text);
+      background: var(--color-accent);
+      border-color: var(--color-accent);
       transform: scale(1.25);
     }
 
