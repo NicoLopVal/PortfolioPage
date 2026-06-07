@@ -388,7 +388,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
     },
   ],
   contact: {
-    address: 'Calle Angel Carazo Gomez 6, Torremolinos, Spain',
+    address: 'Torremolinos, Spain',
     phone: '+34 645 639 986',
     email: 'nicolaslopval@gmail.com',
   },
