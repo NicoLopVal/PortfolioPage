@@ -74,16 +74,24 @@ export class SidebarNavComponent implements AfterViewInit, OnDestroy {
     // Wait for web fonts so all text widths are stable before measuring.
     const start = () => {
       const host     = this.host.nativeElement as HTMLElement;
+      const header   = host.querySelector('.top-nav') as HTMLElement | null;
       const controls = host.querySelector('.top-nav__controls') as HTMLElement | null;
       const ul       = this.navListRef?.nativeElement;
 
       // Capture controls width NOW — before any hamburger button can appear.
       this._controlsWidth = controls?.offsetWidth ?? 0;
 
-      // Observe the host (window-resize proxy) AND the nav list (font/content
-      // changes can alter item widths without changing the host width).
+      // Observe the header (`.top-nav`) AND the nav list.
+      //
+      // The header is position:fixed (left:0/right:0), so its width always
+      // tracks the viewport and changes on every resize — in BOTH the links
+      // and hamburger states. (The component host itself is an inline element
+      // whose only child is fixed-positioned, so it has ~0 width and never
+      // changes on resize — observing it would never fire the switch-back.)
+      // The nav list is observed too because font/content changes can alter
+      // item widths without changing the header width.
       this.resizeObserver = new ResizeObserver(() => this.checkOverflow());
-      this.resizeObserver.observe(host);
+      if (header) this.resizeObserver.observe(header);
       if (ul) this.resizeObserver.observe(ul);
 
       this.checkOverflow();
@@ -124,10 +132,11 @@ export class SidebarNavComponent implements AfterViewInit, OnDestroy {
   //    • Compare that available space to the cached _naturalNavWidth.
 
   private checkOverflow(): void {
-    const host  = this.host.nativeElement as HTMLElement;
-    const navEl = host.querySelector('nav') as HTMLElement | null;
-    const brand = host.querySelector('.top-nav__brand') as HTMLElement | null;
-    if (!navEl || !brand) return;
+    const host   = this.host.nativeElement as HTMLElement;
+    const header = host.querySelector('.top-nav') as HTMLElement | null;
+    const navEl  = host.querySelector('nav') as HTMLElement | null;
+    const brand  = host.querySelector('.top-nav__brand') as HTMLElement | null;
+    if (!header || !navEl || !brand) return;
 
     let shouldHamburger: boolean;
 
@@ -145,12 +154,14 @@ export class SidebarNavComponent implements AfterViewInit, OnDestroy {
       // ── Hamburger is active ──────────────────────────────────────────────
       if (!this._naturalNavWidth) return; // not yet measured — stay as-is
 
-      const style     = getComputedStyle(host);
+      const style     = getComputedStyle(header);
       const hPad      = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
       // Space available for the nav assuming links are shown (no hamburger).
-      // _controlsWidth was captured before the hamburger ever appeared, so it
-      // represents the controls-only width — exactly the target state.
-      const available = host.clientWidth - hPad - brand.offsetWidth - this._controlsWidth;
+      // Measured from the header (= viewport width) because the host is a
+      // zero-width inline wrapper. _controlsWidth was captured before the
+      // hamburger ever appeared, so it represents the controls-only width —
+      // exactly the target state.
+      const available = header.clientWidth - hPad - brand.offsetWidth - this._controlsWidth;
 
       // Require 16 px of extra room before restoring links (hysteresis prevents
       // rapid toggling right at the threshold).
