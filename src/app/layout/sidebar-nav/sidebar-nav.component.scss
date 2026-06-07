@@ -200,6 +200,18 @@ nav {
       0 0.5px 0 rgba(255, 255, 255, 0.7);
   }
 
+  // Dark mode: light interior so the bars read clearly against the dark glass.
+  // The bar is only 3px tall, so a dark INSET shadow (used in light mode for the
+  // recessed-groove look) would cover the whole bar and keep it looking dark —
+  // here we use a light fill, a light inset highlight, and a soft OUTER shadow
+  // for depth instead.
+  [data-theme='dark'] & {
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.6),
+      0 1px 2px rgba(0, 0, 0, 0.45);
+  }
+
   transition:
     transform 0.26s cubic-bezier(0.4, 0, 0.2, 1),
     opacity   0.26s cubic-bezier(0.4, 0, 0.2, 1);
