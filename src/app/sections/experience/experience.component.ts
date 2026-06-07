@@ -8,6 +8,14 @@ export type DescriptionBlock =
   | { type: 'heading'; text: string }
   | { type: 'bullet'; text: string };
 
+export interface ExperienceGroup {
+  company: string;
+  companyLogo: string;
+  companyLinkedin: string;
+  accentBar: boolean;
+  items: ExperienceItem[];
+}
+
 @Component({
   selector: 'app-experience',
   standalone: true,
@@ -18,6 +26,25 @@ export type DescriptionBlock =
 export class ExperienceComponent {
   readonly data = PORTFOLIO_DATA;
   readonly selectedItem = signal<ExperienceItem | null>(null);
+
+  readonly groupedExperience: ExperienceGroup[] = PORTFOLIO_DATA.experience.reduce(
+    (groups: ExperienceGroup[], item) => {
+      const last = groups[groups.length - 1];
+      if (last && last.company === item.company) {
+        last.items.push(item);
+      } else {
+        groups.push({
+          company: item.company,
+          companyLogo: item.companyLogo,
+          companyLinkedin: item.companyLinkedin,
+          accentBar: item.accentBar,
+          items: [item],
+        });
+      }
+      return groups;
+    },
+    [],
+  );
 
   openModal(item: ExperienceItem): void {
     this.selectedItem.set(item);

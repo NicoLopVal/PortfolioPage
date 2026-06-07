@@ -1,36 +1,42 @@
 @import '../../../styles/mixins';
 @import '../../../styles/glass';
 
-.experience {
-  .timeline-cards {
-    @include card-grid;
-    max-width: var(--max-content-width);
-    margin-left: auto;
-    margin-right: auto;
-  }
+// ── Timeline layout ───────────────────────────────────────────────────────────
 
-  @include respond-mobile {
-    .timeline-cards {
-      grid-template-columns: 1fr;
-    }
-  }
+.timeline {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.timeline-card {
-  display: flex;
-  background: rgba(255, 255, 255, 0.03);
+// ── Base card ─────────────────────────────────────────────────────────────────
+
+.timeline__card {
+  border-radius: 12px;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+
+  // Single-role: horizontal row
+  &:not(.timeline__card--grouped) {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+  }
 
   &--clickable {
     cursor: pointer;
-    border: 1px solid transparent;
     transition:
-      background-color var(--transition-fast),
       border-color var(--transition-fast),
-      transform var(--transition-fast);
+      transform var(--transition-fast),
+      box-shadow var(--transition-fast);
 
     &:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.08);
+      border-color: var(--color-accent);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transform: translateY(-1px);
     }
 
     &:focus-visible {
@@ -38,72 +44,145 @@
       outline-offset: 2px;
     }
 
-    &:active {
-      transform: scale(0.995);
-    }
+    &:active { transform: scale(0.998); }
   }
 
-  &__bar {
-    flex-shrink: 0;
-    width: 70px;
-    background-color: var(--color-bar-gray);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 8px;
-
-    span {
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      font-family: var(--font-heading);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-    }
-
-    &--accent {
-      background-color: var(--color-accent);
-    }
+  // Grouped card
+  &--grouped {
+    padding: 16px 20px 8px;
   }
+}
 
-  &__body {
-    padding: 24px 28px;
-    flex: 1;
+// ── Shared elements ───────────────────────────────────────────────────────────
+
+.timeline__logo {
+  display: block;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.timeline__info {
+  min-width: 0;
+  flex: 1;
+}
+
+.timeline__role {
+  display: block;
+  margin: 0 0 2px;
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+}
+
+.timeline__company {
+  display: block;
+  margin: 0 0 5px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.timeline__meta {
+  display: block;
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  opacity: 0.8;
+}
+
+.timeline__meta-sep {
+  margin: 0 0.3em;
+}
+
+// ── Grouped card internals ────────────────────────────────────────────────────
+
+.timeline__group-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.timeline__company--group {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.timeline__roles {
+  display: flex;
+  flex-direction: column;
+  padding-left: 24px; // indent under logo
+}
+
+.timeline__role-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+// Mini spine (inside grouped card only)
+.timeline__mini-spine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: 5px;
+}
+
+.timeline__mini-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--color-bar-gray);
+  border: 2px solid var(--color-card-bg);
+
+  &--accent { background: var(--color-accent); }
+}
+
+.timeline__mini-line {
+  width: 2px;
+  flex: 1;
+  min-height: 16px;
+  background: var(--color-border);
+  margin: 3px 0 0;
+}
+
+.timeline__role-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0 0 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: color var(--transition-fast);
+
+  &:hover .timeline__role { color: var(--color-accent); }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
   }
+}
 
-  &__header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
+// ── Responsive ────────────────────────────────────────────────────────────────
 
-  &__logo {
-    display: block;
-    flex-shrink: 0;
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.06);
-  }
-
-  &__content {
-    min-width: 0;
-
-    h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-    }
-
-    p {
-      color: var(--color-text-muted);
-      margin: 0;
-      font-size: 0.9rem;
-    }
-  }
+@include respond-mobile {
+  .timeline { padding: 0 4px; }
+  .timeline__card:not(.timeline__card--grouped) { padding: 14px 16px; }
+  .timeline__card--grouped { padding: 14px 16px 6px; }
 }
 
 .experience-modal {

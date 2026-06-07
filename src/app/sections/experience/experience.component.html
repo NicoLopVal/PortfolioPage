@@ -1,42 +1,85 @@
 <section id="experience" class="section section--dark experience">
   <app-section-header title="Experience" watermarkLetter="E" />
-  <div class="timeline-cards">
-    @for (item of data.experience; track item.id) {
-      <article
-        class="timeline-card timeline-card--clickable"
-        role="button"
-        tabindex="0"
-        [attr.aria-label]="'View details for ' + item.title + ' at ' + item.company"
-        (click)="openModal(item)"
-        (keydown.enter)="openModal(item)"
-        (keydown.space)="$event.preventDefault(); openModal(item)"
-      >
-        <div
-          class="timeline-card__bar"
-          [class.timeline-card__bar--accent]="item.accentBar"
+
+  <div class="timeline">
+    @for (group of groupedExperience; track group.company) {
+
+      <!-- ── Single-role card ─────────────────────────────────────────── -->
+      @if (group.items.length === 1) {
+        <article
+          class="timeline__card timeline__card--clickable"
+          role="button"
+          tabindex="0"
+          [attr.aria-label]="'View details for ' + group.items[0].title + ' at ' + group.company"
+          (click)="openModal(group.items[0])"
+          (keydown.enter)="openModal(group.items[0])"
+          (keydown.space)="$event.preventDefault(); openModal(group.items[0])"
         >
-          <span>{{ item.period }}</span>
-        </div>
-        <div class="timeline-card__body">
-          <div class="timeline-card__header">
-            <img
-              class="timeline-card__logo"
-              [src]="item.companyLogo"
-              [alt]="item.company + ' logo'"
-              width="48"
-              height="48"
-              loading="lazy"
-            />
-            <div class="timeline-card__content">
-              <h3>{{ item.title }}</h3>
-              <p>{{ item.company }}</p>
-            </div>
+          <img
+            class="timeline__logo"
+            [src]="group.companyLogo"
+            [alt]="group.company + ' logo'"
+            width="48" height="48" loading="lazy"
+          />
+          <div class="timeline__info">
+            <h3 class="timeline__role">{{ group.items[0].title }}</h3>
+            <p class="timeline__company">{{ group.company }}</p>
+            <p class="timeline__meta">
+              <span>{{ group.items[0].period }}</span>
+              <span class="timeline__meta-sep" aria-hidden="true">·</span>
+              <span>{{ group.items[0].total }}</span>
+            </p>
           </div>
+        </article>
+      }
+
+      <!-- ── Multi-role card (same company) ─────────────────────────── -->
+      @if (group.items.length > 1) {
+        <div class="timeline__card timeline__card--grouped">
+
+          <!-- Company header -->
+          <div class="timeline__group-header">
+            <img
+              class="timeline__logo"
+              [src]="group.companyLogo"
+              [alt]="group.company + ' logo'"
+              width="48" height="48" loading="lazy"
+            />
+            <p class="timeline__company timeline__company--group">{{ group.company }}</p>
+          </div>
+
+          <!-- Roles with internal mini-spine -->
+          <div class="timeline__roles">
+            @for (item of group.items; track item.id; let last = $last) {
+              <div class="timeline__role-entry">
+                <div class="timeline__mini-spine">
+                  <div class="timeline__mini-dot" [class.timeline__mini-dot--accent]="item.accentBar"></div>
+                  @if (!last) { <div class="timeline__mini-line"></div> }
+                </div>
+                <button
+                  class="timeline__role-btn"
+                  type="button"
+                  [attr.aria-label]="'View details for ' + item.title + ' at ' + group.company"
+                  (click)="openModal(item)"
+                >
+                  <span class="timeline__role">{{ item.title }}</span>
+                  <span class="timeline__meta">
+                    <span>{{ item.period }}</span>
+                    <span class="timeline__meta-sep" aria-hidden="true">·</span>
+                    <span>{{ item.total }}</span>
+                  </span>
+                </button>
+              </div>
+            }
+          </div>
+
         </div>
-      </article>
+      }
+
     }
   </div>
 
+  <!-- ── Modal ────────────────────────────────────────────────────────── -->
   @if (selectedItem(); as item) {
     <div
       class="experience-modal"
@@ -53,58 +96,52 @@
           translucency="medium"
         >
           <div class="experience-modal__scroll">
-          <header class="experience-modal__header">
-            <a
-              class="experience-modal__logo-link"
-              [href]="item.companyLinkedin"
-              target="_blank"
-              rel="noopener noreferrer"
-              [attr.aria-label]="linkedInLabel(item.company)"
-              (click)="$event.stopPropagation()"
-            >
-              <img
-                class="experience-modal__logo"
-                [src]="item.companyLogo"
-                [alt]="item.company + ' logo'"
-                width="56"
-                height="56"
-                loading="lazy"
-              />
-            </a>
-            <div class="experience-modal__intro">
+            <header class="experience-modal__header">
               <a
-                class="experience-modal__company"
+                class="experience-modal__logo-link"
                 [href]="item.companyLinkedin"
                 target="_blank"
                 rel="noopener noreferrer"
+                [attr.aria-label]="linkedInLabel(item.company)"
                 (click)="$event.stopPropagation()"
               >
-                {{ item.company }}
+                <img
+                  class="experience-modal__logo"
+                  [src]="item.companyLogo"
+                  [alt]="item.company + ' logo'"
+                  width="56" height="56" loading="lazy"
+                />
               </a>
-              <p class="experience-modal__role" [id]="'experience-modal-title-' + item.id">
-                {{ item.title }}
-              </p>
-              <p class="experience-modal__meta">
-                <span>{{ item.period }}</span>
-                <span class="experience-modal__meta-sep" aria-hidden="true">·</span>
-                <span>{{ item.total }}</span>
-              </p>
-            </div>
-          </header>
+              <div class="experience-modal__intro">
+                <a
+                  class="experience-modal__company"
+                  [href]="item.companyLinkedin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  (click)="$event.stopPropagation()"
+                >{{ item.company }}</a>
+                <p class="experience-modal__role" [id]="'experience-modal-title-' + item.id">
+                  {{ item.title }}
+                </p>
+                <p class="experience-modal__meta">
+                  <span>{{ item.period }}</span>
+                  <span class="experience-modal__meta-sep" aria-hidden="true">·</span>
+                  <span>{{ item.total }}</span>
+                </p>
+              </div>
+            </header>
 
-          <ul class="experience-modal__description">
-            @for (block of parseDescription(item.Description); track $index) {
-              @if (block.type === 'heading') {
-                <li class="experience-modal__description-item experience-modal__description-item--heading">
-                  {{ block.text }}
-                </li>
-              } @else {
-                <li class="experience-modal__description-item">
-                  {{ block.text }}
-                </li>
+            <ul class="experience-modal__description">
+              @for (block of parseDescription(item.Description); track $index) {
+                @if (block.type === 'heading') {
+                  <li class="experience-modal__description-item experience-modal__description-item--heading">
+                    {{ block.text }}
+                  </li>
+                } @else {
+                  <li class="experience-modal__description-item">{{ block.text }}</li>
+                }
               }
-            }
-          </ul>
+            </ul>
           </div>
         </app-liquid-glass-panel>
       </div>
