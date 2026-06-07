@@ -16,7 +16,9 @@
   <app-footer />
 </div>
 
-<app-whatsapp-button />
+@if (!navService.isOpen() && !navService.closing()) {
+  <app-whatsapp-button />
+}
 
 @if (navService.selectedItem()) {
   <app-portfolio-detail [class.detail--leaving]="navService.closing()" />
