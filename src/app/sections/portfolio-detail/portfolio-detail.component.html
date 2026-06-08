@@ -109,7 +109,12 @@
     </button>
 
     <!-- ── Mobile dot pager (compact: prev · current · next) ──────────────── -->
-    <nav class="detail__pager" aria-label="Project pages">
+    <nav
+      class="detail__pager"
+      [class.detail__pager--next]="slideDir() === 'next'"
+      [class.detail__pager--prev]="slideDir() === 'prev'"
+      aria-label="Project pages"
+    >
       @for (dot of pagerDots(); track dot) {
         <button
           class="detail__pager-dot"

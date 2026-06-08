@@ -375,6 +375,24 @@
     backdrop-filter: blur(20px) saturate(1.6);
     -webkit-backdrop-filter: blur(20px) saturate(1.6);
     box-shadow: var(--glass-shadow), var(--glass-highlight);
+
+    // On project change, nudge the whole pill in the travel direction so the
+    // movement reads as "the page slid". Keeps the -50% centering offset.
+    &--next { animation: pager-shift-next 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+    &--prev { animation: pager-shift-prev 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+    // The active dot does a quick pop, and the directional (empty) dot it came
+    // from / heads toward sweeps in — together they denote the transition.
+    &--next,
+    &--prev {
+      .detail__pager-dot--active { animation: pager-dot-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+    }
+    &--next .detail__pager-dot:last-child:not(.detail__pager-dot--active) {
+      animation: pager-dot-in-right 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+    &--prev .detail__pager-dot:first-child:not(.detail__pager-dot--active) {
+      animation: pager-dot-in-left 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
   }
 
   .detail__pager-dot {
@@ -406,5 +424,34 @@
       outline: 2px solid var(--color-accent);
       outline-offset: 3px;
     }
+  }
+
+  // ── Pager transition keyframes ──────────────────────────────────────────────
+  // Centering uses translateX(-50%); every step preserves it.
+
+  @keyframes pager-shift-next {
+    0%   { transform: translateX(-50%) translateX(12px); }
+    100% { transform: translateX(-50%) translateX(0); }
+  }
+
+  @keyframes pager-shift-prev {
+    0%   { transform: translateX(-50%) translateX(-12px); }
+    100% { transform: translateX(-50%) translateX(0); }
+  }
+
+  @keyframes pager-dot-pop {
+    0%   { transform: scale(0.5); }
+    55%  { transform: scale(1.5); }
+    100% { transform: scale(1.25); }
+  }
+
+  @keyframes pager-dot-in-right {
+    0%   { opacity: 0; transform: translateX(8px) scale(0.6); }
+    100% { opacity: 1; transform: translateX(0)   scale(1); }
+  }
+
+  @keyframes pager-dot-in-left {
+    0%   { opacity: 0; transform: translateX(-8px) scale(0.6); }
+    100% { opacity: 1; transform: translateX(0)    scale(1); }
   }
 }
