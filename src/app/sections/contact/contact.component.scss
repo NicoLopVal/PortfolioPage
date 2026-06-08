@@ -115,5 +115,11 @@
       flex-direction: column;
       text-align: center;
     }
+
+    // The social links are a flex row, so `text-align: center` above doesn't
+    // affect them. Center the flex content itself when the block stacks.
+    &__details ::ng-deep .social-links {
+      justify-content: center;
+    }
   }
 }
