@@ -7,8 +7,10 @@
   (mouseleave)="onCarouselMouseLeave()"
   (focusin)="onFocusIn()"
   (focusout)="onFocusOut($event)"
-  (touchstart)="onTouchStart()"
+  (touchstart)="onTouchStart($event)"
+  (touchmove)="onTouchMove($event)"
   (touchend)="onTouchEnd()"
+  (touchcancel)="onTouchEnd()"
 >
   <button
     type="button"

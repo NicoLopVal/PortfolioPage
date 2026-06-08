@@ -62,6 +62,15 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
   private lastPointerX: number | null = null;
   private lastPointerY: number | null = null;
   private touchActive = false;
+
+  // ── Touch swipe / drag state ───────────────────────────────────────────────
+  private dragging = false;
+  private dragStartX = 0;
+  private dragStartY = 0;
+  private dragStartOffset = 0;
+  private dragAxis: 'horizontal' | 'vertical' | null = null;
+  // Movement (px) before we commit to a horizontal drag vs. a vertical scroll.
+  private static readonly DRAG_AXIS_THRESHOLD = 8;
   private focusInside = false;
   private stepping = false;
   private autoScrollEnabled = true;
@@ -143,13 +152,62 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
     this.updatePausedState();
   }
 
-  onTouchStart(): void {
+  onTouchStart(event: TouchEvent): void {
     this.touchActive = true;
+
+    // Begin tracking a single-finger drag so mobile users can slide the strip —
+    // but not while a card is expanded, so the open card stays put.
+    if (event.touches.length === 1 && !this.hasExpandedCard()) {
+      this.dragging = true;
+      this.dragAxis = null;
+      this.dragStartX = event.touches[0].clientX;
+      this.dragStartY = event.touches[0].clientY;
+      this.dragStartOffset = this.offsetPx;
+      this.trackTransition = 'none';
+    } else {
+      this.dragging = false;
+    }
+
     this.updatePausedState();
+  }
+
+  onTouchMove(event: TouchEvent): void {
+    if (!this.dragging || event.touches.length !== 1 || this.setWidthPx <= 0) {
+      return;
+    }
+
+    const dx = event.touches[0].clientX - this.dragStartX;
+    const dy = event.touches[0].clientY - this.dragStartY;
+
+    // Decide intent on the first meaningful movement: a horizontal gesture
+    // drives the carousel, a vertical one is left to scroll the page.
+    if (this.dragAxis === null) {
+      const threshold = RecommendationCarouselComponent.DRAG_AXIS_THRESHOLD;
+      if (Math.abs(dx) < threshold && Math.abs(dy) < threshold) {
+        return;
+      }
+      this.dragAxis = Math.abs(dx) > Math.abs(dy) ? 'horizontal' : 'vertical';
+    }
+
+    if (this.dragAxis !== 'horizontal') {
+      return;
+    }
+
+    // We own the horizontal gesture — stop the page from also scrolling.
+    if (event.cancelable) {
+      event.preventDefault();
+    }
+
+    // Dragging right (dx > 0) reveals earlier cards → offset decreases.
+    this.offsetPx = this.dragStartOffset - dx;
+    this.normalizeOffset();
   }
 
   onTouchEnd(): void {
     this.touchActive = false;
+    this.dragging = false;
+    this.dragAxis = null;
+    this.normalizeOffset();
     this.pointerOverCard = this.isPointerOverRecommendationCard();
     this.updatePausedState();
   }
@@ -317,6 +375,7 @@ export class RecommendationCarouselComponent implements OnInit, AfterViewInit, O
 
   private updatePausedState(): void {
     this.paused =
+      this.hasExpandedCard() ||
       this.shouldPauseForPointerOverCard() ||
       this.touchActive ||
       this.focusInside ||

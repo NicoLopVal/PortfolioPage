@@ -123,9 +123,12 @@
   .recommendation-carousel {
     padding: 8px 8px;
   }
+}
 
+// On touch devices there's no hover to reveal the arrows and users navigate by
+// swiping the strip directly, so remove the nav buttons entirely.
+@media (hover: none) {
   .recommendation-carousel__nav {
-    width: 32px;
-    height: 32px;
+    display: none;
   }
 }
