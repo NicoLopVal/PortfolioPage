@@ -36,6 +36,20 @@
     }
   }
 
+  &__form-wrap {
+    max-width: var(--max-content-width);
+  }
+
+  &__form-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    margin: 0 0 20px;
+  }
+
   &__bottom {
     display: grid;
     grid-template-columns: 1fr 1fr;

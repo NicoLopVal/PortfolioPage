@@ -1,0 +1,132 @@
+@if (status() === 'success') {
+  <!-- ── Success state ───────────────────────────────────────────────────── -->
+  <div class="send-email send-email--success" role="status" aria-live="polite">
+    <span class="send-email__success-icon" aria-hidden="true">✓</span>
+    <h3 class="send-email__success-title">Message sent</h3>
+    <p class="send-email__success-text">
+      Thanks for reaching out — I'll get back to you as soon as I can.
+    </p>
+    <button type="button" class="send-email__btn send-email__btn--ghost" (click)="sendAnother()">
+      Send another
+    </button>
+  </div>
+} @else {
+  <form class="send-email" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+    <!-- ── Email (required) ──────────────────────────────────────────────── -->
+    <div class="send-email__field">
+      <label class="send-email__label" for="se-email">
+        Email <span class="send-email__required" aria-hidden="true">*</span>
+      </label>
+      <input
+        id="se-email"
+        type="email"
+        formControlName="email"
+        autocomplete="email"
+        placeholder="you@example.com"
+        [attr.aria-invalid]="showError('email') || null"
+      />
+      @if (showError('email')) {
+        <span class="send-email__error">
+          @if (f.email.errors?.['required']) { Email is required. }
+          @else if (f.email.errors?.['email']) { Please enter a valid email address. }
+        </span>
+      }
+    </div>
+
+    <!-- ── Subject (required) ────────────────────────────────────────────── -->
+    <div class="send-email__field">
+      <label class="send-email__label" for="se-subject">
+        Subject <span class="send-email__required" aria-hidden="true">*</span>
+      </label>
+      <input
+        id="se-subject"
+        type="text"
+        formControlName="subject"
+        placeholder="What is this about?"
+        [attr.aria-invalid]="showError('subject') || null"
+      />
+      @if (showError('subject')) {
+        <span class="send-email__error">
+          @if (f.subject.errors?.['required']) { Subject is required. }
+          @else if (f.subject.errors?.['maxlength']) { Subject is too long. }
+        </span>
+      }
+    </div>
+
+    <!-- ── Phone (optional, with country code) ───────────────────────────── -->
+    <div class="send-email__field">
+      <label class="send-email__label" for="se-phone">
+        Phone <span class="send-email__optional">(optional)</span>
+      </label>
+      <div class="send-email__phone">
+        <select
+          class="send-email__country"
+          formControlName="countryIso"
+          aria-label="Country code"
+        >
+          @for (c of countries; track c.iso) {
+            <option [value]="c.iso">{{ c.flag }} {{ c.name }} ({{ c.dialCode }})</option>
+          }
+        </select>
+        <input
+          id="se-phone"
+          type="tel"
+          formControlName="phone"
+          autocomplete="tel"
+          placeholder="Phone number"
+          [attr.aria-invalid]="showError('phone') || null"
+        />
+      </div>
+      @if (showError('phone')) {
+        <span class="send-email__error">Please enter a valid phone number.</span>
+      }
+    </div>
+
+    <!-- ── Message body (required, min/max) ──────────────────────────────── -->
+    <div class="send-email__field">
+      <label class="send-email__label" for="se-message">
+        Message <span class="send-email__required" aria-hidden="true">*</span>
+      </label>
+      <textarea
+        id="se-message"
+        formControlName="message"
+        rows="6"
+        [attr.minlength]="messageMin"
+        [attr.maxlength]="messageMax"
+        placeholder="Write your message here…"
+        [attr.aria-invalid]="showError('message') || null"
+      ></textarea>
+      <div class="send-email__meta">
+        <span class="send-email__error">
+          @if (showError('message')) {
+            @if (f.message.errors?.['required']) { Message is required. }
+            @else if (f.message.errors?.['minlength']) {
+              Please write at least {{ messageMin }} characters.
+            }
+          }
+        </span>
+        <span
+          class="send-email__counter"
+          [class.send-email__counter--limit]="messageLength() >= messageMax"
+        >
+          {{ messageLength() }} / {{ messageMax }}
+        </span>
+      </div>
+    </div>
+
+    <!-- ── Form-level error ──────────────────────────────────────────────── -->
+    @if (status() === 'error') {
+      <p class="send-email__form-error" role="alert">{{ errorMessage() }}</p>
+    }
+
+    <!-- ── Submit ────────────────────────────────────────────────────────── -->
+    <button
+      type="submit"
+      class="send-email__btn"
+      [disabled]="status() === 'submitting'"
+    >
+      {{ status() === 'submitting' ? 'Sending…' : 'Send Message' }}
+    </button>
+  </form>
+}
