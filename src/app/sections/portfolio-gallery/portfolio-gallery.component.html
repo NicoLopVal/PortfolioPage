@@ -12,14 +12,16 @@
         (keydown.space)="$event.preventDefault(); open(item)"
       >
         <img [src]="item.image" [alt]="item.tileTitle" loading="lazy" />
-        <div class="portfolio-gallery__overlay">
-          <h3 class="portfolio-gallery__overlay-title">{{ item.tileTitle }}</h3>
-          <p class="portfolio-gallery__overlay-tagline">{{ item.tagline }}</p>
-          <ul class="portfolio-gallery__badges">
-            @for (badge of item.techBadges; track badge) {
-              <li>{{ badge }}</li>
-            }
-          </ul>
+        <div class="portfolio-gallery__overlay" appFitOverlay>
+          <div class="portfolio-gallery__overlay-content">
+            <h3 class="portfolio-gallery__overlay-title">{{ item.tileTitle }}</h3>
+            <p class="portfolio-gallery__overlay-tagline">{{ item.tagline }}</p>
+            <ul class="portfolio-gallery__badges">
+              @for (badge of item.techBadges; track badge) {
+                <li>{{ badge }}</li>
+              }
+            </ul>
+          </div>
         </div>
       </article>
     }
