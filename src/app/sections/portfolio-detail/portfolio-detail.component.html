@@ -108,16 +108,21 @@
       </svg>
     </button>
 
-    <!-- ── Mobile dot pager ───────────────────────────────────────────── -->
+    <!-- ── Mobile dot pager (compact: prev · current · next) ──────────────── -->
     <nav class="detail__pager" aria-label="Project pages">
-      @for (i of nav.totalItemsArray; track i) {
+      @for (dot of pagerDots(); track dot) {
         <button
           class="detail__pager-dot"
-          [class.detail__pager-dot--active]="i === nav.currentIndex()"
+          [class.detail__pager-dot--active]="dot === 'current'"
           type="button"
-          [attr.aria-label]="'Go to project ' + (i + 1)"
-          [attr.aria-current]="i === nav.currentIndex() ? 'true' : null"
-          (click)="goToItem(i)"
+          [disabled]="dot === 'current'"
+          [attr.aria-label]="
+            dot === 'prev' ? 'Previous project'
+            : dot === 'next' ? 'Next project'
+            : 'Current project, ' + nav.currentNumber() + ' of ' + nav.totalItems
+          "
+          [attr.aria-current]="dot === 'current' ? 'true' : null"
+          (click)="onDotClick(dot)"
         ></button>
       }
     </nav>

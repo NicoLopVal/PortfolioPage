@@ -396,6 +396,12 @@
       transform: scale(1.25);
     }
 
+    // The current dot is disabled (non-navigating) — keep it fully opaque.
+    &:disabled {
+      opacity: 1;
+      cursor: default;
+    }
+
     &:focus-visible {
       outline: 2px solid var(--color-accent);
       outline-offset: 3px;
