@@ -24,8 +24,8 @@
     flex-shrink: 0;
     width: fit-content;
     border-radius: var(--glass-radius-pill);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--color-border);
+    background: var(--color-card-bg);
     overflow: hidden;
   }
 
@@ -44,7 +44,7 @@
 
     &:hover {
       color: var(--color-text);
-      background: rgba(255, 255, 255, 0.06);
+      background: var(--color-bg-darker);
     }
 
     &--active {
@@ -113,8 +113,8 @@
   gap: 8px;
   padding: 10px 18px;
   border-radius: var(--glass-radius-pill);
-  border: 1px solid rgba(255, 255, 255, var(--glass-border-opacity, 0.22));
-  background: rgba(255, 255, 255, var(--glass-fill-opacity, 0.06));
+  border: 1px solid var(--color-border);
+  background: var(--color-card-bg);
   color: var(--color-text);
   cursor: pointer;
   font-family: var(--font-heading);
@@ -125,8 +125,8 @@
   transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
 
   &:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.38);
+    background: var(--color-bg-darker);
+    border-color: var(--color-accent);
     transform: translateY(-1px);
   }
 
@@ -147,7 +147,8 @@
     height: 22px;
     padding: 0 5px;
     border-radius: 11px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-bg-darker);
+    border: 1px solid var(--color-border);
     font-size: 0.65rem;
     font-weight: 700;
     color: var(--color-text-muted);
