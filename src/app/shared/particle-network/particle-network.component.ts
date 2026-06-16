@@ -23,10 +23,10 @@ interface Node {
 // ─── Tuning constants ─────────────────────────────────────────────────────────
 
 /** One node per this many CSS px² of canvas area (lower = denser web). */
-const AREA_PER_NODE = 13_000;
+const AREA_PER_NODE = 14_000;
 /** Clamp on node count so huge / tiny viewports stay sensible & performant. */
-const MIN_NODES = 26;
-const MAX_NODES = 92;
+const MIN_NODES = 30;
+const MAX_NODES = 130;
 
 /** Max distance (px) between two nodes for a line to be drawn. */
 const LINK_DIST = 132;
@@ -49,7 +49,7 @@ const FRICTION = 0.98;
  * bright warm tones for a luminous, glowing web. That trick washes out on a
  * light/white background (white + colour = white), so in light mode we paint
  * normally ('source-over') with a deeper, more saturated orange that reads
- * clearly against the near-white section.
+ * clearly against the near-white background.
  */
 const PALETTE = {
   dark: {
@@ -70,6 +70,13 @@ const PALETTE = {
   },
 };
 
+/**
+ * A single, page-wide particle "plexus" background. It is a fixed, viewport-
+ * sized layer that sits behind the whole site, so the web is one continuous
+ * field — scrolling between sections never restarts it and the seams between
+ * sections are imperceptible. Sections that should hide it (e.g. the accent
+ * Services section) simply paint an opaque background over the top.
+ */
 @Component({
   selector: 'app-particle-network',
   standalone: true,
@@ -79,7 +86,6 @@ const PALETTE = {
 export class ParticleNetworkComponent implements AfterViewInit, OnDestroy {
   @ViewChild('canvas') private readonly canvasRef!: ElementRef<HTMLCanvasElement>;
 
-  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly ngZone = inject(NgZone);
   private readonly platformId = inject(PLATFORM_ID);
 
@@ -88,21 +94,16 @@ export class ParticleNetworkComponent implements AfterViewInit, OnDestroy {
   private ctx!: CanvasRenderingContext2D;
   private nodes: Node[] = [];
 
-  /** Canvas size in CSS pixels (logical units the simulation runs in). */
+  /** Canvas size in CSS pixels — the viewport (logical units for the sim). */
   private w = 0;
   private h = 0;
 
-  /** Cursor position in canvas-local CSS pixels (-1, -1 = inactive). */
+  /** Cursor position in viewport CSS pixels (matches clientX/Y directly). */
   private mouseX = -1;
   private mouseY = -1;
   private mouseActive = false;
 
-  /** Cached bounding rect, refreshed on resize/scroll to map cursor coords. */
-  private rect = { left: 0, top: 0, width: 0, height: 0 };
-
   private rafId: number | null = null;
-  private resizeObserver?: ResizeObserver;
-  private intersectionObserver?: IntersectionObserver;
   private themeObserver?: MutationObserver;
   private running = false;
   private reducedMotion = false;
@@ -114,7 +115,11 @@ export class ParticleNetworkComponent implements AfterViewInit, OnDestroy {
 
   private readonly onMouseMoveBound = (e: MouseEvent) => this.onMouseMove(e);
   private readonly onMouseLeaveBound = () => { this.mouseActive = false; };
-  private readonly onScrollBound = () => this.refreshRect();
+  private readonly onResizeBound = () => this.resize();
+  private readonly onVisibilityBound = () => {
+    if (document.hidden) this.stop();
+    else this.start();
+  };
 
   // ── Lifecycle ─────────────────────────────────────────────────────────────
 
@@ -147,18 +152,8 @@ export class ParticleNetworkComponent implements AfterViewInit, OnDestroy {
         window.addEventListener('mousemove', this.onMouseMoveBound, { passive: true });
         window.addEventListener('mouseout', this.onMouseLeaveBound, { passive: true });
       }
-      window.addEventListener('scroll', this.onScrollBound, { passive: true });
-
-      // Keep the canvas sized to the host (section) as the layout changes.
-      this.resizeObserver = new ResizeObserver(() => this.resize());
-      this.resizeObserver.observe(this.host.nativeElement);
-
-      // Pause the loop while the hero is scrolled out of view (saves battery).
-      this.intersectionObserver = new IntersectionObserver(
-        ([entry]) => (entry.isIntersecting ? this.start() : this.stop()),
-        { threshold: 0 },
-      );
-      this.intersectionObserver.observe(this.host.nativeElement);
+      window.addEventListener('resize', this.onResizeBound, { passive: true });
+      document.addEventListener('visibilitychange', this.onVisibilityBound);
 
       this.start();
     });
@@ -167,9 +162,8 @@ export class ParticleNetworkComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     window.removeEventListener('mousemove', this.onMouseMoveBound);
     window.removeEventListener('mouseout', this.onMouseLeaveBound);
-    window.removeEventListener('scroll', this.onScrollBound);
-    this.resizeObserver?.disconnect();
-    this.intersectionObserver?.disconnect();
+    window.removeEventListener('resize', this.onResizeBound);
+    document.removeEventListener('visibilitychange', this.onVisibilityBound);
     this.themeObserver?.disconnect();
     this.stop();
   }
@@ -211,15 +205,11 @@ export class ParticleNetworkComponent implements AfterViewInit, OnDestroy {
   // ── Input ─────────────────────────────────────────────────────────────────
 
   private onMouseMove(e: MouseEvent): void {
-    const mx = e.clientX - this.rect.left;
-    const my = e.clientY - this.rect.top;
-    // Treat the cursor as active only while it's over the hero area (plus a
-    // small margin so links fade in/out naturally near the edges).
-    const m = MOUSE_LINK_DIST;
+    // The layer is viewport-fixed, so client coords map straight to canvas coords.
+    this.mouseX = e.clientX;
+    this.mouseY = e.clientY;
     this.mouseActive =
-      mx >= -m && mx <= this.w + m && my >= -m && my <= this.h + m;
-    this.mouseX = mx;
-    this.mouseY = my;
+      e.clientX >= 0 && e.clientX <= this.w && e.clientY >= 0 && e.clientY <= this.h;
   }
 
   // ── Simulation ──────────────────────────────────────────────────────────────
@@ -328,9 +318,8 @@ export class ParticleNetworkComponent implements AfterViewInit, OnDestroy {
   // ── Sizing & seeding ──────────────────────────────────────────────────────
 
   private resize(): void {
-    this.refreshRect();
-    const w = Math.max(1, Math.round(this.rect.width));
-    const h = Math.max(1, Math.round(this.rect.height));
+    const w = Math.max(1, window.innerWidth);
+    const h = Math.max(1, window.innerHeight);
 
     const countTarget = Math.round((w * h) / AREA_PER_NODE);
     const desired = Math.min(MAX_NODES, Math.max(MIN_NODES, countTarget));
@@ -369,10 +358,5 @@ export class ParticleNetworkComponent implements AfterViewInit, OnDestroy {
       vx: Math.cos(angle) * BASE_SPEED,
       vy: Math.sin(angle) * BASE_SPEED,
     };
-  }
-
-  private refreshRect(): void {
-    const r = this.host.nativeElement.getBoundingClientRect();
-    this.rect = { left: r.left, top: r.top, width: r.width, height: r.height };
   }
 }

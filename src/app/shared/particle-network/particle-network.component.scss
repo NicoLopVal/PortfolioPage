@@ -1,36 +1,38 @@
 /*
- * Full-bleed background layer. The host fills its positioned ancestor (the
- * hero section) and never intercepts pointer input — the cursor interaction is
- * driven from a window-level listener instead.
+ * Single page-wide background layer. Fixed to the viewport and sized to it in
+ * TS, so the web is one continuous field behind the whole site (the seams
+ * between sections disappear). It carries the base section colour itself, so
+ * the dark sections can be transparent and reveal it; opaque sections (e.g.
+ * the accent Services section) simply paint over it.
  *
- * A subtle radial vignette deepens the edges toward navy so the warm,
- * additively-blended network "pops" the way it does in the reference art.
+ * z-index 0 keeps it below the content wrapper (.app-page is raised to z-index
+ * 1) and well below the nav, cursor and overlays. pointer-events: none means
+ * it never intercepts input — the cursor interaction is driven from a
+ * window-level listener.
  */
 :host {
   display: block;
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
+  background-color: var(--color-bg-dark);
 }
 
-/*
- * Dark mode only: deepen the edges toward navy with a soft top highlight so the
- * additively-blended web glows like the reference art. In light mode the layer
- * stays transparent, keeping the hero flat and clean like the other sections.
- */
+/* Dark mode only: a soft top highlight and a faint navy edge vignette so the
+   additively-blended web glows like the reference art. Light mode stays flat. */
 :host-context([data-theme='dark']) {
-  background:
+  background-image:
     radial-gradient(
-      ellipse 90% 70% at 50% 8%,
-      rgba(255, 255, 255, 0.08),
+      ellipse 70% 50% at 50% 0%,
+      rgba(255, 255, 255, 0.06),
       transparent 60%
     ),
     radial-gradient(
-      ellipse 120% 120% at 50% 50%,
-      transparent 35%,
-      rgba(3, 12, 35, 0.45) 100%
+      ellipse 130% 130% at 50% 50%,
+      transparent 55%,
+      rgba(3, 12, 35, 0.35) 100%
     );
 }
 

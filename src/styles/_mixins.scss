@@ -1,5 +1,8 @@
 @mixin section-dark {
-  background-color: var(--color-bg-dark);
+  // Transparent so the single, page-wide particle-network background shows
+  // through continuously across every dark section (the base colour is carried
+  // by that fixed layer). Text colour is still set here.
+  background-color: transparent;
   color: var(--color-text);
 }
 

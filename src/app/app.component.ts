@@ -13,6 +13,7 @@ import { ReferenceComponent } from './sections/reference/reference.component';
 import { ContactComponent } from './sections/contact/contact.component';
 import { WhatsappButtonComponent } from './shared/whatsapp-button/whatsapp-button.component';
 import { CursorEffectComponent } from './shared/cursor-effect/cursor-effect.component';
+import { ParticleNetworkComponent } from './shared/particle-network/particle-network.component';
 import { PortfolioNavigationService } from './core/services/portfolio-navigation.service';
 
 @Component({
@@ -33,6 +34,7 @@ import { PortfolioNavigationService } from './core/services/portfolio-navigation
     ContactComponent,
     WhatsappButtonComponent,
     CursorEffectComponent,
+    ParticleNetworkComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

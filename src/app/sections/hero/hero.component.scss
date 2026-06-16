@@ -6,7 +6,8 @@
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
   overflow: hidden;
-  background-color: var(--color-bg-dark);
+  // Transparent: the shared, page-wide particle-network layer shows through.
+  background-color: transparent;
 
   &__photo {
     position: relative;

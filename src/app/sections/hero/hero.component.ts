@@ -4,11 +4,10 @@ import {
   LiquidGlassButtonComponent,
   LiquidGlassPanelComponent,
 } from '../../shared/liquid-glass';
-import { ParticleNetworkComponent } from '../../shared/particle-network/particle-network.component';
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [LiquidGlassPanelComponent, LiquidGlassButtonComponent, ParticleNetworkComponent],
+  imports: [LiquidGlassPanelComponent, LiquidGlassButtonComponent],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss',
 })
