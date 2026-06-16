@@ -1,0 +1,42 @@
+/*
+ * Full-bleed background layer. The host fills its positioned ancestor (the
+ * hero section) and never intercepts pointer input — the cursor interaction is
+ * driven from a window-level listener instead.
+ *
+ * A subtle radial vignette deepens the edges toward navy so the warm,
+ * additively-blended network "pops" the way it does in the reference art.
+ */
+:host {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/*
+ * Dark mode only: deepen the edges toward navy with a soft top highlight so the
+ * additively-blended web glows like the reference art. In light mode the layer
+ * stays transparent, keeping the hero flat and clean like the other sections.
+ */
+:host-context([data-theme='dark']) {
+  background:
+    radial-gradient(
+      ellipse 90% 70% at 50% 8%,
+      rgba(255, 255, 255, 0.08),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 120% 120% at 50% 50%,
+      transparent 35%,
+      rgba(3, 12, 35, 0.45) 100%
+    );
+}
+
+.particle-network__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* Pixel dimensions are set in TS (DPR-aware). */
+}
