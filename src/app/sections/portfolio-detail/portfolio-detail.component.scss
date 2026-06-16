@@ -229,30 +229,36 @@
 
 .detail__body-item {
   position: relative;
-  padding-left: 1.1em;
   font-size: 0.95rem;
   line-height: 1.7;
-  color: var(--color-text-muted);
+  color: var(--color-text);
+  text-align: justify;
 
-  &::before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: var(--color-accent);
-    font-weight: 700;
+  &--bullet {
+    padding-left: 1.1em;
+
+    &::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+      font-weight: 700;
+    }
+  }
+
+  &--paragraph {
+    margin-top: 6px;
   }
 
   &--heading {
-    padding-left: 0;
     margin-top: 20px;
     font-family: var(--font-heading);
     font-size: 0.9rem;
     font-weight: 700;
-    color: var(--color-text);
-    text-transform: uppercase;
+    color: var(--color-accent);
+    text-transform: none;
     letter-spacing: 0.06em;
 
-    &::before { display: none; }
     &:first-child { margin-top: 0; }
   }
 }

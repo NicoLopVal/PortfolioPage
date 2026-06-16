@@ -3,7 +3,8 @@ import { PortfolioNavigationService } from '../../core/services/portfolio-naviga
 
 export type DescriptionBlock =
   | { type: 'heading'; text: string }
-  | { type: 'bullet'; text: string };
+  | { type: 'bullet'; text: string }
+  | { type: 'paragraph'; text: string };
 
 /** Role of a dot in the compact pager (max 3 dots shown at once). */
 export type PagerDotRole = 'prev' | 'current' | 'next';
@@ -114,11 +115,13 @@ export class PortfolioDetailComponent {
     for (const line of description.split('\n')) {
       const trimmed = line.trim();
       if (!trimmed) continue;
-      blocks.push(
-        trimmed.startsWith('- ')
-          ? { type: 'bullet', text: trimmed.slice(2).trim() }
-          : { type: 'heading', text: trimmed },
-      );
+      if (trimmed.startsWith('# ')) {
+        blocks.push({ type: 'heading', text: trimmed.slice(2).trim() });
+      } else if (trimmed.startsWith('- ')) {
+        blocks.push({ type: 'bullet', text: trimmed.slice(2).trim() });
+      } else {
+        blocks.push({ type: 'paragraph', text: trimmed });
+      }
     }
     return blocks;
   }

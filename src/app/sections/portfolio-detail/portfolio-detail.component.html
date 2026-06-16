@@ -60,8 +60,10 @@
           @for (block of parseDescription(item.modalBody); track $index) {
             @if (block.type === 'heading') {
               <li class="detail__body-item detail__body-item--heading">{{ block.text }}</li>
+            } @else if (block.type === 'bullet') {
+              <li class="detail__body-item detail__body-item--bullet">{{ block.text }}</li>
             } @else {
-              <li class="detail__body-item">{{ block.text }}</li>
+              <li class="detail__body-item detail__body-item--paragraph">{{ block.text }}</li>
             }
           }
         </ul>
