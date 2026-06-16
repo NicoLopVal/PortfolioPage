@@ -118,14 +118,16 @@
       }
     }
 
-    // panel sits on top of the picture (same grid cell) on small screens
+    // panel sits on top of the picture (same grid cell) on small screens,
+    // pushed toward the bottom so the face stays visible above it
     &__content {
       grid-column: 1;
       grid-row: 1;
-      align-self: center;
+      align-self: end;
       width: min(460px, calc(100% - 2rem));
       max-width: 460px;
       padding-inline: 1rem;
+      padding-bottom: 3rem;
     }
   }
 
