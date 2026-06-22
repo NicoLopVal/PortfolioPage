@@ -289,11 +289,11 @@ export const PORTFOLIO_DATA: PortfolioData = {
     {
       id: 'pf-5',
       tileTitle: 'Math challenges from IBM Ponder This',
-      tagline: 'Solved 6 IBM Research monthly math/CS challenges — 5 with bonus.',
+      tagline: 'Solved multiple IBM Research monthly math/CS challenges',
       techBadges: ['Python', 'VBA', 'Algorithms', 'Combinatorial Optimization', 'Graph Theory'],
       modalTitle: 'IBM Research Ponder This (2021–2022)',
       modalBody:
-        '# Problem\nIBM Research\'s Ponder This publishes a monthly math/CS challenge typically requiring a mix of algorithmic insight and computational search. Topics spanned graph theory, max-flow optimization, combinatorial enumeration, and number theory.\n\n# Approach\n- I solved each problem in VBA or Python depending on the problem shape — smaller search spaces with rich structure went to VBA prototypes, larger combinatorial searches to Python with optimized representations.\n- Jan 2021 — Modular grid traversal with state-dependent rotation (Vaccinating Robot)\n- Feb 2021 — Minimum vertex set on a trust-dependency graph via strongly connected components (Vaccination Ring)\n- Mar 2021 — Closure problem on a 20×20 grid solved via max-flow (Perseverance Rover)\n- Apr 2021 — Combinatorial enumeration of unwinnable sets (Decremental Wheel of Choice)\n- Dec 2021 — Deterministic pin orientation optimization (Galton Board)\n- Jan 2022 — Prime-forming graph traversal on a digit circle (Forming Primes)\n\n# Impact\nEarned the bonus star on 5 of 6 challenges. All solver names are verified on IBM Research\'s public archive.',
+        '# Problem\nIBM Research\'s Ponder This publishes a monthly math/CS challenge typically requiring a mix of algorithmic insight and computational search. Topics spanned graph theory, max-flow optimization, combinatorial enumeration, and number theory.\n\n# Approach\n- I solved each problem in VBA or Python depending on the problem shape — smaller search spaces with rich structure went to VBA prototypes, larger combinatorial searches to Python with optimized representations.\n- Jan 2021 — Modular grid traversal with state-dependent rotation (Vaccinating Robot)\n- Feb 2021 — Minimum vertex set on a trust-dependency graph via strongly connected components (Vaccination Ring)\n- Mar 2021 — Closure problem on a 20×20 grid solved via max-flow (Perseverance Rover)\n- Apr 2021 — Combinatorial enumeration of unwinnable sets (Decremental Wheel of Choice)\n- Dec 2021 — Deterministic pin orientation optimization (Galton Board)\n- Jan 2022 — Prime-forming graph traversal on a digit circle (Forming Primes)\n- Jun 2026 — Minimal Combinations to cover all possible sets (The Superhero Team Movies)\n\n# Impact\nEarned the bonus star on 5 of 6 challenges. All solver names are verified on IBM Research\'s public archive.',
       links: [
         { label: 'Jan 2021 — Vaccinating Robot', url: 'https://research.ibm.com/blog/ponder-this-january-2021' },
         { label: 'Feb 2021 — Vaccination Ring', url: 'https://research.ibm.com/blog/ponder-this-february-2021' },
@@ -301,6 +301,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
         { label: 'Apr 2021 — Decremental Wheel of Choice', url: 'https://research.ibm.com/blog/ponder-this-april-2021' },
         { label: 'Dec 2021 — Galton Board', url: 'https://research.ibm.com/blog/ponder-this-december-2021' },
         { label: 'Jan 2022 — Forming Primes', url: 'https://research.ibm.com/blog/ponder-this-january-2022' },
+        { label: 'Jun 2026 — The Superhero Team Movies', url: 'https://research.ibm.com/blog/ponder-this-june-2026' },
       ],
       image: 'assets/images/PonderThis.png',
       size: 'small',
