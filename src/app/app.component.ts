@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { SidebarNavComponent } from './layout/sidebar-nav/sidebar-nav.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeroComponent } from './sections/hero/hero.component';
@@ -39,6 +40,15 @@ import { PortfolioNavigationService } from './core/services/portfolio-navigation
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   readonly navService = inject(PortfolioNavigationService);
+  private readonly platformId = inject(PLATFORM_ID);
+
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const params = new URLSearchParams(window.location.search);
+      const projectId = params.get('project');
+      if (projectId) this.navService.openById(projectId);
+    }
+  }
 }

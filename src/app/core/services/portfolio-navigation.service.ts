@@ -41,7 +41,15 @@ export class PortfolioNavigationService {
     this.isOpen.set(true);
     if (isPlatformBrowser(this.platformId)) {
       document.body.style.overflow = 'hidden';
+      const url = new URL(window.location.href);
+      url.searchParams.set('project', item.id);
+      history.replaceState(null, '', url.toString());
     }
+  }
+
+  openById(id: string): void {
+    const item = this.items.find((i) => i.id === id);
+    if (item) this.open(item);
   }
 
   /**
@@ -53,6 +61,11 @@ export class PortfolioNavigationService {
   close(): void {
     this.isOpen.set(false);
     this.closing.set(true);
+    if (isPlatformBrowser(this.platformId)) {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('project');
+      history.replaceState(null, '', url.toString());
+    }
     setTimeout(() => {
       this._selectedIndex.set(-1);
       this.closing.set(false);
@@ -65,18 +78,30 @@ export class PortfolioNavigationService {
   prev(): void {
     if (this.hasPrev()) {
       this._selectedIndex.update((i) => i - 1);
+      this.syncUrl();
     }
   }
 
   next(): void {
     if (this.hasNext()) {
       this._selectedIndex.update((i) => i + 1);
+      this.syncUrl();
     }
   }
 
   goTo(index: number): void {
     if (index >= 0 && index < this.items.length) {
       this._selectedIndex.set(index);
+      this.syncUrl();
     }
+  }
+
+  private syncUrl(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    const item = this.selectedItem();
+    if (!item) return;
+    const url = new URL(window.location.href);
+    url.searchParams.set('project', item.id);
+    history.replaceState(null, '', url.toString());
   }
 }
