@@ -56,6 +56,17 @@ export const PORTFOLIO_DATA: PortfolioData = {
     },
     {
       id: 'edu-3',
+      period: 'July 2026',
+      degree: 'Introduction to agent skills',
+      institution: 'Anthropic',
+      accentBar: false,
+      issuerLogo: 'assets/images/anthropicresearch_logo.jpg',
+      certificateUrl:
+        'https://verify.skilljar.com/c/x5v96z5irfqk',
+      instituteLinkedIn: 'https://www.linkedin.com/company/anthropicresearch',
+    },
+    {
+      id: 'edu-4',
       period: 'June 2026',
       degree: 'Claude Code 101',
       institution: 'Anthropic',
@@ -66,7 +77,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       instituteLinkedIn: 'https://www.linkedin.com/company/anthropicresearch',
     },
     {
-      id: 'edu-4',
+      id: 'edu-5',
       period: 'September 2025',
       degree: 'Operations Research (3): Theory',
       institution: 'National Taiwan University',
@@ -77,7 +88,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       instituteLinkedIn: 'https://www.linkedin.com/school/national-taiwan-university/',
     },
     {
-      id: 'edu-5',
+      id: 'edu-6',
       period: 'August 2025',
       degree: 'Operations Research (2): Optimization Algorithms',
       institution: 'National Taiwan University',
@@ -88,7 +99,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       instituteLinkedIn: 'https://www.linkedin.com/school/national-taiwan-university/',
     },
     {
-      id: 'edu-6',
+      id: 'edu-7',
       period: 'August 2025',
       degree: 'Operations Research (1): Models and Applications',
       institution: 'National Taiwan University',
@@ -99,7 +110,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       instituteLinkedIn: 'https://www.linkedin.com/school/national-taiwan-university/',
     },
     {
-      id: 'edu-7',
+      id: 'edu-8',
       period: 'January 2021',
       degree: 'IBM Data Analyst Professional Certificate',
       institution: 'IBM - Coursera',
@@ -110,7 +121,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       instituteLinkedIn: 'https://www.linkedin.com/company/coursera',
     },
     {
-      id: 'edu-8',
+      id: 'edu-9',
       period: 'December 2020',
       degree: 'Data Analysis with Python',
       institution: 'IBM - Coursera',
@@ -121,7 +132,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       instituteLinkedIn: 'https://www.linkedin.com/company/coursera',
     },
     {
-      id: 'edu-9',
+      id: 'edu-10',
       period: 'December 2020',
       degree: 'Databases and SQL for Data Science',
       institution: 'IBM - Coursera',
@@ -132,7 +143,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       instituteLinkedIn: 'https://www.linkedin.com/company/coursera',
     },
     {
-      id: 'edu-10',
+      id: 'edu-11',
       period: 'December 2020',
       degree: 'Python for Data Science and AI',
       institution: 'IBM - Coursera',
