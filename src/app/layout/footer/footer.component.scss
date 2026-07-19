@@ -1,10 +1,10 @@
 .site-footer {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 24px 60px;
   background-color: var(--color-bg-darker);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
   margin-left: var(--sidebar-width);
 
   &__copy {
@@ -13,11 +13,69 @@
     font-size: 0.85rem;
   }
 
+  /* ── Animated water lapping over the footer's top edge ─────────────────── */
+
+  &__waves {
+    position: absolute;
+    top: -34px;
+    left: 0;
+    right: 0;
+    height: 36px;
+    overflow: hidden;
+    pointer-events: none;
+    color: var(--color-accent);
+  }
+
+  &__wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    /* 200% wide + seamless 2-period path: translateX(-50%) loops perfectly. */
+    width: 200%;
+    height: 100%;
+
+    path {
+      fill: currentColor;
+    }
+  }
+
+  &__wave--back {
+    opacity: 0.14;
+    animation: footer-wave-slide 26s linear infinite;
+  }
+
+  &__wave--mid {
+    opacity: 0.22;
+    animation: footer-wave-slide 17s linear infinite reverse;
+  }
+
+  &__wave--front {
+    opacity: 0.32;
+    animation: footer-wave-slide 11s linear infinite;
+  }
+
+  @keyframes footer-wave-slide {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
   @media (max-width: 992px) {
     margin-left: 0;
     flex-direction: column;
     gap: 16px;
     text-align: center;
     padding: 24px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__wave--back,
+    &__wave--mid,
+    &__wave--front {
+      animation: none;
+    }
   }
 }

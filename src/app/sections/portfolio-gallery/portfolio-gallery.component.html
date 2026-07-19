@@ -1,6 +1,6 @@
 <section id="portfolio" class="section section--dark portfolio-gallery">
   <app-section-header title="My Portfolio" watermarkLetter="M" />
-  <div class="portfolio-gallery__grid">
+  <div class="portfolio-gallery__grid" appReveal="stagger">
     @for (item of data.portfolio; track item.id) {
       <article
         class="portfolio-gallery__item portfolio-gallery__item--{{ item.size }} portfolio-gallery__item--clickable"

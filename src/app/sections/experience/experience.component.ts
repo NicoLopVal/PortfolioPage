@@ -2,6 +2,7 @@ import { Component, HostListener, signal } from '@angular/core';
 import { PORTFOLIO_DATA } from '../../core/data/portfolio.data';
 import { ExperienceItem } from '../../core/models/portfolio.models';
 import { SectionHeaderComponent } from '../../layout/section-header/section-header.component';
+import { RevealDirective } from '../../shared/reveal/reveal.directive';
 import { LiquidGlassPanelComponent } from '../../shared/liquid-glass';
 
 export type DescriptionBlock =
@@ -19,7 +20,7 @@ export interface ExperienceGroup {
 @Component({
   selector: 'app-experience',
   standalone: true,
-  imports: [SectionHeaderComponent, LiquidGlassPanelComponent],
+  imports: [SectionHeaderComponent, LiquidGlassPanelComponent, RevealDirective],
   templateUrl: './experience.component.html',
   styleUrl: './experience.component.scss',
 })

@@ -1,3 +1,7 @@
+:host {
+  display: block;
+}
+
 .section-header {
   position: relative;
   margin-bottom: 50px;
@@ -15,6 +19,10 @@
     user-select: none;
     z-index: 0;
     overflow: visible;
+    // Settles into place as the header reveals.
+    opacity: 0;
+    transform: translateX(-14px) scale(1.05);
+    transition: opacity 0.9s ease 0.2s, transform 0.9s ease 0.2s;
   }
 
   &__content {
@@ -47,4 +55,11 @@
   &--light &__title {
     color: var(--color-text);
   }
+}
+
+/* ── Revealed state (class set by RevealDirective on the host) ──────────── */
+
+:host(.is-revealed) .section-header__watermark {
+  opacity: 1;
+  transform: none;
 }

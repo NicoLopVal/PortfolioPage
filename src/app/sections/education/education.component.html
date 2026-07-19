@@ -1,6 +1,6 @@
 <section id="education" class="section section--dark education">
   <app-section-header title="Education" watermarkLetter="E" />
-  <div class="timeline-cards">
+  <div class="timeline-cards" appReveal="stagger">
     @for (item of data.education; track item.id) {
       <article class="timeline-card">
         <div

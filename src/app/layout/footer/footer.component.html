@@ -1,3 +1,16 @@
 <footer class="site-footer">
+  <!-- Layered drifting water above the footer — each wave slides at its own
+       pace and opacity for a parallax swell. -->
+  <div class="site-footer__waves" aria-hidden="true">
+    <svg class="site-footer__wave site-footer__wave--back" viewBox="0 0 2880 60" preserveAspectRatio="none">
+      <path d="M0,32 c180,-26 540,26 720,0 c180,-26 540,26 720,0 c180,-26 540,26 720,0 c180,-26 540,26 720,0 L2880,60 L0,60 Z" />
+    </svg>
+    <svg class="site-footer__wave site-footer__wave--mid" viewBox="0 0 2880 60" preserveAspectRatio="none">
+      <path d="M0,36 c180,-22 540,22 720,0 c180,-22 540,22 720,0 c180,-22 540,22 720,0 c180,-22 540,22 720,0 L2880,60 L0,60 Z" />
+    </svg>
+    <svg class="site-footer__wave site-footer__wave--front" viewBox="0 0 2880 60" preserveAspectRatio="none">
+      <path d="M0,42 c180,-16 540,16 720,0 c180,-16 540,16 720,0 c180,-16 540,16 720,0 c180,-16 540,16 720,0 L2880,60 L0,60 Z" />
+    </svg>
+  </div>
   <p class="site-footer__copy">{{ data.footerCopyright }}</p>
 </footer>

@@ -1,5 +1,6 @@
 import { Component, HostListener, OnDestroy, computed, signal } from '@angular/core';
 import { SectionHeaderComponent } from '../../layout/section-header/section-header.component';
+import { RevealDirective } from '../../shared/reveal/reveal.directive';
 import { LiquidGlassPanelComponent, LiquidGlassInputComponent } from '../../shared/liquid-glass';
 import {
   SkillsGroup,
@@ -11,7 +12,7 @@ import {
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports: [SectionHeaderComponent, LiquidGlassPanelComponent, LiquidGlassInputComponent],
+  imports: [SectionHeaderComponent, LiquidGlassPanelComponent, LiquidGlassInputComponent, RevealDirective],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',
 })
