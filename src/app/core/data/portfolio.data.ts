@@ -318,6 +318,34 @@ export const PORTFOLIO_DATA: PortfolioData = {
       image: 'assets/images/PonderThis.png',
       size: 'small',
     },
+    {
+      id: 'pf-6',
+      tileTitle: 'Unlimited Learning — AI-powered learning app',
+      tagline: 'Build a custom syllabus for anything you want to learn, then study it session by session with AI.',
+      techBadges: ['C#', '.NET', 'WPF', 'Clean Architecture', 'Entity Framework', 'SQL Server', 'Claude API'],
+      modalTitle: 'Unlimited Learning (2025–Present)',
+      modalBody:
+        '# Problem\nLearning something new online usually means researching what to study, hunting for resources, and stitching a curriculum together yourself. AI has made all that knowledge accessible, but the friction of structuring it still falls on the learner.\n\n# Approach\n- Built a desktop learning application (WPF frontend, C# backend) where the user describes what they want to learn, and the app generates a structured syllabus broken into sessions of configurable length and duration.\n- Each session delivers focused content, and the AI reviews the user\'s understanding at the end — no need to find videos, articles, or exercises separately.\n- Supports two input modes: paste an AI-generated markdown prompt (so any LLM can be used as the content engine without an API key) or configure a Claude API token directly in the environment settings for a fully integrated flow.\n- Duolingo-inspired daily streaks keep learners accountable without adding overhead.\n- Backend built in C# with Clean Architecture and Entity Framework, targeting SQL Server — loosely coupled so the data layer can be swapped to any database.\n- Built with AI assistance throughout the development process.\n\n# Impact\nMakes structured self-education accessible without the setup overhead. Whether you want to learn a programming language, a historical period, or a technical domain, the app turns a one-line description into a ready-to-follow curriculum.',
+      links: [
+        { label: 'View on GitHub', url: 'https://github.com/NicoLopVal/unlimited-learning' },
+      ],
+      image: 'assets/images/UnlimitedLearning.png',
+      size: 'medium',
+    },
+    {
+      id: 'pf-7',
+      tileTitle: 'This portfolio — Angular SPA built with AI',
+      tagline: 'Full portfolio site built with Angular and AI assistance, hosted for ~$8 total.',
+      techBadges: ['Angular', 'TypeScript', 'SCSS', 'Vercel', 'Formspree', 'AI-assisted'],
+      modalTitle: 'Portfolio Page (2025–Present)',
+      modalBody:
+        '# What it is\nThe site you\'re looking at. A single-page Angular application covering my profile, projects, experience, education, references, and a contact form — built entirely with AI assistance using Claude Code.\n\n# Approach\n- Designed and developed in Angular as a standalone SPA with no backend.\n- Contact form handled by Formspree, a free external service that forwards submissions directly to my email — no server needed.\n- Hosted on Vercel\'s free tier for small static/SPA projects.\n- Custom domain is the only real cost: ~$8 total.\n- Deep-link support added so individual projects can be shared via URL (e.g. `?project=pf-1`).\n- Animations, liquid-glass UI components, dark/light theming, and responsive layout all built with AI pair-programming throughout.\n\n# What it demonstrates\nBuilding a production-quality, publicly hosted product end-to-end — design, development, deployment, domain — at near-zero cost using modern free-tier tooling and AI assistance. The entire codebase is open source.',
+      links: [
+        { label: 'View on GitHub', url: 'https://github.com/NicoLopVal/PortfolioPage' },
+      ],
+      image: 'assets/images/PortfolioPage.png',
+      size: 'medium',
+    },
   ],
   testimonials: [
     {
