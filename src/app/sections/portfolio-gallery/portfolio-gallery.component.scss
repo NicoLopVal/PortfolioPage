@@ -2,20 +2,112 @@
 @import '../../../styles/glass';
 
 .portfolio-gallery {
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto auto auto;
-    gap: 16px;
+  // ── Track filter ───────────────────────────────────────────────────────────
+  // Same control as the skills view toggle, with a third position in the middle
+  // that unions both sides.
+
+  &__controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 36px;
+  }
+
+  &__toggle {
+    display: flex;
+    flex-shrink: 0;
+    width: fit-content;
+    max-width: 100%;
+    border-radius: var(--glass-radius-pill);
+    border: 1px solid var(--color-border);
+    background: var(--color-card-bg);
+    overflow: hidden;
+  }
+
+  &__toggle-btn {
+    padding: 10px 24px;
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background var(--transition-fast), color var(--transition-fast);
+
+    &:hover {
+      color: var(--color-text);
+      background: var(--color-bg-darker);
+    }
+
+    &--active {
+      background: var(--color-accent);
+      color: #fff;
+    }
+
+    // Keep the selection coloured on hover — just a touch darker — so it never
+    // looks like the unselected hover state.
+    &--active:hover {
+      background: var(--color-accent-hover);
+      color: #fff;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: -2px;
+    }
+  }
+
+  // ── Grid ───────────────────────────────────────────────────────────────────
+  //
+  // Column count comes from `data-cols`, written by the component, because the
+  // packing algorithm has to agree with the rendered grid about how wide it is.
+  //
+  // Row height is derived from the column width rather than left on `auto`.
+  // With auto rows, `img { height: 100% }` has no definite height to resolve
+  // against, so each image falls back to its intrinsic aspect ratio and the
+  // tallest one in a row stretches every tile beside it — a square image in a
+  // 2-column-wide tile was making its neighbour twice as tall as it was wide.
+
+  &__grid-wrap {
+    container-type: inline-size;
     max-width: var(--max-content-width);
     margin-inline: auto;
-    align-content: center;
+  }
+
+  &__grid {
+    --gallery-gap: 16px;
+    --gallery-cols: 3;
+    --gallery-col-w: calc((100cqw - 2 * var(--gallery-gap)) / 3);
+    // Landscape cells: a 1x1 tile is 4:3, which makes the 2x2 tile 4:3 as well.
+    --gallery-ratio: 0.75;
+
+    display: grid;
+    grid-template-columns: repeat(var(--gallery-cols), 1fr);
+    grid-auto-rows: calc(var(--gallery-col-w) * var(--gallery-ratio));
+    gap: var(--gallery-gap);
+
+    &[data-cols='2'] {
+      --gallery-cols: 2;
+      --gallery-col-w: calc((100cqw - var(--gallery-gap)) / 2);
+    }
+
+    // Single column: square tiles, so none of the overlay content gets cropped.
+    &[data-cols='1'] {
+      --gallery-cols: 1;
+      --gallery-col-w: 100cqw;
+      --gallery-ratio: 1;
+    }
   }
 
   &__item {
     position: relative;
     overflow: hidden;
     display: block;
+    min-width: 0;
+    min-height: 0;
     background: rgba(255, 255, 255, 0.03);
 
     img {
@@ -48,25 +140,6 @@
       &:active {
         transform: scale(0.995);
       }
-    }
-
-    &--large {
-      grid-column: span 2;
-      grid-row: span 2;
-      min-height: 320px;
-    }
-
-    &--wide {
-      grid-column: span 2;
-      min-height: 150px;
-    }
-
-    &--medium {
-      min-height: 150px;
-    }
-
-    &--small {
-      min-height: 150px;
     }
   }
 
@@ -137,40 +210,11 @@
     }
   }
 
-  @include respond-tablet {
-    &__grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    &__item--large {
-      grid-column: span 2;
-      grid-row: span 1;
-      min-height: 280px;
-    }
-
-    &__item--wide {
-      grid-column: span 1;
-    }
-  }
-
   @include respond-mobile {
-    &__grid {
-      grid-template-columns: 1fr;
-    }
-
-    // Single column: make every card square so none of the overlay content
-    // gets cropped. The 1:1 aspect-ratio drives the height from the full width,
-    // so the per-size min-heights must be cleared to not interfere.
-    &__item {
-      aspect-ratio: 1 / 1;
-    }
-
-    &__item--large,
-    &__item--wide,
-    &__item--medium,
-    &__item--small {
-      grid-column: span 1;
-      min-height: 0;
+    &__toggle-btn {
+      padding: 10px 14px;
+      font-size: 0.68rem;
+      letter-spacing: 0.03em;
     }
 
     &__overlay {

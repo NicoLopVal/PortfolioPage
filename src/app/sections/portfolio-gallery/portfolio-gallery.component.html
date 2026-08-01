@@ -1,29 +1,51 @@
 <section id="portfolio" class="section section--dark portfolio-gallery">
   <app-section-header title="My Portfolio" watermarkLetter="M" />
-  <div class="portfolio-gallery__grid" appReveal="stagger">
-    @for (item of data.portfolio; track item.id) {
-      <article
-        class="portfolio-gallery__item portfolio-gallery__item--{{ item.size }} portfolio-gallery__item--clickable"
-        role="button"
-        tabindex="0"
-        [attr.aria-label]="'View details for ' + item.tileTitle"
-        (click)="open(item)"
-        (keydown.enter)="open(item)"
-        (keydown.space)="$event.preventDefault(); open(item)"
-      >
-        <img [src]="item.image" [alt]="item.tileTitle" loading="lazy" />
-        <div class="portfolio-gallery__overlay" appFitOverlay>
-          <div class="portfolio-gallery__overlay-content">
-            <h3 class="portfolio-gallery__overlay-title">{{ item.tileTitle }}</h3>
-            <p class="portfolio-gallery__overlay-tagline">{{ item.tagline }}</p>
-            <ul class="portfolio-gallery__badges">
-              @for (badge of item.techBadges; track badge) {
-                <li>{{ badge }}</li>
-              }
-            </ul>
+
+  <div class="portfolio-gallery__controls">
+    <div class="portfolio-gallery__toggle" role="group" aria-label="Filter projects by discipline">
+      @for (option of filters; track option.value) {
+        <button
+          class="portfolio-gallery__toggle-btn"
+          [class.portfolio-gallery__toggle-btn--active]="filter() === option.value"
+          [attr.aria-pressed]="filter() === option.value"
+          (click)="setFilter(option.value)"
+        >
+          {{ option.label }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- The wrapper is the container-query context the grid measures its column
+       width against; an element cannot be its own query container. -->
+  <div class="portfolio-gallery__grid-wrap">
+    <div class="portfolio-gallery__grid" [attr.data-cols]="columns()" appReveal="stagger">
+      @for (tile of tiles(); track tile.item.id) {
+        <article
+          class="portfolio-gallery__item portfolio-gallery__item--clickable"
+          [style.grid-column]="'span ' + tile.cols"
+          [style.grid-row]="'span ' + tile.rows"
+          role="button"
+          tabindex="0"
+          [attr.aria-label]="'View details for ' + tile.item.tileTitle"
+          (click)="open(tile.item)"
+          (keydown.enter)="open(tile.item)"
+          (keydown.space)="$event.preventDefault(); open(tile.item)"
+        >
+          <img [src]="tile.item.image" [alt]="tile.item.tileTitle" loading="lazy" />
+          <div class="portfolio-gallery__overlay" appFitOverlay>
+            <div class="portfolio-gallery__overlay-content">
+              <h3 class="portfolio-gallery__overlay-title">{{ tile.item.tileTitle }}</h3>
+              <p class="portfolio-gallery__overlay-tagline">{{ tile.item.tagline }}</p>
+              <ul class="portfolio-gallery__badges">
+                @for (badge of tile.item.techBadges; track badge) {
+                  <li>{{ badge }}</li>
+                }
+              </ul>
+            </div>
           </div>
-        </div>
-      </article>
-    }
+        </article>
+      }
+    </div>
   </div>
 </section>

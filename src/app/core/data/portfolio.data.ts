@@ -249,6 +249,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
   portfolio: [
     {
       id: 'pf-1',
+      tracks: ['or-sim'],
       tileTitle: 'Optimization model for 1D Cutting Stock on 1m+ elements',
       tagline: 'Saved $500K USD on structural steel procurement for a skyscraper.',
       techBadges: ['VBA', 'Operations Research', '1D Cutting Stock', 'Excel'],
@@ -260,6 +261,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
     },
     {
       id: 'pf-2',
+      tracks: ['or-sim'],
       tileTitle: 'Surgery Scheduling',
       tagline: 'Peer-reviewed simulation-optimization approach for stochastic surgery scheduling.',
       techBadges: ['C#', 'GRASP Metaheuristic', 'Monte Carlo Simulation', 'MILP', 'GAMS/CPLEX', 'Operations Research'],
@@ -277,6 +279,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
     },
     {
       id: 'pf-3',
+      tracks: ['software'],
       tileTitle: 'Playwright E2E testing orchestrator',
       tagline: 'Custom C# orchestrator driving full E2E test lifecycle across a multi-tenant B2B SaaS platform.',
       techBadges: ['C#', 'Playwright', 'TypeScript', 'SQL Server', 'Angular', 'Test Automation'],
@@ -288,6 +291,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
     },
     {
       id: 'pf-4',
+      tracks: ['or-sim'],
       tileTitle: 'EV Adoption forecast for 10m habitants city',
       tagline: 'Agent-based simulation predicting electric vehicle adoption in Bogota through 2050.',
       techBadges: ['R', 'AnyLogic', 'Multinomial Logit', 'Agent-Based Modeling', 'Bass Diffusion'],
@@ -299,6 +303,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
     },
     {
       id: 'pf-5',
+      tracks: ['or-sim', 'software'],
       tileTitle: 'Math challenges from IBM Ponder This',
       tagline: 'Solved multiple IBM Research monthly math/CS challenges',
       techBadges: ['Python', 'VBA', 'Algorithms', 'Combinatorial Optimization', 'Graph Theory'],
@@ -320,6 +325,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
     },
     {
       id: 'pf-6',
+      tracks: ['software'],
       tileTitle: 'Unlimited Learning — AI-powered learning app',
       tagline: 'Build a custom syllabus for anything you want to learn, then study it session by session with AI.',
       techBadges: ['C#', '.NET', 'WPF', 'Clean Architecture', 'Entity Framework', 'SQL Server', 'Claude API'],
@@ -334,6 +340,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
     },
     {
       id: 'pf-7',
+      tracks: ['software'],
       tileTitle: 'This portfolio — Angular SPA built with AI',
       tagline: 'Full portfolio site built with Angular and AI assistance, hosted for ~$8 total.',
       techBadges: ['Angular', 'TypeScript', 'SCSS', 'Vercel', 'Formspree', 'AI-assisted'],

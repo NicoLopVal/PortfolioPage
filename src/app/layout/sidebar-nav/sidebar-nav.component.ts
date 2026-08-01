@@ -27,7 +27,10 @@ export class SidebarNavComponent implements AfterViewInit, OnDestroy {
   readonly brandName =
     PORTFOLIO_DATA.profile.firstName + ' ' + PORTFOLIO_DATA.profile.lastName;
 
-  activeSectionId = 'about';
+  // On landing, the hero fills the viewport and no observed section sits inside
+  // the observer's band, so nothing sets this yet — start on the first nav
+  // section (the one right after the hero).
+  activeSectionId = this.sections[0]?.id ?? '';
 
   readonly menuOpen      = signal(false);
   readonly drawerVisible = signal(false);

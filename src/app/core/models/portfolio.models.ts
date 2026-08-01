@@ -64,6 +64,13 @@ export interface ProjectModalImage {
   caption?: string;
 }
 
+/** Which of the gallery's two disciplines a project belongs to. A project can
+ *  sit in both — the gallery filter treats these as overlapping sets, not as a
+ *  partition. */
+export type ProjectTrack = 'or-sim' | 'software';
+
+export type TileSize = 'small' | 'medium' | 'wide' | 'large';
+
 export interface PortfolioItem {
   id: string;
   tileTitle: string;
@@ -74,7 +81,10 @@ export interface PortfolioItem {
   links?: ProjectLink[];
   modalImages?: ProjectModalImage[];
   image: string;
-  size: 'small' | 'medium' | 'wide' | 'large';
+  /** Preferred tile footprint. A guide, not a rule — the gallery shrinks or
+   *  grows tiles when the preferred set can't tile a clean rectangle. */
+  size: TileSize;
+  tracks: ProjectTrack[];
 }
 
 export interface Testimonial {
