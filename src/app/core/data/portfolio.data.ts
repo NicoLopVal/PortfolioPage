@@ -447,7 +447,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
     },
   ],
   contact: {
-    address: 'Torremolinos, Spain',
+    address: 'Utrecht, The Netherlands',
     phone: '+34 645 639 986',
     email: 'nicolaslopval@gmail.com',
   },
