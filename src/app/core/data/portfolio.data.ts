@@ -353,6 +353,22 @@ export const PORTFOLIO_DATA: PortfolioData = {
       image: 'assets/images/PortfolioPage.png',
       size: 'medium',
     },
+    {
+      id: 'pf-8',
+      tracks: ['or-sim', 'software'],
+      tileTitle: 'Battery Dispatch Optimizer — Day-Ahead Price Arbitrage',
+      tagline: 'Linear program that schedules a battery against day-ahead auction prices to maximize arbitrage profit.',
+      techBadges: ['C#', '.NET', 'Google OR-Tools', 'Linear Programming', 'WPF', 'Energy Markets'],
+      modalTitle: 'Day-Ahead Energy Auction Battery Optimizer (2026)',
+      modalBody:
+        '# Problem\nIn the Dutch day-ahead market, prices are cleared for every 15-minute period of the following day — 96 prices, published as a single market document. A battery operator can profit from the spread by charging when energy is cheap and discharging when it is expensive, but "buy low, sell high" stops being obvious the moment real constraints enter: the battery loses energy on both the charging and discharging leg, it can only move so much energy within a single 15-minute window, and it must stay between a minimum and a maximum state of charge at all times. Every decision is coupled to every other one through the stored-energy balance, so a greedy pass over the cheapest and most expensive periods leaves money on the table.\n\n# Approach\n- Formulated the problem myself as a linear program: maximize revenue from energy sold minus the cost of energy bought, subject to a per-period storage balance that carries charge forward while applying the charging and discharging efficiencies, capacity bounds, and charge/discharge rate limits. The full formulation is reproduced below.\n- Implemented the model in C# using Google OR-Tools, building the 96-period model directly from the parsed price series so the horizon, prices, and battery parameters are all data rather than hard-coded structure.\n- Built a WPF desktop front end where every battery parameter — initial charge, minimum and maximum capacity, charging and discharging efficiency, and both rate limits — maps to a named model parameter, so the user can see exactly which part of the formulation they are changing.\n- The app loads a real day-ahead market XML document, or runs against a bundled sample document with no network call, and charts the result: the price curve, the periods bought and sold, and the resulting state-of-charge trajectory, alongside total profit, energy bought, energy sold, and remaining charge.\n\n# What it demonstrates\nThe end-to-end path from a real market mechanism to a formulated model to a tool someone can actually use. On the bundled sample day, a 9.5 MWh battery with 92% efficiency on each leg and a 0.625 MWh per-period rate limit yields an optimal schedule worth €1,653.72 — buying 19.597 MWh and selling 16.587 MWh, with the difference accounted for by conversion losses. Because the model is a pure LP, it solves to a proven optimum in milliseconds and the schedule can be re-optimized the instant new prices are published.',
+      links: [
+        { label: 'View on GitHub', url: 'https://github.com/NicoLopVal/EnergyOptimization' },
+      ],
+      mathFigure: 'energy-lp',
+      image: 'assets/images/EnergyOptimization.png',
+      size: 'wide',
+    },
   ],
   testimonials: [
     {

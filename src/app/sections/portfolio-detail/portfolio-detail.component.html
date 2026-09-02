@@ -68,6 +68,12 @@
           }
         </ul>
 
+        @if (item.mathFigure === 'energy-lp') {
+          <div class="detail__figure-block">
+            <app-energy-lp-figure />
+          </div>
+        }
+
         @if (item.links?.length) {
           <footer class="detail__links">
             @for (link of item.links; track link.url) {

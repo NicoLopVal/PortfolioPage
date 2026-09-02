@@ -1,5 +1,6 @@
 import { Component, computed, HostListener, inject, signal } from '@angular/core';
 import { PortfolioNavigationService } from '../../core/services/portfolio-navigation.service';
+import { EnergyLpFigureComponent } from '../../shared/math-figure/energy-lp-figure.component';
 
 export type DescriptionBlock =
   | { type: 'heading'; text: string }
@@ -12,7 +13,7 @@ export type PagerDotRole = 'prev' | 'current' | 'next';
 @Component({
   selector: 'app-portfolio-detail',
   standalone: true,
-  imports: [],
+  imports: [EnergyLpFigureComponent],
   templateUrl: './portfolio-detail.component.html',
   styleUrl: './portfolio-detail.component.scss',
 })

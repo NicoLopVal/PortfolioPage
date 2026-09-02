@@ -1,0 +1,82 @@
+<figure class="mf">
+  <figcaption class="mf__caption">Model formulation</figcaption>
+
+  <div class="mf__sheet">
+
+    <!-- ── Objective function ──────────────────────────────────────────── -->
+    <p class="mf__label">O.F.</p>
+
+    <div class="mf__eq">
+      <span class="mf__op">Max</span>&nbsp;<i>W</i>&nbsp;=
+      <span class="mf__sum" aria-hidden="true">
+        <span class="mf__limit">96</span>
+        <span class="mf__sigma">&#8721;</span>
+        <span class="mf__limit"><i>i</i>=1</span>
+      </span>
+      <span class="mf__sr">the sum from i equals 1 to 96 of</span>
+      <i>y</i><sub>i</sub> &middot; <i>p</i><sub>i</sub> &minus; <i>x</i><sub>i</sub> &middot; <i>p</i><sub>i</sub>
+    </div>
+
+    <!-- ── Constraints ─────────────────────────────────────────────────── -->
+    <p class="mf__label">S.T.</p>
+
+    <div class="mf__eq">
+      <i>z</i><sub>i&minus;1</sub> + <i>x</i><sub>i</sub> &middot; <i>F</i> &minus;
+      <span class="mf__frac">
+        <span class="mf__num"><i>y</i><sub>i</sub></span>
+        <span class="mf__den"><i>G</i></span>
+      </span>
+      = <i>z</i><sub>i</sub> ; &forall; <i>i</i> &isin; <i>I</i> &gt; 0
+    </div>
+
+    <div class="mf__eq"><i>z</i><sub>0</sub> = <i>s</i> ;</div>
+    <div class="mf__eq"><i>z</i><sub>i</sub> &le; <i>C</i><sub>max</sub> ; &forall; <i>i</i> &isin; <i>I</i></div>
+    <div class="mf__eq"><i>z</i><sub>i</sub> &ge; <i>C</i><sub>min</sub> ; &forall; <i>i</i> &isin; <i>I</i></div>
+    <div class="mf__eq"><i>x</i><sub>i</sub> &le; <i>L</i> ; &forall; <i>i</i> &isin; <i>I</i> &gt; 0</div>
+    <div class="mf__eq"><i>y</i><sub>i</sub> &le; <i>D</i> ; &forall; <i>i</i> &isin; <i>I</i> &gt; 0</div>
+    <div class="mf__eq mf__eq--spaced">
+      <i>x</i><sub>i</sub>, <i>y</i><sub>i</sub> &ge; 0 ; &forall; <i>i</i> &isin; <i>I</i> &gt; 0
+    </div>
+
+    <!-- ── Legend ──────────────────────────────────────────────────────── -->
+    <p class="mf__label mf__label--section">Variables</p>
+    <dl class="mf__defs">
+      <dt><i>x</i><sub>i</sub></dt>
+      <dd>Amount of energy bought on period <i>i</i>, in MWh.</dd>
+      <dt><i>y</i><sub>i</sub></dt>
+      <dd>Amount of energy sold on period <i>i</i>, in MWh.</dd>
+      <dt><i>z</i><sub>i</sub></dt>
+      <dd>Energy stored in the battery at the end of period <i>i</i>, in MWh.</dd>
+    </dl>
+
+    <p class="mf__label mf__label--section">Sets</p>
+    <dl class="mf__defs">
+      <dt><i>I</i></dt>
+      <dd>
+        &#123;0, 1, 2, &hellip;, 96&#125;. The 15-minute periods of a day (24 &middot; 4 = 96).
+        0 means the previous period.
+      </dd>
+    </dl>
+
+    <p class="mf__label mf__label--section">Parameters</p>
+    <dl class="mf__defs">
+      <dt><i>p</i><sub>i</sub></dt>
+      <dd>Auction price for period <i>i</i>.</dd>
+      <dt><i>F</i></dt>
+      <dd>Efficiency of the battery while charging (fraction of energy not lost in the charging process).</dd>
+      <dt><i>G</i></dt>
+      <dd>Efficiency of the battery while discharging (fraction of energy not lost in the discharging process).</dd>
+      <dt><i>L</i></dt>
+      <dd>Rate limit for charge (caps how much can be charged within one period).</dd>
+      <dt><i>D</i></dt>
+      <dd>Rate limit for discharge (caps how much can be discharged within one period).</dd>
+      <dt><i>C</i><sub>max</sub></dt>
+      <dd>Maximum capacity of the battery, in MWh.</dd>
+      <dt><i>C</i><sub>min</sub></dt>
+      <dd>Minimum capacity of the battery, in MWh.</dd>
+      <dt><i>s</i></dt>
+      <dd>Stored energy carried over from the previous period, in MWh.</dd>
+    </dl>
+
+  </div>
+</figure>

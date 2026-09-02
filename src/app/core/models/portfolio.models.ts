@@ -71,6 +71,11 @@ export type ProjectTrack = 'or-sim' | 'software';
 
 export type TileSize = 'small' | 'medium' | 'wide' | 'large';
 
+/** Typeset figure rendered inside a project's detail view. Each id maps to a
+ *  component under `shared/math-figure` — markup rather than an image so the
+ *  equations stay sharp, selectable, and theme-aware. */
+export type MathFigureId = 'energy-lp';
+
 export interface PortfolioItem {
   id: string;
   tileTitle: string;
@@ -80,6 +85,8 @@ export interface PortfolioItem {
   modalBody: string;
   links?: ProjectLink[];
   modalImages?: ProjectModalImage[];
+  /** Optional typeset figure shown after the body text. */
+  mathFigure?: MathFigureId;
   image: string;
   /** Preferred tile footprint. A guide, not a rule — the gallery shrinks or
    *  grows tiles when the preferred set can't tile a clean rectangle. */
