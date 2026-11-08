@@ -156,15 +156,26 @@ export const PORTFOLIO_DATA: PortfolioData = {
   ],
   experience: [
     {
+      id: 'exp-tap',
+      period: '2026-Present',
+      total: 'Present 1 mo',
+      title: 'Backend Engineer',
+      company: 'Tap Electric',
+      companyLogo: 'assets/images/tap_electric_app_logo.jpg',
+      companyLinkedin: 'https://www.linkedin.com/company/tap-electric-app',
+      Description: '- Build backend services in C# and .NET on Azure for an EV charging platform live in four European markets with tens of thousands of drivers, following Clean Architecture.\n- Work across the whole product in a fast-moving startup, covering billing, backend, analytics, frontend and business logic, and take tickets from understanding to delivery.\n- Deliver through Azure DevOps CI/CD pipelines, and use Elasticsearch to search data and logs and debug production issues.\n- Work AI-first, using AI tools to connect multiple systems and data sources, find correlations behind bugs and scope new implementations.\n- Support customers directly by answering emails and calls alongside the team, keeping engineering close to real user needs.',
+      accentBar: true,
+    },
+    {
       id: 'exp-0',
       period: '2025-2026',
-      total: 'Present 9 mos',
+      total: '9 mos',
       title: 'Senior Software Developer',
       company: 'Introsmatter',
       companyLogo: 'assets/images/introsmatter.jpg',
       companyLinkedin: 'https://www.linkedin.com/company/introsmatter',
       Description: '- Developed backend features for lead generation platform using .NET 8.0, SQL Server, and Clean Architecture principles.\n- Built and maintain structure for automated tests with Playwright for the web application and browser extension.\n- Implemented multiple functionalities and integrations to multiple services such as Salesforce and AthenaAi.\n- Built database migration processes and optimized SQL queries for LinkedIn connection processing systems.\n- Collaborated within SCRUM framework to deliver solutions for B2B lead generation and social network data extraction.\n- Contributed to CI/CD pipeline improvements using GitLab and Octopus Deploy for deployment automation.',
-      accentBar: true,
+      accentBar: false,
     },
     {
       id: 'exp-1',
@@ -309,7 +320,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       techBadges: ['Python', 'VBA', 'Algorithms', 'Combinatorial Optimization', 'Graph Theory'],
       modalTitle: 'IBM Research Ponder This (2021–2022)',
       modalBody:
-        '# Problem\nIBM Research\'s Ponder This publishes a monthly math/CS challenge typically requiring a mix of algorithmic insight and computational search. Topics spanned graph theory, max-flow optimization, combinatorial enumeration, knapsack problem and number theory.\n\n# Approach\nI solved each problem in VBA, Python or C# depending on the problem shape — smaller search spaces with rich structure went to VBA prototypes, larger combinatorial searches to Python or C# with optimized representations.\n- Jan 2021 — Modular grid traversal with state-dependent rotation (Vaccinating Robot)\n- Feb 2021 — Minimum vertex set on a trust-dependency graph via strongly connected components (Vaccination Ring)\n- Mar 2021 — Closure problem on a 20×20 grid solved via max-flow (Perseverance Rover)\n- Apr 2021 — Combinatorial enumeration of unwinnable sets (Decremental Wheel of Choice)\n- Dec 2021 — Deterministic pin orientation optimization (Galton Board)\n- Jan 2022 — Prime-forming graph traversal on a digit circle (Forming Primes)\n- Jun 2026 — Minimal Combinations to cover all possible sets (The Superhero Team Movies)\n- Jul 2026 — Knapsack problem (The Superhero villain combinations)\n- Sep 2026 — Arithmetic progressions in Loeschian numbers (Loeschian Arithmetic Progressions)\n\n# Impact\nEarned the bonus star on 7 of 9 challenges. All solver names are verified on IBM Research\'s public archive.',
+        '# Problem\nIBM Research\'s Ponder This publishes a monthly math/CS challenge typically requiring a mix of algorithmic insight and computational search. Topics spanned graph theory, max-flow optimization, combinatorial enumeration, knapsack problem and number theory.\n\n# Approach\nI solved each problem in VBA, Python or C# depending on the problem shape — smaller search spaces with rich structure went to VBA prototypes, larger combinatorial searches to Python or C# with optimized representations.\n- Jan 2021 — Modular grid traversal with state-dependent rotation (Vaccinating Robot)\n- Feb 2021 — Minimum vertex set on a trust-dependency graph via strongly connected components (Vaccination Ring)\n- Mar 2021 — Closure problem on a 20×20 grid solved via max-flow (Perseverance Rover)\n- Apr 2021 — Combinatorial enumeration of unwinnable sets (Decremental Wheel of Choice)\n- Dec 2021 — Deterministic pin orientation optimization (Galton Board)\n- Jan 2022 — Prime-forming graph traversal on a digit circle (Forming Primes)\n- Jun 2026 — Minimal Combinations to cover all possible sets (The Superhero Team Movies)\n- Jul 2026 — Knapsack problem (The Superhero villain combinations)\n- Sep 2026 — Arithmetic progressions in Loeschian numbers (Loeschian Arithmetic Progressions)\n- Oct 2026 — Constructive search for a full-board game: reverse-built the final position, then ordered the earlier moves as an Euler trail with Hierholzer\'s algorithm (The Ultimate Ultimate Tic-Tac-Toe Game)\n\n# Impact\nEarned the bonus star on 8 of 10 challenges. All solver names are verified on IBM Research\'s public archive.',
       links: [
         { label: 'Jan 2021 — Vaccinating Robot', url: 'https://research.ibm.com/blog/ponder-this-january-2021' },
         { label: 'Feb 2021 — Vaccination Ring', url: 'https://research.ibm.com/blog/ponder-this-february-2021' },
@@ -318,8 +329,9 @@ export const PORTFOLIO_DATA: PortfolioData = {
         { label: 'Dec 2021 — Galton Board', url: 'https://research.ibm.com/blog/ponder-this-december-2021' },
         { label: 'Jan 2022 — Forming Primes', url: 'https://research.ibm.com/blog/ponder-this-january-2022' },
         { label: 'Jun 2026 — The Superhero Team Movies', url: 'https://research.ibm.com/blog/ponder-this-june-2026' },
-        { label: 'July 2026 - Return of the Superheroes', url: 'https://research.ibm.com/blog/ponder-this-july-2026' },
-        { label: 'September 2026 - Loeschian Arithmetic Progressions', url: 'https://research.ibm.com/blog/ponder-this-september-2026'}
+        { label: 'Jul 2026 — Return of the Superheroes', url: 'https://research.ibm.com/blog/ponder-this-july-2026' },
+        { label: 'Sep 2026 — Loeschian Arithmetic Progressions', url: 'https://research.ibm.com/blog/ponder-this-september-2026' },
+        { label: 'Oct 2026 — The Ultimate Ultimate Tic-Tac-Toe Game', url: 'https://research.ibm.com/blog/ponder-this-october-2026' },
       ],
       image: 'assets/images/PonderThis.png',
       size: 'small',
